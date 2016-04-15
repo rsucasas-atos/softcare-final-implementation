@@ -1,0 +1,38 @@
+﻿<UserControl 
+    x:Class="SoftCare.ClientApplication.Controls.WizardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:controls="clr-namespace:SoftCare.ClientApplication.Controls"
+    xmlns:local="clr-namespace:SoftCare.ClientApplication"
+    mc:Ignorable="d" 
+    d:DesignHeight="560" d:DesignWidth="500">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:AppCommands.QuetionnaireMoveNextCommand" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute" />
+        <CommandBinding Command="local:AppCommands.QuetionnaireMoveBackCommand" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute" />
+        <CommandBinding Command="local:AppCommands.UploadQuestionnaireCommand" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute" />        
+    </UserControl.CommandBindings>
+    <Grid Height="580" MaxHeight="580">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border Height="Auto" Margin="0,0,0,0" VerticalAlignment="Top" Visibility="{Binding QuestionSummaryVisibility}" Style="{StaticResource RoundBorder}">
+            <StackPanel Orientation="Vertical" Margin="30 20 30 20">
+                <!--<TextBlock Style="{StaticResource QuetionnaireQuestionNumber}" Text="{Binding QuestionNumber}" />-->
+                <TextBlock Style="{StaticResource QuetionnaireQuestionTitle}" Text="{Binding QuestionTitle}" VerticalAlignment="Top" />
+            </StackPanel>
+        </Border>
+        <ContentPresenter Grid.Row="1" Content="{Binding ActiveQuestionnairePage}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid Grid.Row="2" VerticalAlignment="Bottom" MinWidth="980">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource WizardButton}" HorizontalAlignment="Left" Margin="0,10,0,0" Content="{DynamicResource Back}" Command="local:AppCommands.QuetionnaireMoveBackCommand" />
+            <Button Grid.Column="1" Style="{StaticResource WizardButton}" HorizontalAlignment="Right" Margin="0,10,0,0" Content="{DynamicResource Next}" IsDefault="True" Command="local:AppCommands.QuetionnaireMoveNextCommand" Visibility="{Binding QuestionSummaryVisibility}" />
+        </Grid>
+    </Grid>
+</UserControl>

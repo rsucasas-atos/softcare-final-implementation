@@ -1,0 +1,121 @@
+body{
+   	background-image: url("../images/login_page_img.jpg");
+   	background-repeat: no-repeat;
+	background-size:cover;
+   	margin: 0px;
+	padding: 0px 0px;
+}
+
+.headerwin2{
+	margin:0 auto;
+}
+
+.float-right{
+	float: right;
+	display: inline;
+	}
+.float-left{
+	float: left;
+	display: inline;
+	}	
+.mainerror{
+	margin: 4px auto 3px;
+	background-color: #ED95A0;
+	padding: 10px 10px 10px 40px;
+	}
+.loginwin{
+	margin:0 auto;
+	background-color: #ffffff;
+	}
+.logintext{
+	font-size: 16px;
+	font-weight: bold;
+	}
+
+.centerwin{
+	margin:0 auto;
+	text-align: left;
+	padding: 20px 10px;
+	border:1px solid #a6a6a6;
+}
+	
+.footer{
+	margin:0 auto;
+	border-left:1px solid #a6a6a6;
+	border-right:2px solid #a6a6a6;
+	border-bottom:2px solid #a6a6a6;
+	padding: 0px 10px;
+	}
+.left{
+	text-align:left;
+	}
+.right{
+	text-align:right;
+	}
+.bold{
+	font-weight: bold;
+	}
+.listseparation{
+	padding-top: 10px;
+	}
+.newitem{
+	margin-top:20px;
+	margin-bottom:10px;
+	float:left;
+	clear: both;
+}
+.head-left{
+	float: right;
+	margin-right:20px;
+	margin-top:20px;
+	}
+.link{
+	color:darkblue;
+	text-decoration: underline;
+	font-weight:bold;
+	}
+.link:HOVER{
+	color:darkred;
+	font-weight:bold;
+	cursor: pointer;
+	}
+.a:HOVER{
+	color:green;
+	cursor: pointer;
+	}
+.menubar{
+	font-size:16px;
+	font-weight:bold;
+}
+.menubar table{
+	margin:0 auto;
+}
+.menubaritem{
+	font-size:16px;
+	font-weight:bold;
+	}
+.grid{
+	margin-bottom:10px;
+	}
+.center{
+	text-align: center;
+	}
+.strong{
+	font-weight: bold;
+	}
+.question{
+	
+	}
+.question:HOVER {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.headerwin{
+	margin:0 auto;
+	border-left:1px solid #a6a6a6;
+	border-right:2px solid #a6a6a6;
+	padding: 0px 10px;
+	background-color: #ffffff;
+}

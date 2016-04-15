@@ -1,0 +1,344 @@
+<zk>
+    <zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.PatientInfo;
+		import eu.ehealth.ws_client.xsd.SearchCriteria;
+		import eu.ehealth.SystemDictionary;
+		import eu.ehealth.ws_client.xsd.CarerInfo;
+		import eu.ehealth.ws_client.xsd.Carer;
+		import eu.ehealth.ws_client.xsd.CarerAssessment;
+		import eu.ehealth.controllers.details.assessment.CarerAssessmentInfo;
+		import eu.ehealth.controllers.CarerControllerWindow;
+		import eu.ehealth.ws_client.xsd.ClinicianInfo;
+		
+		
+		if (session.getAttribute("user") == null)
+		{
+			Executions.sendRedirect("../login.zul");
+		}
+		String user = (String)session.getAttribute("user");
+		
+		String home = Labels.getLabel("menu.home");
+		String patients = Labels.getLabel("menu.patients");
+		String carers = Labels.getLabel("menu.carers");
+		String clinicians = Labels.getLabel("menu.clinicians");
+		String calendar = Labels.getLabel("menu.calendar");
+		String extsrv = Labels.getLabel("menu.extsrv");
+		String warnings = Labels.getLabel("menu.warnings");
+		String qm = Labels.getLabel("qm.menu");
+		String administration = Labels.getLabel("menu.administrators");
+		String viewusers = "viewusers";
+		String configuration = "configuration";
+		String ureport = "ureport";
+		String cm = "cm";
+		String warnings_link = "warnings";
+		String services_link = "services";
+		String path1 = "";
+		String sep1 = "";
+		String path2 = "";
+		String sep2 = "";
+		
+		String hello = Labels.getLabel("menu.hello");
+		String lout = Labels.getLabel("menu.logout");
+		String contact = Labels.getLabel("menu.contact");
+		String close = Labels.getLabel("error.close");
+		Boolean isadmin = (Boolean)Sessions.getCurrent().getAttribute("isadmin");
+	</zscript>
+	
+	<style dynamic="true">
+        .fixedBar
+        {
+			position:fixed;
+			top:0;
+			left:0;
+			width:100%;
+			z-index: 1;
+			margin:0 auto;
+			border: 0;
+			padding: 0;
+		}
+		.vista 
+		{
+			background:#7F96A3; 
+			color:white;
+		}
+		.z-menu-text, .z-menuitem-text 
+		{
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 12px;
+			font-weight: bold;
+			display: inline-block;
+			line-height: 13px;
+			text-shadow: 0 1px #fff;
+		}
+	</style>
+	<style src="../inc/style.css"/>
+	
+	<borderlayout height="100%"  id="template_layout" style="margin:0; border: 0; padding: 0; width:100%;">
+		
+		<north size="160px" border="0"  id="northHeaderLayout" sclass="fixedBar">
+			<borderlayout>
+				<north title="SOFTCARE - Header panel" height="100px" collapsible="true" border="0" id="northHeaderLayoutPanel" onOpen="collapsHeaderNorthBar();" sclass="headerwin2">
+					<borderlayout>
+						<west size="85%" border="none">
+							<image src="../images/header.jpg" onClick='Executions.getCurrent().sendRedirect("../common/index.zul")' />
+						</west>
+						<east size="15%" border="none">
+							<vbox>
+								<hbox>
+									<label value="${hello} ${user}, " style="font-style: italic; font-weight: bold; font-size: 12px;"/>
+									<label value="${lout}" id="logout" sclass="link" onClick="logout()" style="font-size: 12px;"/>
+								</hbox>
+								<toolbarbutton label="Contact administrator" href="mailto:admin" target="_blank" if="${!isadmin }" image="../inc/icons/email.png"/>
+							</vbox>
+						</east>
+					</borderlayout>
+				</north>
+				
+				<center border="0" >
+					<borderlayout>
+						<center>
+							<menubar id="menubar" width="100%">
+							
+								<menuitem label="${home}" left="20" image="../inc/icons/home_16.png" onClick="selectMenuOption(home);" 
+									tooltiptext="Home page"/>
+							
+								<menu label="Users" if="${isadmin }" image="../inc/icons/users_16.png" tooltiptext="Application users menu">
+									<menupopup>	
+										<menuitem label="Users" image="../inc/icons/users_16.png" onClick="selectMenuOption(patients);" 
+											tooltiptext="View users"/>
+										<menuitem label="Social Workers" image="../inc/icons/socialworker_16.png" onClick="selectMenuOption(carers);" 
+											tooltiptext="Go to Social workers"/>
+										<menuitem label="Doctors" image="../inc/icons/doctors_16.png" onClick="selectMenuOption(clinicians);" 
+											tooltiptext="View doctors"/>
+									</menupopup>	
+								</menu>
+									
+								<menu label="Users" if="${!isadmin }" image="../inc/icons/users_16.png" tooltiptext="Users menu">
+									<menupopup>	
+										<menuitem label="Users" image="../inc/icons/users_16.png" onClick="selectMenuOption(patients);" 
+											tooltiptext="View users"/>
+										<menuitem label="Social Workers" image="../inc/icons/socialworker_16.png" onClick="selectMenuOption(carers);" 
+											tooltiptext="Go to Social workers"/>
+									</menupopup>	
+								</menu>
+								
+								<menu label="Doctors" if="${!isadmin }" image="../inc/icons/doctors_16.png" tooltiptext="Clinicians menu">
+									<menupopup>
+										<menuitem label="Doctors" image="../inc/icons/doctors_16.png" onClick="selectMenuOption(clinicians);" 
+											tooltiptext="View doctors"/>
+										<menuitem label="${warnings }" image="../inc/icons/warnings_16.png" onClick="selectMenuOption(warnings_link);" 
+											tooltiptext="View Patients warnings" />
+									</menupopup>	
+								</menu>
+									
+								<menu label="App Content" image="../inc/icons/app_16.png" tooltiptext="Client application's content">
+                    				<menupopup>	
+										<menuitem label="${qm}" image="../inc/icons/questionnaire_16.png" onClick="selectMenuOption(qm);" 
+											tooltiptext="Go to the Questionnaire manager" disabled="true"/>
+										<menuitem label="Services" image="../inc/icons/services_16.png" onClick="selectMenuOption(services_link);" 
+											tooltiptext="Management of external services"/>
+										<menuitem label="Content Management" image="../inc/icons/content_16.png" onClick="selectMenuOption(cm);" 
+											tooltiptext="Content management"/>
+										<menuitem label="Multimedia Content" image="../inc/icons/multimedia_16.png"  
+											tooltiptext="Multimedia management" disabled="true"/>
+									</menupopup>	
+								</menu>
+								
+								<menu label="Administration" if="${isadmin }" image="../inc/icons/admin_16.png" tooltiptext="Administration menu">
+									<menupopup>	
+										<menuitem label="${administration }" image="../inc/icons/admins_16.png" onClick="selectMenuOption(administration);" />
+										<!-- tooltip="infoAdmin" -->
+										<menuitem label="Connected users" image="../inc/icons/connection_16.png" onClick="selectMenuOption(viewusers);" 
+											tooltiptext="View connected users" />
+										<menuitem label="Configuration" image="../inc/icons/edit.png" onClick="selectMenuOption(configuration);" 
+											tooltiptext="Softcare configuration" disabled="true"/>
+										<menuitem label="User's report" image="../inc/icons/users_16.png" onClick="selectMenuOption(ureport);" 
+											tooltiptext="User's report" disabled="true"/>
+									</menupopup>	
+								</menu>
+								
+								<menuitem label="Multimedia Repository" image="../inc/icons/multimedia_16.png"  
+											tooltiptext="Multimedia repository" onClick="goToMMedia()"/>
+											
+								<menu label="Forum" tooltiptext="Forum menu" image="../inc/icons/forum_16.png">
+									<menupopup>	
+										<menuitem label="Config" image="../inc/icons/application_16.png" 
+											tooltiptext="Configuration" onClick="goToForumConfig()"/>
+										<menuitem label="Forum" image="../inc/icons/forum_16.png"  
+											tooltiptext="Go to Forum" onClick="goToForum()"/>
+									</menupopup>	
+								</menu>
+											
+								<menu label="Applications" tooltiptext="Applications menu" image="../inc/icons/application_16.png">
+									<menupopup>	
+										<menuitem label="News" image="../inc/icons/news_16.png"  
+											tooltiptext="News" disabled="true"/>
+									</menupopup>	
+								</menu>
+							</menubar>
+							
+						</center>
+						
+						<south>
+							<window width="100%" border="none" id="migas">
+								<hbox>
+									<label value="Home" id="migas1"
+										style="color: #00A3EF; font-style: italic; font-weight: bold; font-size: 12px; text-align: left;"/>
+									<label value="${sep1}" 
+										style="color: #000000; font-style: italic; font-weight: bold; font-size: 12px; text-align: left;"/>
+									<label value="${path1}" id="migas2"
+										style="color: #00A3EF; font-style: italic; font-weight: bold; font-size: 12px; text-align: left;"/>
+									<label value="${sep2}"
+										style="color: #000000; font-style: italic; font-weight: bold; font-size: 12px; text-align: left;"/>
+									<label value="${path2}" id="migas3"
+										style="color: #00A3EF; font-style: italic; font-weight: bold; font-size: 12px; text-align: left;"/>
+								</hbox>
+							</window>
+						</south>
+					</borderlayout>
+				</center>
+				
+			</borderlayout>
+		</north>
+
+		<!-- MAIN CONTENT -->
+        <center border="none" id="centerHeaderLayout">
+			<borderlayout>
+				<center border="0" autoscroll="true" style="background-image: url('../images/login_page_img.jpg'); background-repeat: no-repeat;
+						background-size:cover;" id="centerHeaderLayoutPanel">
+					<include id="app_content" src="../common/index_content.zul"/>
+				</center>
+			</borderlayout>
+        </center>
+        
+        <south border="none" style="background-color: #7F96A3;">
+			<toolbar id="tb" sclass="vista" height="20px" align="end" width="900px">
+				<label id="now"  />
+			</toolbar>
+        </south>
+	</borderlayout>
+	
+	<popup id="infoAdmin" width="300px">
+        <html><![CDATA[
+            Administration: 
+            	<br /> Add, edit and <font color="red">delete</font> other administrators
+               	<br /> <u>admin@ehealth.org</u>
+        ]]></html>
+    </popup>
+	
+	<timer id="timer" delay="1000" repeats="true">
+		<attribute name="onTimer">
+			now.setValue(new Date().toString());
+		</attribute>
+	</timer>
+	
+	<zscript>
+		public void collapsHeaderNorthBar()
+		{
+			if (northHeaderLayoutPanel.isOpen()) {
+				northHeaderLayout.setSize("160px");
+			}
+			else {
+				northHeaderLayout.setSize("100px");
+			}
+			template_layout.resize();
+		}
+		
+		
+		public void logout() 
+		{
+			String userName = (String)session.getAttribute("user");
+			String userId = (String)session.getAttribute("userid");
+			SystemDictionary.logoutUser(userId, userName);
+			
+			session.removeAttribute("user");
+			Executions.getCurrent().sendRedirect("../../index.html"); //"../login.zul");
+		}
+		
+		
+		public void goToMMedia() 
+		{
+			Executions.getCurrent().sendRedirect(SystemDictionary.getMultimediaURL(), "_blank");
+		}
+		
+		
+		public void goToForumConfig() 
+		{
+			Executions.getCurrent().sendRedirect(SystemDictionary.getForumConfigURL(), "_blank");
+		}
+		
+		
+		public void goToForum() 
+		{
+			Executions.getCurrent().sendRedirect(SystemDictionary.getForumURL(), "_blank");
+		}
+		
+		
+		public void selectMenuOption(String opt)
+		{
+			Label lab1 = (Label) migas.getFellow("migas1");
+			lab1.value = "";
+		
+			if (opt.equalsIgnoreCase("patients")) 
+			{
+				lab1.value = "Users";
+				app_content.setSrc("../patients/index_content.zul");
+			}
+			else if (opt.equalsIgnoreCase("carers")) 
+			{
+				lab1.value = "Social Workers";
+				app_content.setSrc("../carers/index_content.zul");
+			}
+			else if (opt.equalsIgnoreCase("clinicians")) 
+			{
+				lab1.value = "Clinicians";
+				app_content.setSrc("../clinicians/index_content.zul");
+			}
+			
+			// qm: /qm/index.zul
+			else if (opt.equalsIgnoreCase("qm")) {
+				app_content.setSrc("../qm/index.zul");
+			}
+			// services: /extsrv/index_content.zul
+			else if (opt.equalsIgnoreCase("services")) {
+				app_content.setSrc("../extsrv/index_content.zul");
+			}
+			// warnings: /warnings/index_content.zul
+			else if (opt.equalsIgnoreCase("warnings")) {
+				app_content.setSrc("../warnings/index_content.zul");
+			}
+			// cm: /cms/index_content.zul
+			else if (opt.equalsIgnoreCase("cm")) {
+				app_content.setSrc("../cms/index_content.zul");
+			}
+
+			else if (opt.equalsIgnoreCase("administration")) 
+			{
+				lab1.value = "Administration";
+				app_content.setSrc("../administration/index_content.zul");
+			}
+			else if (opt.equalsIgnoreCase("viewusers")) 
+			{
+				lab1.value = "Administration";
+				app_content.setSrc("../administration/viewusers.zul");
+			}
+			else if (opt.equalsIgnoreCase("configuration")) 
+			{
+				lab1.value = "Administration";
+				app_content.setSrc("../administration/configuration.zul");
+			}
+			else if (opt.equalsIgnoreCase("ureport")) 
+			{
+				lab1.value = "Administration";
+				app_content.setSrc("../administration/ureport.zul");
+			}
+			else 
+			{
+				lab1.value = "Home";
+				app_content.setSrc("../common/index_content.zul");
+			}
+		}
+	</zscript>
+</zk>

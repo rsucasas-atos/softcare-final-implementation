@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ehealth.eu/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://ehealth.eu/StorageComponent/" name="StorageComponentImplService" targetNamespace="http://ehealth.eu/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://ehealth.eu/StorageComponent/" location="http://localhost:9080/softcare-ws/StorageComponent?wsdl=StorageComponent.wsdl" />
+  <wsdl:types />
+  <wsdl:binding name="StorageComponentImplServiceSoapBinding" type="ns1:StorageComponent">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateCarer">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreateCarer" style="document" />
+      <wsdl:input name="CreateCarer">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateCarerResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ChangePassword" style="document" />
+      <wsdl:input name="ChangePassword">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ChangePasswordResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuestionnaire">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreateQuestionnaire" style="document" />
+      <wsdl:input name="CreateQuestionnaire">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateQuestionnaireResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetUser" style="document" />
+      <wsdl:input name="GetUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemParameter">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateSystemParameter" style="document" />
+      <wsdl:input name="UpdateSystemParameter">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateSystemParameterResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQuestionnaireAnswers">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/StoreQuestionnaireAnswers" style="document" />
+      <wsdl:input name="StoreQuestionnaireAnswers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="StoreQuestionnaireAnswersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatientAssessment">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeletePatientAssessment" style="document" />
+      <wsdl:input name="DeletePatientAssessment">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeletePatientAssessmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignTasksMassively">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/AssignTasksMassively" style="document" />
+      <wsdl:input name="AssignTasksMassively">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AssignTasksMassivelyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByPatientId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserIdByPatientId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserIdByPatientIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetTask" style="document" />
+      <wsdl:input name="GetTask">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetTaskResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAvailableCarers">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/getAvailableCarers" style="document" />
+      <wsdl:input name="getAvailableCarers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAvailableCarersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetUserType" style="document" />
+      <wsdl:input name="GetUserType">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserTypeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfClinicians">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfClinicians" style="document" />
+      <wsdl:input name="ListOfClinicians">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfCliniciansResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientsForCaregiver">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetPatientsForCaregiver" style="document" />
+      <wsdl:input name="GetPatientsForCaregiver">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetPatientsForCaregiverResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWarnings">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetWarnings" style="document" />
+      <wsdl:input name="GetWarnings">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetWarningsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAdministrator">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteAdministrator" style="document" />
+      <wsdl:input name="DeleteAdministrator">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteAdministratorResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="logout">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="logoutResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMediaContent">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateMediaContent" style="document" />
+      <wsdl:input name="UpdateMediaContent">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateMediaContentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientAssessments">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetPatientAssessments" style="document" />
+      <wsdl:input name="GetPatientAssessments">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetPatientAssessmentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByClinicianId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserIdByClinicianId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserIdByClinicianIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPlannedTasks">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetUserPlannedTasks" style="document" />
+      <wsdl:input name="GetUserPlannedTasks">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserPlannedTasksResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserPersonIdByPatientId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserPersonIdByPatientId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserPersonIdByPatientIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="registerUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="registerUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientMeasurement">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetPatientMeasurement" style="document" />
+      <wsdl:input name="GetPatientMeasurement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetPatientMeasurementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaireAnswers">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetQuestionnaireAnswers" style="document" />
+      <wsdl:input name="GetQuestionnaireAnswers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetQuestionnaireAnswersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="login">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loginResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfPatients">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfPatients" style="document" />
+      <wsdl:input name="ListOfPatients">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfPatientsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExternalServices">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetAllExternalServices" style="document" />
+      <wsdl:input name="GetAllExternalServices">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAllExternalServicesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="lockUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="lockUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatient">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdatePatient" style="document" />
+      <wsdl:input name="UpdatePatient">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdatePatientResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTaskMassively">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/RemoveTaskMassively" style="document" />
+      <wsdl:input name="RemoveTaskMassively">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RemoveTaskMassivelyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarer">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetCarer" style="document" />
+      <wsdl:input name="GetCarer">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCarerResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveWarning">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/SaveWarning" style="document" />
+      <wsdl:input name="SaveWarning">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SaveWarningResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMediaContent">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteMediaContent" style="document" />
+      <wsdl:input name="DeleteMediaContent">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteMediaContentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByCarerId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserIdByCarerId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserIdByCarerIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaire">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetQuestionnaire" style="document" />
+      <wsdl:input name="GetQuestionnaire">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetQuestionnaireResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEhealthParameters">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getEhealthParameters">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEhealthParametersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatient">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeletePatient" style="document" />
+      <wsdl:input name="DeletePatient">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeletePatientResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/Auth" style="document" />
+      <wsdl:input name="Auth">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AuthResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaContent">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetMediaContent" style="document" />
+      <wsdl:input name="GetMediaContent">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMediaContentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionDescription">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetQuestionDescription" style="document" />
+      <wsdl:input name="GetQuestionDescription">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetQuestionDescriptionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCarerAssessment">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/SaveCarerAssessment" style="document" />
+      <wsdl:input name="SaveCarerAssessment">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SaveCarerAssessmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateClinician">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreateClinician" style="document" />
+      <wsdl:input name="CreateClinician">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateClinicianResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClinician">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateClinician" style="document" />
+      <wsdl:input name="UpdateClinician">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateClinicianResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEhealthRoles">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getEhealthRoles">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEhealthRolesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarer">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateCarer" style="document" />
+      <wsdl:input name="UpdateCarer">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateCarerResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdministrator">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateAdministrator" style="document" />
+      <wsdl:input name="UpdateAdministrator">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateAdministratorResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarer">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteCarer" style="document" />
+      <wsdl:input name="DeleteCarer">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteCarerResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeasurements">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/StoreMeasurements" style="document" />
+      <wsdl:input name="StoreMeasurements">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="StoreMeasurementsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAdministrator">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreateAdministrator" style="document" />
+      <wsdl:input name="CreateAdministrator">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateAdministratorResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteQuestionnaire">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteQuestionnaire" style="document" />
+      <wsdl:input name="DeleteQuestionnaire">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteQuestionnaireResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestionnaire">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateQuestionnaire" style="document" />
+      <wsdl:input name="UpdateQuestionnaire">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateQuestionnaireResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByAdminId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserIdByAdminId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserIdByAdminIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAppConfig">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAppConfig">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAppConfigResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getQuestionnaireAnswerValue">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/getQuestionnaireAnswerValue" style="document" />
+      <wsdl:input name="getQuestionnaireAnswerValue">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getQuestionnaireAnswerValueResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPatient">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetPatient" style="document" />
+      <wsdl:input name="GetPatient">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetPatientResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAppConfigRow">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updateAppConfigRow">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateAppConfigRowResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemParameterList">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetSystemParameterList" style="document" />
+      <wsdl:input name="GetSystemParameterList">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSystemParameterListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExternalService">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteExternalService" style="document" />
+      <wsdl:input name="DeleteExternalService">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteExternalServiceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaireAnswersByTask">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetQuestionnaireAnswersByTask" style="document" />
+      <wsdl:input name="GetQuestionnaireAnswersByTask">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetQuestionnaireAnswersByTaskResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkWarningAsRead">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/MarkWarningAsRead" style="document" />
+      <wsdl:input name="MarkWarningAsRead">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="MarkWarningAsReadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarerAssessments">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetCarerAssessments" style="document" />
+      <wsdl:input name="GetCarerAssessments">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetCarerAssessmentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConnectedUsers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getConnectedUsers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getConnectedUsersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreateUser" style="document" />
+      <wsdl:input name="CreateUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserIdByPersonId">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetUserIdByPersonId" style="document" />
+      <wsdl:input name="GetUserIdByPersonId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserIdByPersonIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfCarers">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfCarers" style="document" />
+      <wsdl:input name="ListOfCarers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfCarersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateUser" style="document" />
+      <wsdl:input name="UpdateUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfQuestionnaires">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfQuestionnaires" style="document" />
+      <wsdl:input name="ListOfQuestionnaires">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfQuestionnairesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClinician">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetClinician" style="document" />
+      <wsdl:input name="GetClinician">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetClinicianResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExternalService">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/UpdateExternalService" style="document" />
+      <wsdl:input name="UpdateExternalService">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateExternalServiceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatient">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreatePatient" style="document" />
+      <wsdl:input name="CreatePatient">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreatePatientResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateExternalService">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/CreateExternalService" style="document" />
+      <wsdl:input name="CreateExternalService">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateExternalServiceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteUser" style="document" />
+      <wsdl:input name="DeleteUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignTask">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/AssignTask" style="document" />
+      <wsdl:input name="AssignTask">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AssignTaskResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfSupportedLocales">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfSupportedLocales" style="document" />
+      <wsdl:input name="ListOfSupportedLocales">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfSupportedLocalesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listOfUsers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="listOfUsers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listOfUsersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lockout">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="lockout">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="lockoutResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskStatus">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ChangeTaskStatus" style="document" />
+      <wsdl:input name="ChangeTaskStatus">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ChangeTaskStatusResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdministrator">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetAdministrator" style="document" />
+      <wsdl:input name="GetAdministrator">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetAdministratorResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfPossibleTasks">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfPossibleTasks" style="document" />
+      <wsdl:input name="ListOfPossibleTasks">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfPossibleTasksResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMediaContent">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/AddMediaContent" style="document" />
+      <wsdl:input name="AddMediaContent">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AddMediaContentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasurement">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/GetMeasurement" style="document" />
+      <wsdl:input name="GetMeasurement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMeasurementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListOfAdministrators">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/ListOfAdministrators" style="document" />
+      <wsdl:input name="ListOfAdministrators">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ListOfAdministratorsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarerAssessment">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteCarerAssessment" style="document" />
+      <wsdl:input name="DeleteCarerAssessment">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteCarerAssessmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClinician">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/DeleteClinician" style="document" />
+      <wsdl:input name="DeleteClinician">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteClinicianResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePatientAssessment">
+      <soap:operation soapAction="http://ehealth.eu/StorageComponent/SavePatientAssessment" style="document" />
+      <wsdl:input name="SavePatientAssessment">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SavePatientAssessmentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StorageComponentImplService">
+    <wsdl:port name="StorageComponentImplPort" binding="tns:StorageComponentImplServiceSoapBinding">
+      <soap:address location="http://localhost:9080/softcare-ws/StorageComponent" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

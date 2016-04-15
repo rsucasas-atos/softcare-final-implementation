@@ -1,0 +1,128 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		
+		
+		String title = Labels.getLabel("home.title");
+		page.setTitle(title);
+		String newprof = Labels.getLabel("home.newprofile");
+		Boolean isadmin = (Boolean)Sessions.getCurrent().getAttribute("isadmin");
+	</zscript>
+	
+	<style dynamic="true">
+		.gridnolayout tr.z-row td.z-row-inner, tr.z-row .z-cell,div.z-grid{
+			border: none;
+			overflow:hidden;
+			zoom: 1;
+			background: white; 
+			border-top: none;
+			border-left: none;
+			border-right: none;
+			border-bottom: none; 
+		}
+	</style>
+	
+	<separator height="5px"/>
+	
+	<window width="900px" sclass="centerwin" border="none">
+		<grid sclass="gridnolayout" >
+			<columns>
+				<column width="25%" align="center"/>
+				<column width="25%" align="center"/>
+				<column width="25%" align="center"/>
+				<column width="25%" align="center"/>
+			</columns>
+			<rows>
+				<row height="150px">
+					<button onClick="selectMenuOption(patients);" height="90%" width="90%" 
+						image="../inc/icons/users.png" tooltiptext="View users"/>
+					<button onClick="selectMenuOption(carers);" height="90%" width="90%" 
+						image="../inc/icons/carer.png" tooltiptext="Go to Social workers"/>
+					<button onClick="selectMenuOption(clinicians);" height="90%" width="90%" 
+						image="../inc/icons/clinician.png" tooltiptext="View doctors"/>
+					<button  onClick="selectMenuOption(warnings_link);" height="90%" width="90%" 
+						image="../inc/icons/warning.png" if="${!isadmin }" tooltiptext="View Patients warnings"/>
+					<button  onClick="selectMenuOption(administration);" height="90%" width="90%" 
+						image="../inc/icons/Admin-icon.png" tooltiptext="Administration" if="${isadmin }"/>
+				</row>
+				
+				<row height="150px">
+					<button onClick="selectMenuOption(services_link);" height="90%" width="90%" 
+						image="../inc/icons/services.png" tooltiptext="Management of external services"/>
+					<button onClick="selectMenuOption(qm);" height="90%" width="90%" 
+						image="../inc/icons/qm.png" tooltiptext="Go to the Questionnaire manager" disabled="true"/>
+					<button  onClick="selectMenuOption(cm);" height="90%" width="90%" 
+						image="../inc/icons/content_management.png" tooltiptext="Content management"/>
+					<button height="90%" width="90%" 
+						image="../inc/icons/services.png" tooltiptext="Multimedia Content" disabled="true"/>
+				</row>
+				
+				<row height="150px">
+					<button height="90%" width="90%" 
+						image="../inc/icons/services.png" tooltiptext="Multimedia Repository" disabled="true"/>
+					<button height="90%" width="90%" 
+						image="../inc/icons/services.png" tooltiptext="Forum" disabled="true"/>
+					<button height="90%" width="90%" 
+						image="../inc/icons/services.png" tooltiptext="News" disabled="true"/>
+					<button height="90%" width="90%" 
+						image="../inc/icons/services.png" tooltiptext="Something else" disabled="true"/>
+				</row>
+			</rows>
+		</grid>
+		
+		<panel height="500px" width="100%" border="normal" title="News panel" collapsible="true" open="false">    
+			<panelchildren>
+				<iframe width="100%" height="600px" 
+					style="border:none;" src="http://output14.rssinclude.com/output?type=iframe&amp;id=943531&amp;hash=b5a3167ffb0fb14a9f2233c282cbb0fc">
+				</iframe>
+			</panelchildren>
+		</panel>
+	</window>
+	
+	
+	
+	<zscript>
+		public void selectMenuOption(String opt)
+		{
+			//System.out.println(opt);
+		
+			// patients:  /patients/index.zul
+			if (opt.equalsIgnoreCase("patients")) {
+				app_content.setSrc("../patients/index_content.zul");
+			}
+			// carers:  /carers/index.zul
+			else if (opt.equalsIgnoreCase("carers")) {
+				app_content.setSrc("../carers/index_content.zul");
+			}
+			// clinicians: /clinicians/index.zul
+			else if (opt.equalsIgnoreCase("clinicians")) {
+				app_content.setSrc("../clinicians/index_content.zul");
+			}
+			// qm: /qm/index.zul
+			else if (opt.equalsIgnoreCase("qm")) {
+				app_content.setSrc("../qm/index.zul");
+			}
+			// services: /extsrv/index_content.zul
+			else if (opt.equalsIgnoreCase("services")) {
+				app_content.setSrc("../extsrv/index_content.zul");
+			}
+			// warnings: /warnings/index_content.zul
+			else if (opt.equalsIgnoreCase("warnings")) {
+				app_content.setSrc("../warnings/index_content.zul");
+			}
+			// cm: /cms/index_content.zul
+			else if (opt.equalsIgnoreCase("cm")) {
+				app_content.setSrc("../cms/index_content.zul");
+			}
+			// administration: /administration/index.zul
+			else if (opt.equalsIgnoreCase("administration")) {
+				app_content.setSrc("../administration/index_content.zul");
+			}
+			// home
+			else {
+				app_content.setSrc("../common/index_content.zul");
+			}
+		}
+	</zscript>
+
+</zk>

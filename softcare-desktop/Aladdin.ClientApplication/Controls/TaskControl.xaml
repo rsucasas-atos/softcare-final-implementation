@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="SoftCare.ClientApplication.Controls.TaskControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:SoftCare.ClientApplication"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <StackPanel Name="Task1" Orientation="Horizontal">
+        <TextBlock Height="28" Name="textBlock1" Text="{Binding Number}" Style="{StaticResource NormalText}" Margin="20,30,0,10" VerticalAlignment="Top" />
+        <TextBlock Height="28" Text="." Style="{StaticResource NormalText}" Margin="0,30,0,10" VerticalAlignment="Top"></TextBlock>
+        <TextBlock Height="28" Text="{Binding Date}" Style="{StaticResource NormalText}" Margin="5,30,0,10"  FontWeight="Bold" VerticalAlignment="Top" />
+        <Button Margin="10,10,10,20" Command="local:AppCommands.MoveToPageCommand" CommandParameter="{Binding Task}" Style="{StaticResource TaskButton}" Content="{Binding Title}" IsEnabled="{Binding IsPending}"></Button>
+        <!--<Button Margin="10,10,10,20" Command="local:AppCommands.MoveToPageCommand" CommandParameter="{Binding Task}" Style="{StaticResource TaskButton}" Content="{Binding Title}"></Button>-->
+        <Image Visibility="{local:VisibilityBinding IsCompleted}" Source="/SoftCare.ClientApplication;component/Resources/Images/icon_done.png" Margin="0,-10,0,0" Height="48" />
+        <Image Visibility="{local:VisibilityBinding IsPending}" Source="/SoftCare.ClientApplication;component/Resources/Images/icon_todo.png" Margin="0,-10,0,0" Height="48" />
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,260 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.Patient;
+		import java.rmi.RemoteException;
+		import eu.ehealth.ws_client.xsd.PatientAssessment;
+		import eu.ehealth.ErrorDictionary;
+		import java.util.Collection;
+		import org.zkoss.zk.ui.Executions;
+		import org.zkoss.zul.Include;
+		import eu.ehealth.utilities.ComponentsFinder;
+		import eu.ehealth.SystemDictionary;
+		import org.zkoss.zul.Messagebox;
+		
+		
+		String tasks = Labels.getLabel("common.tasks");
+		String actions = Labels.getLabel("common.actions");
+		String data = Labels.getLabel("common.personal.data");
+		String ids = Labels.getLabel("common.id");
+		String types = Labels.getLabel("common.type");
+		String statuss = Labels.getLabel("common.status");
+		String personaddr = Labels.getLabel("common.addressed.person");
+		String assigned = Labels.getLabel("common.date.assigned");
+		String fulfilled = Labels.getLabel("common.date.fulfilled");
+		String prevmonth = Labels.getLabel("common.month.next");
+		String nextmonth = Labels.getLabel("common.month.previous");
+		String datestr = Labels.getLabel("common.date");
+		String back = Labels.getLabel("common.back");
+		String aetio = Labels.getLabel("patients.ass.aetiology");
+		String timesinced = Labels.getLabel("patients.ass.time.sinced");
+		String sever = Labels.getLabel("patients.ass.severity");
+		String assmnts = Labels.getLabel("patients.ass");
+		String weekfirstd = Labels.getLabel("common.firstday.week");
+		String title = Labels.getLabel("patients.update.title");
+		
+		page.setTitle(title);	
+		Boolean isadmin = (Boolean)Sessions.getCurrent().getAttribute("isadmin");
+		String objid = (String)Executions.getCurrent().getParameter("patid");
+		Session ses = Sessions.getCurrent();
+		String userid = (String)ses.getAttribute("userid");
+
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		Patient pataux = proxy.getPatient(objid, userid);
+		try
+		{
+            eu.ehealth.SystemDictionary.webguiLog("INFO", "Patient: "+ pataux);
+			
+			Session ses = Sessions.getCurrent();
+			ses.setAttribute("ResponsibleClinicianID", pataux.getResponsibleClinicianID());
+		}
+		catch(Exception re)
+		{
+			SystemDictionary.logException(e);
+			Messagebox.show("Error : " + ErrorDictionary.PATIENT_ASSESSMENT_RETRIEVE + " : " + e.getMessage(), "#TXT# Show user details / tasks", Messagebox.OK, Messagebox.ERROR);
+		}
+	</zscript>
+
+	<window id="detailswin" sclass="centerwin" width="900px" use="eu.ehealth.controllers.details.DetailPatientController" border="normal" >
+		<separator height="5px"/>
+		<hbox>
+			<label value="Users: " />
+			<label value="${pataux } " style="font-weight:bold"/>
+			<separator orient="horizontal" width="30px"/>
+			<button label="${back }" onClick="goBack();" image="../inc/icons/back.png"/>
+			<separator orient="horizontal" width="10px"/>
+			<button label="Reload" onClick="refresh(objid);" image="../inc/icons/reload.png"/>
+			<separator orient="horizontal" width="10px"/>
+			<button label="Refresh Calendar" onClick="detailswin.refreshCalendarData();" image="../inc/icons/reload.png"/>
+		</hbox>
+		<separator height="10px"/>
+		
+		<panel height="470px" width="100%" border="normal" title="Users's personal data" collapsible="true" open="false">    
+			<panelchildren>
+				<separator height="10px"/>
+
+				<button id="updatebuttonpat" if="${!isadmin }" label="${title }" onClick="update1(objid);" image="../inc/icons/edit.png"/>
+				<button label="Change password" onClick="detailswin.createPasswordDialog(objid)" image="../inc/icons/password.png"/>
+				
+				<separator height="10px"/>
+
+				<listbox id="datarows" visible="true"></listbox>
+
+				<separator height="10px"/>
+		
+				<label id="taskrowslbl" value="${tasks }" style="font-weight: bold;" visible="false"/>
+				<listbox id="taskrows" mold="paging" pageSize="5"  visible="false">
+					<listhead>
+						<listheader label="${ids }" sort="auto" width="35px"/>
+						<listheader label="${types }" sort="auto" width="200px"/>
+						<listheader label="${statuss }" sort="auto"/>
+						<listheader label="${personaddr }" sort="auto"/>
+						<listheader label="${assigned }" sort="auto" width="100px"/>
+						<listheader label="${fulfilled }" sort="auto" width="100px"/>
+					</listhead>
+				</listbox>
+			</panelchildren>
+		</panel>
+
+		<separator height="10px"/>
+		
+		<panel height="525px" width="100%" border="normal" title="User's activities calendar" collapsible="true">    
+			<panelchildren>
+				<calendars id="cal" mold="month" height="450px" width="100%" firstDayOfWeek="monday" apply="eu.ehealth.controllers.task.CalendarControllerPatients" >
+					<toolbar id="toolbar">
+						<label id="exechelp" visible="false" value="${objid }"/>
+						<div class="float-left">
+							<hbox>
+								<div sclass="arrow-left">
+									<label value="&lt;&lt;${nextmonth }" sclass="link" onClick="cal.previousPage();printCalendarDate();"/>
+								</div>
+								<separator orient="horizontal" width="10px"/>
+								<div sclass="arrow-right">
+									<label value="${prevmonth }&gt;&gt;" sclass="link" onClick="cal.nextPage();printCalendarDate();"/>
+								</div>
+								<separator orient="horizontal" width="50px"/>
+								<div>
+								<span id="FDOW">
+									<label value="${weekfirstd }:"/>
+									<listbox mold="select" onSelect="cal.setFirstDayOfWeek(self.getSelectedItem().getLabel());" onCreate="self.setSelectedIndex(0)">
+										<listitem forEach="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday" label="${each}" />
+									</listbox>
+								</span>
+								</div>
+							</hbox>
+						</div>
+						
+						<div sclass="float-right">
+							<hbox>
+								<separator orient="horizontal" width="100px"/>
+								<label id="label" onCreate="printCalendarDate()"/>
+								<zscript>
+									public void printCalendarDate(){
+										Date b = cal.getBeginDate();
+										Date e = cal.getEndDate();
+										java.text.SimpleDateFormat sdfV = new java.text.SimpleDateFormat("dd/MM/yyyy", org.zkoss.util.Locales.getCurrent());
+										sdfV.setTimeZone(cal.getDefaultTimeZone());
+										label.setValue(sdfV.format(b) + " - " + sdfV.format(e));
+										detailswin.refreshCalendarData();
+									}
+								</zscript>
+							</hbox>
+						</div>
+					</toolbar>
+				</calendars>
+				
+				<separator height="5px"/>
+		
+				<hbox>
+					<button label="Remove multiple tasks" onClick="detailswin.createRemoveMassivelyDialog()" image="../inc/icons/remove.png" disabled="true"/>
+					<button label="Monitor Measurements" onClick="detailswin.createWeightMeasurementDialog()" image="../inc/icons/monitor.png"/>
+				</hbox>
+			</panelchildren>
+		</panel>
+		
+		<separator height="10px"/>
+		
+		<panel height="265px" width="100%" border="normal" title="User's assesments" collapsible="true" open="false" fulfill="onOpen">    
+			<zscript>		
+				PatientAssessment[] assessmentlist = null;
+				eu.ehealth.controllers.details.assessment.AssessmentInfo[] assinfolist = null;
+				StorageComponentImpl proxy = new StorageComponentImpl();
+				try
+				{
+					assessmentlist = proxy.getPatientAssessmentsArr(objid, userid);
+					if(assessmentlist != null)
+					{
+						assinfolist = new eu.ehealth.controllers.details.assessment.AssessmentInfo[assessmentlist.length];
+						for(int i = 0 ; assessmentlist.length > i ; i++)
+						{
+							assinfolist[i] = new eu.ehealth.controllers.details.assessment.AssessmentInfo(assessmentlist[i]);
+						}
+					}
+				}
+				catch(Exception re)
+				{
+					SystemDictionary.logException(e);
+				}
+			</zscript>	
+			
+			<panelchildren>
+				<label value="${assmnts }" style="font-size: 12px; font-weight: bold;"/>
+				<separator height="5px"/>
+				<?component name="AssessmentDetail" macroURI="assessment.zul"?>
+				<grid mold="paging" pageSize="4">
+					<columns>
+						<column label="${ids }" width="45px" style="font-weight: bold;"/>
+						<column label="${datestr }" width="100px" style="font-weight: bold;" align="center"/>
+						<column label="${aetio }" style="font-weight: bold;"/>
+						<column label="${timesinced }" style="font-weight: bold;"/>
+						<column label="${sever }" width="45px" style="font-weight: bold;"/>
+						<column/>
+					</columns>
+					<rows>
+						<row forEach="${assinfolist }" >
+							<label value="${each.ID }"/>
+							<label value="${each.dateOfAssessment }" style="color: blue; font-size: 10px;"/>
+							<label value="${each.aetology }"/>
+							<label value="${each.timeEllapsedSinceDiagnosed }"/>
+							<label value="${each.severity }"/>
+							<label value="Details" sclass="link" style="font-size: 9px;"
+								onClick="detailswin.viewAssessmentDetail(((Label)self.getParent().getChildren().get(0)).getValue(), objid)"/>
+						</row>
+					</rows>
+				</grid>
+				
+				<separator height="5px"/>
+				<hbox>
+					<button label="Create new assessment" onClick="detailswin.createAssessment()" image="../inc/icons/add.gif"/>
+				</hbox>
+			</panelchildren>
+		</panel>
+
+		<separator height="10px"/>
+	</window>
+	
+	<zscript>
+		
+		try
+		{
+			detailswin.setControllerData(pataux.getID(),
+										 pataux.getPersonData(),
+										 pataux.getSDData(),
+										 pataux.getResponsibleClinicianID(),
+										 pataux.getPatientCarer(), 
+										 pataux.getSocialWorker(),
+										 pataux.getConsulterInCharge(), 
+										 pataux.getGeneralPractitioner());
+		}
+		catch(Exception e){
+			SystemDictionary.logException(e);
+		}
+	</zscript>
+	
+	<zscript>
+		public void goBack()
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc("../patients/index_content.zul");
+		}
+		
+		
+		public void refresh(String id)
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc(null);
+			comp.setSrc("../patients/details.zul?patid=" + id);
+		}
+		
+		
+		public void update1(String id)
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc("../patients/update.zul?from=details&amp;patid=" + id);
+		}
+	</zscript>
+</zk>

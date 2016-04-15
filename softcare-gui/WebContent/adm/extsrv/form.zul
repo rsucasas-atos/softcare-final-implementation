@@ -1,0 +1,51 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		
+		
+		String srvidlbl = Labels.getLabel("extsrv.id");
+		String desc = Labels.getLabel("common.description");
+		String urilbl = Labels.getLabel("common.URI");
+		String savelb = Labels.getLabel("extsrv.save");
+		String updatelbl = Labels.getLabel("extsrv.update");
+		String errorno = Labels.getLabel("error.no.empty");
+		String type = Labels.getLabel("common.type");
+	</zscript>
+	
+	<window id="service_form" border="normal" visible="false" width="70%" closable="true" position="center,center" use="eu.ehealth.controllers.externalservices.ExternalServicesPopupController">
+		<grid>
+			<columns>
+				<column width="200px" align="right"/>
+				<column/>
+			</columns>
+			<rows>
+				<row id="srvid" visible="false">
+					<label value="${srvidlbl }"/>
+					<textbox id="srvidfield" value="" readonly="true"/>
+				</row>
+				<row>
+					<label value="${desc }"/>
+					<textbox id="srvdescfield" width="80%"/>
+				</row>
+				<row>
+					<label value="${urilbl }"/>
+					<textbox id="srvuricfield" constraint="no empty: ${errorno }" width="80%"/>
+				</row>
+				<row>
+					<label value="${type }"/>
+					<listbox id="content_type" mold="select">
+						<listitem value="exercises" label="exercises" selected="true"/>
+						<listitem value="cognitive games" label="cognitive games"/>
+					</listbox>
+				</row>
+				<row>
+					<label value=""/>
+					<hbox>
+						<button id="savebutton" label="${savelb }" onClick="service_form.createExternalServiceToStorage()" visible="false"/>
+						<button id="cancelbutton" label="${updatelbl }" onClick="service_form.modifyExternalServiceToStorage()" visible="false"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

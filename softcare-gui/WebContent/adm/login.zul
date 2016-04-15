@@ -1,0 +1,264 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="inc/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="inc/favicon.ico"?>
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.SystemDictionary;
+		import java.net.HttpURLConnection;
+		import java.net.URL;
+
+
+		Boolean isDebug = true;
+		
+		String title = Labels.getLabel("login.title");
+		String wintitle = Labels.getLabel("login.window");
+		String lguser = Labels.getLabel("login.field.login");
+		String lgpwd = Labels.getLabel("login.field.password");
+		String lgbtn = Labels.getLabel("login.field.button");
+		
+		// storage services component
+		String lgdburl = "";
+		String servicesUrl = "";
+		String urlOk = "";
+		String urlNoOk = "";
+		
+		// third party services component
+		String lgdburl2 = "";
+		String servicesUrl2 = "";
+		String urlOk2 = "";
+		String urlNoOk2 = "";
+		
+		// modules
+		String mod3 = "";
+		String mod4 = "";
+		
+		page.setTitle(title);
+		
+		try 
+		{
+			if (SystemDictionary.CONFIG_PROPERTIES != null)  
+			{
+				if (!SystemDictionary.CONFIG_PROPERTIES.isEmpty()) 
+				{ 
+					///////////////////////////////////////////////////////////
+					// modules
+					mod3 = SystemDictionary.CONFIG_PROPERTIES.getString("module.multimedia");
+					mod4 = SystemDictionary.CONFIG_PROPERTIES.getString("module.chat");
+				
+					///////////////////////////////////////////////////////////
+					// storage component
+					lgdburl = SystemDictionary.getWebServicesURL(); //lgdburl = SystemDictionary.CONFIG_PROPERTIES.getString("storagecomponent.uri");
+					servicesUrl = lgdburl;
+					
+					URL u = new URL(lgdburl);
+					HttpURLConnection huc =  (HttpURLConnection) u.openConnection(); 
+					huc.setRequestMethod("GET");
+					huc.connect(); 
+					int code = huc.getResponseCode();
+					if (code == 200) 
+					{
+						urlOk += "- online -";
+					}
+					else 
+					{
+						urlNoOk += "- NOT valid - ERROR CODE " + code;
+					}
+					
+					// third party services component
+					lgdburl2 = SystemDictionary.getthirdPartyServicesURL(); //SystemDictionary.CONFIG_PROPERTIES.getString("thirdpartycomponent.uri");
+					servicesUrl2 = lgdburl2;
+					
+					URL u2 = new URL(lgdburl2);
+					HttpURLConnection huc2 =  (HttpURLConnection) u2.openConnection(); 
+					huc2.setRequestMethod("GET");
+					huc2.connect(); 
+					code = huc2.getResponseCode();
+					if (code == 200) 
+					{
+						urlOk2 += "- online -";
+					}
+					else 
+					{
+						urlNoOk2 += "- NOT valid - ERROR CODE " + code;
+					}
+				}
+			}
+			else 
+			{
+				lgdburl = "- E-Health services not available -";
+				lgdburl2 = "";
+				servicesUrl = "";
+			}
+		} 
+		catch (Exception ex) 
+		{
+			SystemDictionary.logException(ex);
+		}
+
+		
+		public void alreadyLoggedIn()
+		{
+			if (session.getAttribute("user") != null)
+			{
+				Executions.getCurrent().sendRedirect("/adm/common/index.zul");
+			}
+		}
+	</zscript>
+	
+	<style src="inc/style.css"/>
+	<style>
+		body {
+			background-image: url("images/login_page.jpg");
+			background-repeat: no-repeat;
+			background-size:cover;
+		}
+		
+		.login {
+				text-align: center; 
+			}
+			
+		<![CDATA[
+			.z-window-header { color:darkblue; font-weight: bold; text-align: center; }
+		]]>
+	</style>
+	
+	<separator height="80px"/>
+	
+	<window id="mainerror" sclass="mainerror" border="none" width="50%" closable="true" visible="false" onCreate="setErrorLabel();">
+		<label id="errorlbl"/>
+	</window>
+	
+	<window width="550px" sclass="loginwin" border="none">
+		<window width="540px" onCreate="alreadyLoggedIn()"  border="normal" sclass="login" title="ATOS Softcare Web Application - Login">
+			<vbox>
+				<hbox id="form" apply="eu.ehealth.controllers.login.TemplateLoginFormController">
+					<label value="${lguser}:" sclass="logintext" width="100px"/>
+					<textbox id="login_user" value="" width="120px" onCreate="self.focus()"/>
+					<separator orient="horizontal" width="10px"/>
+					<label value="${lgpwd}:" sclass="logintext" width="100px"/>
+					<textbox id="login_password" type="password" value="" width="120px"/>
+				</hbox>
+			</vbox>
+			<separator height="10px"/>
+			<button label="${lgbtn}" width="440px" sclass="logintext" forward="form.onOK"/>
+		</window>
+		
+		<separator height="1px"/>
+		
+		<panel height="250px" width="540px" border="normal" title="Debug Panel" collapsible="true" open="false">    
+			<panelchildren>
+			
+				<window width="450px" sclass="loginwin" border="none" if="${isDebug }">
+					<space width="20px"/>
+					<label value="Web services" style="font-size: 12px; text-align: center; font-weight: bold;"/>
+					<separator height="5px"/>
+					
+					<hbox align="center" width="100%">
+						<image src="inc/icons/web_services.png" width="24px" height="24px" tooltip="infoWs"/>
+						<popup id="infoWs" width="400px">
+							<vbox>
+								E-Health Web services application
+								<toolbarbutton label="${servicesUrl}" href="${servicesUrl}" target="_blank" />
+							</vbox>
+						</popup>
+						<label value="${lgdburl}" style="font-style: italic; text-align: right; font-size: 10px;"/>
+						<label value="${urlOk}" style="color: green; font-style: italic; text-align: right; font-size: 9px;"/>
+						<label value="${urlNoOk}" style="color: red; font-style: italic; text-align: right; font-size: 9px;"/>
+					</hbox>
+
+					<separator height="1px"/>
+
+					<hbox align="center" width="100%">
+						<image src="inc/icons/ico_piezas_puzzle.gif" width="24px" height="24px" tooltip="infoWs2"/>
+						<popup id="infoWs2" width="400px">
+							<vbox>
+								E-Health Third party services
+								<toolbarbutton label="${servicesUrl2}" href="${servicesUrl2}" target="_blank" />
+							</vbox>
+						</popup>
+						<label value="${lgdburl2}" style="font-style: italic; text-align: right; font-size: 10px;"/>
+						<label value="${urlOk2}" style="color: green; font-style: italic; text-align: right; font-size: 9px;"/>
+						<label value="${urlNoOk2}" style="color: red; font-style: italic; text-align: right; font-size: 9px;"/>
+					</hbox>
+				</window>
+				
+				<window width="420px" sclass="loginwin" border="none">	
+					<space width="20px"/>
+					<label value="Application modules" style="font-size: 12px; text-align: center; font-weight: bold;"/>
+					<separator height="5px"/>
+					
+					<hbox align="center" width="100%">
+						<hbox align="center" width="220px">
+							<image src="inc/icons/module.png" width="24px" height="24px" tooltip="infoMod3"/>
+							<popup id="infoMod3" width="400px">
+								<vbox>
+									Multimedia repository
+								</vbox>
+							</popup>
+							<label value="Multimedia repository" style="font-size: 10px; font-weight: bold;"/>
+							<zk switch="${mod3}">
+								<zk case="active">
+									<label value="active" style="color: green; font-style: italic; text-align: right; font-size: 10px;"/>
+								</zk>
+								<zk>
+									<label value="disabled" style="color: red; font-style: italic; text-align: right; font-size: 10px;"/>
+								</zk>
+							</zk>
+						</hbox>
+						
+						<hbox align="center" width="220px">
+							<image src="inc/icons/module.png" width="24px" height="24px" tooltip="infoMod4"/>
+							<popup id="infoMod4" width="400px">
+								<vbox>
+									Forum
+								</vbox>
+							</popup>
+							<label value="Forum" style="font-size: 10px; font-weight: bold;"/>
+							<zk switch="${mod4}">
+								<zk case="active">
+									<label value="active" style="color: green; font-style: italic; text-align: right; font-size: 10px;"/>
+								</zk>
+								<zk>
+									<label value="disabled" style="color: red; font-style: italic; text-align: right; font-size: 10px;"/>
+								</zk>
+							</zk>
+						</hbox>
+					</hbox>
+					
+					<separator height="5px"/>
+					
+				</window>
+			</panelchildren>    
+		</panel>
+
+	</window>
+	
+	<zscript>
+		public void setErrorLabel()
+		{
+			String error = Executions.getCurrent().getParameter("error");
+			String error2 = Executions.getCurrent().getParameter("errorCode");
+			
+			if (error != null)
+			{
+				int errorcode = Integer.parseInt(error);
+				Label errorlbl = (Label)mainerror.getFellow("errorlbl");
+				errorlbl.setValue(eu.ehealth.ErrorDictionary.getErrorLabel(errorcode));
+				mainerror.setVisible(true);
+				Sessions.getCurrent().setAttribute("showerror",null);
+			}
+			else if (error2 != null) 
+			{
+				String error2Txt = Executions.getCurrent().getParameter("errorDesc");
+				Label errorlbl = (Label)mainerror.getFellow("errorlbl");
+				if (error2Txt != null) 
+				{
+					errorlbl.setValue(error2 + " : " + error2Txt);
+				}
+				mainerror.setVisible(true);
+				Sessions.getCurrent().setAttribute("showerror",null);
+			}
+		}
+	</zscript>
+</zk>

@@ -1,0 +1,9 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="../inc/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="../inc/favicon.ico"?>
+<?link rel="stylesheet" type="text/css" href="../inc/style.css"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="../templates/template1.zul"?>
+
+<zk>
+    <include self="@define(content)" src="index_content.zul"/>
+</zk>

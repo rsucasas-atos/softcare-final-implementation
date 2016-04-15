@@ -1,0 +1,290 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>softcare-gui</groupId>
+	<artifactId>softcare-gui</artifactId>
+	<version>1.0.5</version>
+	<packaging>war</packaging>
+	<name>softcare-gui</name>
+	
+	<!-- SEACLOUDS DATA COLLECTOR -->
+	<repositories>
+		<repository>
+			<id>deib-polimi-releases</id>
+			<url>https://github.com/deib-polimi/deib-polimi-mvn-repo/raw/master/releases</url>
+		</repository>
+	</repositories>
+	
+	<dependencies>
+		<!-- SEACLOUDS DATA COLLECTOR -->
+		<dependency>
+		    <groupId>it.polimi.tower4clouds</groupId>
+		    <artifactId>java-app-dc</artifactId>
+		    <version>0.2.3</version>
+		</dependency>
+		
+		<!-- ZK -->
+		<dependency>
+			<groupId>org.zkoss.common</groupId>
+			<artifactId>zcommon</artifactId>
+			<version>${zk-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zk</artifactId>
+			<version>${zk-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zul</artifactId>
+			<version>${zk-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zkplus</artifactId>
+			<version>${zk-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zhtml</artifactId> 
+			<version>${zk-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.zkoss.zk</groupId>
+			<artifactId>zkbind</artifactId>
+			<version>${zk-version}</version>
+		</dependency>
+		<!-- Local libraries -->
+		<dependency>
+	      	<groupId>org.zkoss.calendar</groupId>
+	      	<artifactId>calendar</artifactId>
+	      	<version>2.1.3</version>
+	      	<scope>system</scope>
+	      	<systemPath>${project.basedir}/WebContent/WEB-INF/lib/calendar.jar</systemPath>
+	    </dependency>
+	    <dependency>
+	      	<groupId>org.zkoss.theme</groupId>
+	      	<artifactId>silvertail</artifactId>
+	      	<version>1.0</version>
+	      	<scope>system</scope>
+	      	<systemPath>${project.basedir}/WebContent/WEB-INF/lib/silvertail.jar</systemPath>
+	    </dependency>
+		<!-- CXF // WS-SECURITY -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>${cxf-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf-version}</version>
+		</dependency>
+		<!-- Jackson The JSON Producer dependency -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<!-- OTHERS -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${mail-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>${jfreechart-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>${commons-validator-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>${commons-configuration-version}</version>
+		</dependency>
+		
+		<!-- javamelody -->
+		<dependency>
+			<groupId>net.bull.javamelody</groupId>
+			<artifactId>javamelody-core</artifactId>
+			<version>1.59.0</version>
+		</dependency>
+		<dependency>
+             <groupId>com.thoughtworks.xstream</groupId>
+             <artifactId>xstream</artifactId>
+             <version>1.4.2</version>
+         </dependency>
+         <dependency>
+             <groupId>org.jrobin</groupId>
+             <artifactId>jrobin</artifactId>
+             <version>1.5.9</version>
+         </dependency>
+	</dependencies>
+
+	<build>
+		<finalName>softcare-gui</finalName>
+		
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+	            <groupId>org.codehaus.mojo</groupId>
+	            <artifactId>aspectj-maven-plugin</artifactId>
+	            <version>1.5</version>
+	            <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>compile</goal>
+	                        <goal>test-compile</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	            <configuration>
+	                <complianceLevel>1.7</complianceLevel>
+	                <source>1.7</source>
+	                <target>1.7</target>
+	                <aspectLibraries>
+	                    <aspectLibrary>
+	                        <groupId>it.polimi.tower4clouds</groupId>
+	                        <artifactId>java-app-dc</artifactId>
+	                    </aspectLibrary>
+	                </aspectLibraries>
+	            </configuration>
+	        </plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											aspectj-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.5,)
+										</versionRange>
+										<goals>
+											<goal>test-compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<properties>
+		<!-- JAVA -->
+		<java-version>1.7</java-version>
+		<!-- ENCODING -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- DEPENDENCIES VERSION -->
+		<!-- ZK - 5.0.11 // 6.5.4 // 7.0.3 -->
+		<zk-version>7.0.3</zk-version>
+		<!-- CXF - 2.7.16 // 3.1.5 -->
+		<cxf-version>3.1.5</cxf-version> 
+		<!-- SPRING // 2.5.6 // 2.5.6.SEC03 // 3.2.8.RELEASE // 4.2.5.RELEASE -->
+		<spring-version>4.2.5.RELEASE</spring-version>
+		<!-- OTHERS -->
+		<mail-version>1.4.7</mail-version>
+		<log4j-version>1.2.17</log4j-version>
+		<jfreechart-version>1.0.13</jfreechart-version>
+		<commons-validator-version>1.4.0</commons-validator-version>
+		<commons-configuration-version>1.10</commons-configuration-version>
+	</properties>
+	
+</project>

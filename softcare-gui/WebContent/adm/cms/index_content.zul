@@ -1,0 +1,81 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.MediaContent;
+		import eu.ehealth.ws_client.xsd.SearchCriteria;
+		import eu.ehealth.SystemDictionary;
+		
+		
+		String viewmsg = Labels.getLabel("common.view");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String idlbl = Labels.getLabel("common.id");
+		String desc = Labels.getLabel("common.description");
+		String urilbl = Labels.getLabel("common.URI");
+		String newextrsrv = Labels.getLabel("extsrv.new");
+
+		MediaContent[] cmedialist = null;
+		StorageComponentImpl proxy = SystemDictionary.getSCProxy();
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		try
+		{
+			cmedialist = proxy.getMediaContentArr(new SearchCriteria[0],id);
+			if(cmedialist == null)
+			{
+				SystemDictionary.webguiLog("INFO", "CONTENT LIST LENGHT: NULL");
+			}
+			else
+			{
+				SystemDictionary.webguiLog("INFO", "CONTENT LIST LENGHT: "+cmedialist.length);
+			}
+		}
+		catch(java.rmi.RemoteException re)
+		{
+			re.printStackTrace();
+		}
+	</zscript>
+	
+	<window border="none" width="900px" sclass="centerwin" id="mediamanager" use="eu.ehealth.controllers.cms.ContentManagerIndex">
+		<?component name="contentModal" macroURI="form.zul"?>
+		<contentModal id="contentModal" />
+		<vbox>
+			<button label="Add content" onClick="mediamanager.createContent()"  image="../inc/icons/add.gif"/>
+			<grid mold="paging" pageSize="10">
+				<columns>
+					<column label="${idlbl }" width="35px" sort="auto" align="center" style="font-weight: bold;"/>
+					<column width="150px" label="Title" style="font-weight: bold;"/>
+					<column label="${urilbl }" sort="auto" style="font-weight: bold;"/>
+					<!-- column label='Type'  -->
+					<column width="85px" label="Category" style="font-weight: bold;"/>
+					<column width="70px" label="Enabled" align="center" style="font-weight: bold;"/>
+					<column width="50px" align="center" />
+					<column width="50px" align="center" />
+					<column width="50px" align="center" />
+				</columns>
+				<rows>
+					<row forEach="${cmedialist }" id="${each.ID }">
+						<label value="${each.ID }" style="font-weight: bold;"/>
+						<label value="${each.title }"/>
+						<label value="${each.url }" style="color: blue; font-style: italic; font-size: 9px;"/>
+						<!-- <label value="${each.type }"/>  -->
+						<label value="${each.category }"/>
+		
+						<zk if="${each.enabled}">    
+						   <image src="../inc/icons/okGreen.png" width="18px" height="18px" />
+						</zk>
+						<zk if="${!each.enabled}">    
+						   <image src="../inc/icons/red_cross.png" width="18px" height="18px" />
+						</zk>
+		
+						<label value="${viewmsg }" sclass="link" onClick="mediamanager.viewContent(self.getParent().getId())" style="font-size: 9px;"/>
+						<label value="${updmsg }" sclass="link" onClick="mediamanager.modifyContent(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${each.enabled }" value="Disable" sclass="link" onClick="mediamanager.disableContent(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${!each.enabled }" value="Enable" sclass="link" onClick="mediamanager.enableContent(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+</zk>

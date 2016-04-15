@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" ng-app="angular-app">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Softcare Multimedia Repository">
+        <meta name="author" content="Atos">
+        <title>Softcare - Multimedia Repository</title>
+
+        <!-- web browser icon -->
+        <link rel="shortcut icon" href="imgs/favicon.ico">
+
+        <!-- stylesheets -->
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/multimedia.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css">
+
+        <!-- scripts -->
+        <script src="config.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <script src="js/soap.js"></script>
+
+        <script src="js/modernizr-2.6.2.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+    </head>
+
+    <body ng-controller="mainController">
+
+        <div id="loader-wrapper">
+			<div id="loader"></div>
+			<div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+		</div>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgba(0, 0, 0, 0.75);"  ng-cloak>
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" style="color: #FFFFDD; margin-left: 5px;" href="#">Softcare - Multimedia Repository [{{app_version}}]</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" ng-click="goUsers()" ng-show="user.logged && user.rol=='admin'">Users</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="goMContent()" ng-show="user.logged">Multimedia Content</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="goMonitoring()" ng-show="false" disabled>Monitoring</a>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-info navbar-btn" style="margin-right: 10px;"
+                                    ng-click="toggleModal()" ng-hide="user.logged" title="Log in">
+                                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                            </button>
+                            &nbsp;&nbsp;
+                        </li>
+                        <li class="dropdown" style="margin-right: 10px;" ng-show="user.logged" >
+                            <a href="#" class="dropdown-toggle" style="color: #FFF;" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" disabled>Change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#" ng-click="logout()">-Logout-</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <!-- Intro Header -->
+		<header class="intro" ng-hide="user.logged">
+			<div ng-include="'main.html'"></div>
+		</header>
+
+        <!-- CONTENT -->
+        <div class="content-section" ng-show="user.logged">
+            <!-- LOADING SPINNER -->
+            <div class="col-md-12 text-center" ng-show="loading">
+                <br />
+                <div class="dots-loader">Loading ...</div>
+                <br />
+                <br />
+            </div>
+            <!-- /LOADING SPINNER -->
+
+            <!-- MESSAGES -->
+            <div class="col-md-12 text-center" ng-show="show_message.hidden">
+                <div class="alert alert-danger" ng-show="show_message_danger">
+                    <button type="button" class="close" ng-click="closeMessage()">×</button>
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <strong>Error:</strong>&nbsp;{{ messageLbl }}
+                </div>
+
+                <div class="alert alert-info" ng-show="show_message_info">
+                    <button type="button" class="close" ng-click="closeMessage()">×</button>
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                    <strong>Info:</strong>&nbsp;{{ messageLbl }}
+                </div>
+
+                <div class="alert alert-success" ng-show="show_message_success">
+                    <button type="button" class="close" ng-click="closeMessage()">×</button>
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                    <strong>Done!</strong>&nbsp;{{ messageLbl }}
+                </div>
+            </div>
+            <!-- /MESSAGES -->
+
+            <!-- CONTENT -->
+            <div ng-include="content.url"></div>
+            <!-- /CONTENT -->
+        </div>
+
+
+        <!-- MODAL LOGIN WINDOW -->
+        <modal title="Sign in" visible="showModal">
+            <div class="loginmodal-container2">
+                <form role="form" ng-submit="login()">
+                    <div class="form-group">
+                        <label for="text">User name</label>
+                        <input type="text" class="form-control" id="user" placeholder="Enter user name"
+                               ng-model="user.username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password"
+                               ng-model="user.password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </form>
+            </div>
+            <hr  ng-show="error"/>
+            <div class="alert alert-danger" role="alert" ng-show="error">
+
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{ errorLbl }}
+            </div>
+        </modal>
+
+        <!-- FOOTER -->
+        <footer class="panel-footer footer">&copy;ATOS All right reserved</footer>
+
+        <!-- load scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+        <!-- pagination -->
+        <!--     ==> https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
+        <script src="js/dirPagination.js"></script>
+        <!-- Web Storage -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.js"></script>
+        <!-- charts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+
+        <!-- controllers -->
+        <script src="js/index.js"></script>
+        <script src="js/users.js"></script>
+        <script src="js/multimedia.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                setTimeout(function(){
+                    $('body').addClass('loaded');
+                    $('h1').css('color','#222222');
+                }, 1500);
+
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		
+	  	<!--  ATOS SERVER - ENCRYPTED CONFIGURATION --> 
+	 	<!--  jdbc:mysql://95.211.172.242/seaclouds / superadmin / password -->
+	  	<property name="connection.url">jdbc:mysql://95.211.172.242/seaclouds</property> 
+	  	<property name="connection.username">qV+I7mm367g3lb+L3xdwCykW7eDMlnoQ</property> 
+	  	<property name="connection.password">Y+aZtFnwxX0QpBuIvglEJDp8vC/XlCzq</property> 
+		<!-- LOCAL CONFIGURATION --><!-- rosogonatos_sc2 / 12345678r      ?reconnect=true -->
+		<!--
+		<property name="connection.url">jdbc:mysql://localhost/rosogonatos_sc2</property>
+		<property name="connection.username">3T3T80ym1R61XuCiLfoQ0LpBZu0UEqh6</property>
+		<property name="connection.password">Lil/vr9qdZbY5VvNAg3lCpSu5j7erRac</property>
+		-->
+		
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">false</property>
+		
+		<!-- c3p0 properties acquireRetryAttempts-->
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="hibernate.c3p0.acquireRetryAttempts">5</property>
+		<property name="hibernate.c3p0.acquireRetryDelay">2000</property>
+        <property name="hibernate.c3p0.acquireIncrement">1</property>
+        <property name="hibernate.c3p0.idle_test_period">10</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">75</property>
+        <property name="hibernate.c3p0.max_statements">10</property>
+        <property name="hibernate.c3p0.timeout">50</property>
+        <property name="hibernate.c3p0.preferredTestQuery">select 1</property>
+        <property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+		
+		<!-- mapping -->
+		<mapping resource="eu/ehealth/db/db/EntertainmentContent.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Address.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Administrator.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/CarerAssessment.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Carer.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Clinician.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Communication.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/ExternalService.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Identifier.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Measurement.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/PatientAssessment.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Patient.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/PersonData.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/QuestionnaireAnswer.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Questionnaire.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/QuestionnaireQuestionAnswer.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/QuestionnaireQuestion.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/SocioDemographicData.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/SystemParameter.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Task.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/AladdinUser.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Warning.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Locale.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Translate.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Dict.hbm.xml" />
+		<mapping resource="eu/ehealth/db/db/Rules.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

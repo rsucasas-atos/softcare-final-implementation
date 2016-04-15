@@ -1,0 +1,60 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.ExternalService;
+		
+		
+		String viewmsg = Labels.getLabel("common.view");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String idlbl = Labels.getLabel("common.id");
+		String desc = Labels.getLabel("common.description");
+		String urilbl = Labels.getLabel("common.URI");
+		String type = Labels.getLabel("common.type");
+		String newextrsrv = Labels.getLabel("extsrv.new");
+
+		ExternalService[] serviceslist = null;
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		try
+		{
+			serviceslist = proxy.getAllExternalServicesArr(id);
+		}
+		catch(Exception re)
+		{
+			re.printStackTrace();
+		}
+	</zscript>
+	
+	<window border="none" width="900px" sclass="centerwin" id="extservices" use="eu.ehealth.controllers.externalservices.ExternalServicesIndexController">
+
+		<vbox>
+			<button label="${newextrsrv }" onClick="extservices.createService()"  image="../inc/icons/add.gif" />
+			<grid mold="paging" pageSize="10">
+				<columns>
+					<column label="${idlbl }" width="35px" sort="auto" style="font-weight: bold;"/>
+					<column label="${desc }" width="150px"  style="font-weight: bold;"/>
+					<column label="${urilbl }" sort="auto"  style="font-weight: bold;"/>
+					<column label="${type }" width="140px" sort="auto" style="font-weight: bold;"/>
+					<column width="50px" align="center" />
+					<column width="50px" align="center" />
+					<column width="50px" align="center" />
+				</columns>
+				<rows>
+					<row forEach="${serviceslist }" id="${each.ID }">
+						<label value="${each.ID }" style="font-weight: bold;"/>
+						<label value="${each.description }"/>
+						<label value="${each.address }" style="color: blue; font-style: italic; font-size: 9px;"/>
+						<label value="${each.type }"/>
+						<label value="${viewmsg }" sclass="link" onClick="extservices.viewService(self.getParent().getId())" style="font-size: 9px;"/>
+						<label value="${updmsg }" sclass="link" onClick="extservices.modifyService(self.getParent().getId())" style="font-size: 9px;"/>
+						<label value="${delmsg }" sclass="link" onClick="extservices.delteService(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+
+</zk>

@@ -1,0 +1,124 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.SystemDictionary; 
+		
+		
+		String title = Labels.getLabel("ass");
+		String asid = Labels.getLabel("ass.id");
+		String aspat = Labels.getLabel("ass.patient");
+		String asdate = Labels.getLabel("ass.date");
+		String asaet = Labels.getLabel("ass.aet");
+		String astimee = Labels.getLabel("ass.telapsed");
+		String assever = Labels.getLabel("ass.sever");
+		String asrelpat = Labels.getLabel("ass.relpat");
+		String ascomor = Labels.getLabel("ass.comor");
+		String ascharl = Labels.getLabel("ass.charlson");
+		String asbarth = Labels.getLabel("ass.barthel");
+		String aslaw = Labels.getLabel("ass.lawton");
+		String asmmse = Labels.getLabel("ass.MMSE");
+		String asmdrs = Labels.getLabel("ass.MDRS");
+		String asbl1 = Labels.getLabel("ass.ble.pt1");
+		String asbl2 = Labels.getLabel("ass.ble.pt2");
+		String asbl3 = Labels.getLabel("ass.ble.pt3");
+		String asmbpc = Labels.getLabel("ass.check.MBPC");
+		String asnpqi1 = Labels.getLabel("ass.NPQI.sev");
+		String asnpqi2 = Labels.getLabel("ass.NPQI.stres");
+		String asgds = Labels.getLabel("ass.GDS");
+		String asfalls = Labels.getLabel("ass.falls");
+		String asincon = Labels.getLabel("ass.incon");
+		String asdelir = Labels.getLabel("ass.delir");
+		String asimmob = Labels.getLabel("ass.immob");
+		String assensedef = Labels.getLabel("ass.sense.def");
+		String asptreat = Labels.getLabel("ass.pharma.treat");
+		String asclindata = Labels.getLabel("ass.clindata");
+		
+		String alzheimer = SystemDictionary.AETIOLOGY_ALZHEIMER;
+		String vascular = SystemDictionary.AETIOLOGY_VASCULAR;
+		String mixed = SystemDictionary.AETIOLOGY_MIXED;
+		String parkinson = SystemDictionary.AETIOLOGY_PARKINSON;
+		String ohteraet = SystemDictionary.AETIOLOGY_OTHERS;
+	</zscript>
+	
+	<window title="${title }" id="assessmentwin" closable="true" width="800px" border="normal" use="eu.ehealth.controllers.details.assessment.AssessmentPopupController">
+		<grid>
+			<columns>
+				<column width="150px" align="right"/>
+				<column width="250px" align="left"/>
+				<column width="150px" align="right"/>
+				<column width="250px" align="left"/>
+			</columns>
+			<rows>
+				<row id="noformrow">
+					<label value="${asid }"/><hbox><label id="field00"/><textbox id="field00_in" visible="false"/><textbox id="patientid" visible="false"/></hbox>
+					<label value="${aspat }"/><hbox><label id="field01"/><textbox id="field01_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label id="datelabel" value="${asdate }"/><hbox id="datehbox"><label id="field02"/><textbox id="field02_in" visible="false"/></hbox>
+					<label value="${asaet }"/>
+					<hbox>
+						<label id="field03"/>
+						<listbox id="field03_in" visible="false" mold="select">
+							<listitem value="${alzheimer }" label="Alzheimer" selected="true"/>
+							<listitem value="${vascular }" label="Vascular"/>
+							<listitem value="${mixed }" label="Mixed"/>
+							<listitem value="${parkinson }" label="Parkinson"/>
+							<listitem value="${ohteraet }" label="Others"/>
+						</listbox>
+					</hbox>
+				</row>
+				<row>
+					<label value="${astimee }"/><hbox><label id="field04"/><textbox id="field04_in" visible="false"/></hbox>
+					<label value="${assever }"/><hbox><label id="field05"/><textbox id="field05_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${asrelpat }"/><hbox><label id="field06"/><textbox id="field06_in" visible="false"/></hbox>
+					<label value="${ascomor }"/><hbox><label id="field07"/><textbox id="field07_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${ascharl }"/><hbox><label id="field08"/><textbox id="field08_in" visible="false"/></hbox>
+					<label value="${asbarth }"/><hbox><label id="field09"/><textbox id="field09_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${aslaw }"/><hbox><label id="field10"/><textbox id="field10_in" visible="false"/></hbox>
+					<label value="${asmmse }"/><hbox><label id="field11"/><textbox id="field11_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${asmdrs }"/><hbox><label id="field12"/><textbox id="field12_in" visible="false"/></hbox>
+					<label value="${asbl1 }"/><hbox><label id="field13"/><textbox id="field13_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${asbl2 }"/><hbox><label id="field14"/><textbox id="field14_in" visible="false"/></hbox>
+					<label value="${asbl3 }"/><hbox><label id="field15"/><textbox id="field15_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${asmbpc }"/><hbox><label id="field16"/><textbox id="field16_in" visible="false"/></hbox>
+					<label value="${asnpqi1 }"/><hbox><label id="field17"/><textbox id="field17_in" visible="false"/></hbox>
+					
+				</row>
+				<row>
+					<label value="${asnpqi2 }"/><hbox><label id="field18"/><textbox id="field18_in" visible="false"/></hbox>
+					<label value="${asgds }"/><hbox><label id="field19"/><textbox id="field19_in" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${asfalls }"/><hbox><label id="field20"/><checkbox id="field20_in" checked="false" visible="false"/></hbox>
+					<label value="${asincon }"/><hbox><label id="field21"/><checkbox id="field21_in" checked="false" visible="false"/></hbox>
+				</row>
+				<row>
+					<label value="${asdelir }"/><hbox><label id="field22"/><checkbox id="field22_in" checked="false" visible="false"/></hbox>
+					<label value="${asimmob }"/><hbox><label id="field23"/><checkbox id="field23_in" checked="false" visible="false"/></hbox>
+					</row>
+				<row>
+					<label value="${assensedef }"/><hbox><label id="field24"/><checkbox id="field24_in" checked="false" visible="false"/></hbox>
+					<label value="${asptreat }"/><hbox><label id="field25"/><textbox id="field25_in" visible="false"/></hbox>
+				</row>
+				<row spans="1,3" id="measurementsrow">
+					<label value="${asclindata }"/><label id="field26"/>
+				</row>
+				<row spans="1,3" id="buttonrow" visible="false">
+					<label value=""/><button label="Save" onClick="assessmentwin.saveAssessment()"/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

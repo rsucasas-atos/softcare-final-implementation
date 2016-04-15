@@ -1,0 +1,65 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		
+		
+		String srvidlbl = Labels.getLabel("extsrv.id");
+		String desc = Labels.getLabel("common.description");
+		String urilbl = Labels.getLabel("common.URI");
+		String savelb = Labels.getLabel("extsrv.save");
+		String updatelbl = Labels.getLabel("extsrv.update");
+		String errorno = Labels.getLabel("error.no.empty");
+	</zscript>
+	
+	<window id="content_form" border="normal" visible="false" width="70%" closable="true" position="center,center" use="eu.ehealth.controllers.cms.ContentManagerPopup">
+		<grid>
+			<columns>
+				<column width="200px" align="right"/>
+				<column/>
+			</columns>
+			<rows>
+				<row id="srvid" visible="false">
+					<label value="ID"/>
+					<textbox id="content_id" value="" readonly="true"/>
+				</row>
+				<row>
+					<label value="Title"/>
+					<textbox id="content_title"/>
+				</row>
+				<row>
+					<label value="URL"/>
+					<textbox id="content_url" width="80%"/>
+				</row>
+				<row visible="false">
+					<label value="Type"/>
+					<listbox id="content_type" mold="select">
+						<listitem></listitem>
+					</listbox>
+				</row>
+				<row>
+					<label value="Category"/>
+					<listbox id="content_cat" mold="select">
+						<listitem value="education" label="education" selected="true"/>
+						<listitem value="games" label="games"/>
+						<listitem value="entertainment" label="entertainment"/>
+					</listbox>
+				</row>
+				<row>
+					<label value="Text"/>
+					<textbox id="content_text" multiline="true" width="80%" rows="4"/>
+				</row>
+				<row>
+					<label value="Enabled"/>
+					<checkbox id="content_enabled" checked="true"/>
+				</row>
+				<row>
+					<label value=""/>
+					<hbox>
+						<button id="savebutton" label="Add content" onClick="content_form.saveContent()" visible="false" image="../inc/icons/save_edit.png"/>
+						<button id="updatebutton" label="Update content" onClick="content_form.updateContent()" visible="false" image="../inc/icons/save_edit.png"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -1,0 +1,97 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.SystemDictionary;
+		
+		
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String idlbl = Labels.getLabel("common.id");
+		String typelbl = Labels.getLabel("common.type");
+		String datelbl = Labels.getLabel("common.date");
+		String efectlbl = Labels.getLabel("cwarn.effect");
+		String indclbl = Labels.getLabel("cwarn.ind");
+		String risklbl = Labels.getLabel("cwarn.risklvl");
+		String emerglbl = Labels.getLabel("cwarn.emergencylvl");
+		String patidlbl = Labels.getLabel("cwarn.patient");
+		String delivlbl = Labels.getLabel("cwarn.deliver");
+		String titlelbl = Labels.getLabel("menu.warnings");
+		String Justification = Labels.getLabel("cwarn.Justification");
+		String Readed = Labels.getLabel("cwarn.Readed");
+	</zscript>
+	
+	<window border="none" width="900px" sclass="centerwin" id="warningswin" use="eu.ehealth.controllers.warnings.WarningsWindowController" >
+
+		<vbox>
+			<grid mold="paging" pageSize="5" apply="eu.ehealth.controllers.warnings.GridController">
+				<auxhead sclass="category-center">
+					<auxheader label="Historic" colspan="2" rowspan="1">
+						<button id="loadHistoric" image="../inc/icons/historic.png" disabled="true"/>
+					</auxheader>
+					<auxheader colspan="2" rowspan="1">
+						<radiogroup id="categorySelector1">
+							<hlayout width="100%">
+								<radio label="All" id="radAll" checked="true" width="90px" />
+								<radio label="Readed" id="radReaded" width="90px" />
+								<radio label="Not Readed" id="radNotReaded" width="90px" />
+							</hlayout>
+						</radiogroup>
+					</auxheader>
+					<auxheader label="Reload" colspan="2" rowspan="1" >
+						<button id="reloadall" image="../inc/icons/reload.png"/>
+					</auxheader>
+				</auxhead>
+				<auxhead sclass="category-center">
+					<auxheader label="Filter by dates" colspan="2" rowspan="1" />
+					<auxheader colspan="4" rowspan="1">
+						<label value="From"/>
+						<datebox id="datefromfilter" format="dd/MM/yyyy" readonly="true" style="background-color: #ffffcc;" disabled="true"/>
+						<label value="to"/>
+						<datebox id="datetofilter" format="dd/MM/yyyy" readonly="true" style="background-color: #ffffcc;" disabled="true"/>
+						<button label="Apply date filter" onClick="warningswin.refreshWarnings()" image="../inc/icons/search2.png" disabled="true"/>
+						<button id="clearDates" label="Clear date filters" image="../inc/icons/search2.png" disabled="true"/>
+					</auxheader>
+				</auxhead>
+				<auxhead sclass="category-center">
+					<auxheader label="Filter by patients" colspan="2" rowspan="1" />
+					<auxheader colspan="4" rowspan="1">
+						<button id="clearPatientField" image="../inc/icons/clear12.png" label="clear" style="font-size: 10px;"/>
+						<textbox id="filterpatient" visible="false" readonly="true"/>
+						<textbox id="filterpatienttrigger" readonly="true" onClick="warningswin.createPatientsDialog()" style="background-color: #ffffcc;" />
+						<button id="loadPatientWarnings" image="../inc/icons/search2.png" label="selected patient" style="font-size: 10px;"/>
+						<button id="loadAllPatientWarnings" label="all patients" image="../inc/icons/search2.png" style="font-size: 10px;"/>
+					</auxheader>
+				</auxhead>
+				<columns>
+					<column label="${typelbl}" width="55px" style="font-weight: bold;"/>
+					<column label="${datelbl}" width="100px" sort="auto" style="font-weight: bold;" align="center"/>
+					<column label="${patidlbl}" width="120px" style="font-weight: bold;"/>
+					<column label="${Justification}" style="font-weight: bold;"/>
+					<column label="${Readed}" width="55px" style="font-weight: bold;" align="center"/>
+					<column width="45px" align="center" />
+				</columns>
+				<template name="model">
+					<row>
+						<label value="${each.type}"></label>
+						<label value="${each.date}" style="color: blue; font-size: 10px;" id="date${each.ID}"></label>
+						<label value="${each.patientName}"></label>
+						<label value="${each.justification}"></label>
+						<zk switch="${each.delivered}">
+							<zk case="false">
+								<image src="../inc/icons/red_cross.png" width="18px" height="18px" style="text-align: center;"/>
+							</zk>
+							<zk case="true">
+								<image src="../inc/icons/okGreen.png" width="18px" height="18px" />
+							</zk>
+						</zk>
+						<label id="${each.ID}" value="Details" sclass="link" style="font-size: 9px;" onClick="warningswin.readWarning(self.getId())"/>
+					</row>
+				</template>
+				<foot>
+					<footer span="6" id="footer_category" class="footer_right" />
+				</foot>
+			</grid>
+		</vbox>
+	</window>
+
+</zk>

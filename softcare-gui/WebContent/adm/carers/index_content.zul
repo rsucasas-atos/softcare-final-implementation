@@ -1,0 +1,89 @@
+<zk>
+	<zscript>	
+		String title = Labels.getLabel("carers.title");
+		page.setTitle(title);
+		String newprof = Labels.getLabel("carers.new");
+		String idstr  = Labels.getLabel("common.id");
+		String surnlbl= Labels.getLabel("common.sname");
+		String namelbl= Labels.getLabel("common.name");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String details = Labels.getLabel("common.details");
+		
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		CarerInfo[] clist = null;
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		Boolean isadmin = new Boolean(false); 
+		try
+		{
+			if (ses.getAttribute("isadmin") != null) {
+				isadmin = (Boolean)Sessions.getCurrent().getAttribute("isadmin");
+			}
+		
+			clist = proxy.listOfCarersArr(new SearchCriteria[0],id);
+			if(clist == null)
+			{
+				clist = new CarerInfo[0];
+			}
+			eu.ehealth.SystemDictionary.webguiLog("DEBUG", "List SIZE: "+clist.length);
+		}
+		catch(Exception re)
+		{
+			SystemDictionary.webguiLog("ERROR", re.getMessage());
+		}
+	</zscript>
+	
+	<window id="carers" border="none" width="900px" sclass="centerwin" use="eu.ehealth.controllers.IndexCarersWindow">
+		<vbox>
+			<button label="${newprof}" onClick="showForm();" image="../inc/icons/add.gif"/>
+			<grid mold="paging" pageSize="10">
+				<columns>
+					<column label="${idstr }" width="35px" sort="auto" style="font-weight: bold;" if="${isadmin}"/> 
+					<column label="${namelbl }" sort="auto" style="font-weight: bold;"/>
+					<column label="${surnlbl }" sort="auto" style="font-weight: bold;"/>
+					<column width="50px" align="center" />
+					<column width="50px" align="center" if="${!isadmin }" />
+					<column width="50px" align="center" />
+				</columns>
+				<rows id="rowscarers" onCreate="insertNoCarersAvailable()">
+					<zscript>
+						public void insertNoCarersAvailable()
+						{
+							if(clist== null || clist.length == 0)
+							{
+								Row some = new Row();
+								some.setSpans("6");
+								Label somelbl = new Label();
+								somelbl.setValue("There are no carers available at this moment. Please, try again later");
+								some.appendChild(somelbl);
+								rowscarers.appendChild(some);
+							}
+						}
+					</zscript>
+					<row forEach="${clist }" id="${each.ID }">
+						<label value="${each.ID }" if="${isadmin}"/>
+						<label value="${each.name }"/>
+						<label value="${each.surname }"/>
+						<label value="${details }" sclass="link" onClick="detailsCarer(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${!isadmin }" value="${updmsg }" sclass="link" onClick="carers.updateCarer(self.getParent().getId())" style="font-size: 9px;"/>
+						<label value="${delmsg }" sclass="link" onClick="carers.deleteCarerMsg(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+	
+	<zscript>
+		public void detailsCarer(String id)
+		{
+			app_content.setSrc("../carers/details.zul?carerid=" + id);
+		}
+		
+		
+		public void showForm()
+		{
+			app_content.setSrc("../carers/form.zul");
+		}
+	</zscript>
+</zk>

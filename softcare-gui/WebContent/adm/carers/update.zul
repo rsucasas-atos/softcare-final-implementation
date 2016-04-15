@@ -1,0 +1,51 @@
+<zk>
+	<window id="paintitblack"></window>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.Carer;
+		import eu.ehealth.controllers.CarerControllerWindow;
+		import java.util.Collection;
+		import org.zkoss.zk.ui.Executions;
+		import org.zkoss.zul.Include;
+		import eu.ehealth.utilities.ComponentsFinder;
+		
+		
+		String back = Labels.getLabel("common.back");
+		String title = Labels.getLabel("carers.update.title");
+		page.setTitle(title);	
+		
+		String back = Labels.getLabel("common.back");
+		String updid = (String)Executions.getCurrent().getParameter("carerid");
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		Session ses = Sessions.getCurrent();
+		String userid = (String)ses.getAttribute("userid");
+		try
+		{
+			Carer userobj = proxy.getCarer(updid,userid);
+			CarerControllerWindow window = new CarerControllerWindow(userobj, false);
+			((Window)page.getFellow("paintitblack")).appendChild(window);
+			window.setTitle(title);
+			window.setId("carerform");
+			window.setSclass("centerwin");
+			window.setWidth("900px");
+			window.doEmbedded();
+		}
+		catch(Exception re){
+			re.printStackTrace();
+		}
+	</zscript>
+	
+	<window id="carerupdateform" width="900px" sclass="centerwin">
+		<button label="${back }" onClick="goBack();" image="../inc/icons/back.png"/>
+	</window>
+	
+	<zscript>
+		public void goBack()
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc("../carers/index_content.zul");
+		}
+	</zscript>
+</zk>

@@ -1,0 +1,70 @@
+<zk>
+	<zscript>
+		String title = Labels.getLabel("clinicians.title");
+		page.setTitle(title);
+		String newprof = Labels.getLabel("clinicians.new");
+		String idstr  = Labels.getLabel("common.id");
+		String surnlbl= Labels.getLabel("common.sname");
+		String namelbl= Labels.getLabel("common.name");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String details = Labels.getLabel("common.details");
+		
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		ClinicianInfo[] dlist = null;
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		Boolean showif = new Boolean(false); 
+		try 
+		{
+			if (ses.getAttribute("isadmin") != null) {
+				showif = (Boolean)ses.getAttribute("isadmin");
+			}
+		
+			dlist = proxy.listOfCliniciansArr(new SearchCriteria[0] ,id);
+		}
+		catch(Exception re)
+		{
+			SystemDictionary.webguiLog("ERROR", re.getMessage());
+		}
+	</zscript>
+	
+	<window border="none" width="900px" sclass="centerwin" id="clinics" use="eu.ehealth.controllers.IndexCliniciansWindow">
+		<vbox>
+			<button label="${newprof}" onClick="showForm();" image="../inc/icons/add.gif" if="${showif}">
+				<attribute name="onCreate">
+					if(!showif){
+						self.setDisabled(true);
+					}
+				</attribute>
+			</button>
+			<grid mold="paging" pageSize="10">
+				<columns>
+					<column label="${idstr }" width="35px" sort="auto" style="font-weight: bold;" if="${showif}"/> 
+					<column label="${surnlbl }" sort="auto" style="font-weight: bold;"/>
+					<column label="${namelbl }" sort="auto" style="font-weight: bold;"/>
+					<column width="50px" align="center" />
+					<column width="50px" align="center" if="${showif}"/>
+					<column width="50px" align="center" if="${showif}"/>
+				</columns>
+				<rows>
+					<row forEach="${dlist }" id="${each.ID }">
+						<label value="${each.ID }" if="${showif}"/>
+						<label value="${each.surname }"/>
+						<label value="${each.name }"/>
+						<label value="${details }" sclass="link" onClick="clinics.detailsClinician(self.getParent().getId())"  style="font-size: 9px;"/>
+						<label if="${showif}" value="${updmsg }" sclass="link" onClick="clinics.updateClinician(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${showif}" value="${delmsg }" sclass="link" onClick="clinics.deleteClinicianMsg(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+	
+	<zscript>
+		public void showForm()
+		{
+			app_content.setSrc("../clinicians/form.zul");
+		}
+	</zscript>
+</zk>

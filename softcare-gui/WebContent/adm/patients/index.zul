@@ -1,0 +1,86 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/inc/favicon.ico"?>
+<?link rel="icon" type="image/x-icon" href="/inc/favicon.ico"?>
+
+<zk>
+	<include src="/inc/header.zul"/>
+	
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.PatientInfo;
+		import eu.ehealth.ws_client.xsd.SearchCriteria;
+		import eu.ehealth.SystemDictionary;
+		
+		
+		String title = Labels.getLabel("patients.title");
+		String newpat = Labels.getLabel("patients.new");
+		String idstr  = Labels.getLabel("common.id");
+		String surnlbl= Labels.getLabel("common.sname");
+		String namelbl= Labels.getLabel("common.name");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String details = Labels.getLabel("common.details");
+		
+		page.setTitle(title);
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		PatientInfo[] plist = null;
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		Boolean isntadmin = new Boolean(false); 
+		try
+		{
+			if (ses.getAttribute("isadmin") != null) {
+				isntadmin = !(Boolean)ses.getAttribute("isadmin");
+			}
+		
+			plist = proxy.listOfPatientsArr(new SearchCriteria[0],id);
+		}
+		catch(Exception re){
+			SystemDictionary.webguiLog("ERROR", re.getMessage());
+		}
+	</zscript>
+	
+	<window id="patients" border="none" width="900px" sclass="centerwin" use="eu.ehealth.controllers.IndexPatientsWindow">
+		<vbox>
+			<button label="${newpat}" href="/patients/form.zul"  image="/inc/icons/add.gif"/>
+			<grid mold="paging" pageSize="10">
+				<auxhead sclass="category-center">
+					<auxheader colspan="4" >
+						<label value="Filter by doctors"/>
+						<button id="clearDoctorField" image="../inc/icons/clear12.png" label="clear" style="font-size: 10px;" disabled="true"/>
+						<textbox id="filterdoctor" visible="false" readonly="true" disabled="true"/>
+						<textbox id="filterdoctortrigger" readonly="true" onClick="warningswin.createPatientsDialog()" style="background-color: #ffffcc;"  disabled="true"/>
+						<button id="loadDoctorPatients" image="../inc/icons/search2.png" label="selected doctor" style="font-size: 10px;" disabled="true"/>
+						<button id="loadAllDoctorPatients" label="all doctors" image="../inc/icons/search2.png" style="font-size: 10px;" disabled="true"/>
+					</auxheader>
+					<auxheader label="" if="${isntadmin}"/>
+					<auxheader label="" if="${isntadmin}"/>
+					<auxheader label="" />
+				</auxhead>
+				<columns>
+					<column label="${idstr }" width="35px" sort="auto" style="font-weight: bold;"/> 
+					<column label="${surnlbl }" sort="auto" style="font-weight: bold;"/>
+					<column label="${namelbl }" sort="auto" style="font-weight: bold;"/>
+					<column label="${namelbl2 }" sort="auto" style="font-weight: bold;" width="50px"/>
+					<column width="100px" align="center" if="${isntadmin }"/>
+					<column width="50px" align="center" if="${isntadmin }"/>
+					<column width="50px" align="center" /> 
+				</columns>
+				<rows>
+					<row forEach="${plist }" id="${each.ID }">
+						<label value="${each.ID }"/>
+						<label value="${each.surname }"/>
+						<label value="${each.name }"/>
+						<label value="${each.clinicianID }"/>
+						<label if="${isntadmin }" value="Tasks / Details" sclass="link" onClick="detailsPatient(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${isntadmin }" value="${updmsg }" sclass="link"  onClick="updatePatient(self.getParent().getId())" style="font-size: 9px;"/>
+						<label value="${delmsg }" sclass="link" onClick="patients.deletePatientMsg(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+	
+	<include src="/inc/footer.zul"/>
+</zk>

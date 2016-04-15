@@ -1,0 +1,32 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import java.util.Collection;
+		import org.zkoss.zk.ui.Executions;
+		import org.zkoss.zul.Include;
+		import eu.ehealth.utilities.ComponentsFinder;
+		
+		
+		String title = Labels.getLabel("patients.title.new");
+		String save = Labels.getLabel("patients.save");
+		String back = Labels.getLabel("common.back");
+		page.setTitle(title);	
+	</zscript>
+	
+	<window title="${title}" id="patientform" width="900px" sclass="centerwin" use="eu.ehealth.controllers.PattientControllerWindow">
+		<hbox>
+			<button label="${back }" onClick="goBack();" image="../inc/icons/back.png"/>
+			<separator orient="horizontal" width="10px"/>
+			<button label="${save }" onClick="patientform.sendPatient(true)" image="../inc/icons/save_edit.png"/>
+		</hbox>
+	</window>
+	
+	<zscript>
+		public void goBack()
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc("../patients/index_content.zul");
+		}
+	</zscript>
+</zk>

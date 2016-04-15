@@ -1,0 +1,34 @@
+<zk>
+	<window title="Select Clinician" closable="true" border="normal" width="400px" id="rclinlistwin" use="eu.ehealth.controllers.ClinicianListForPatients">
+		<zscript>
+			import eu.ehealth.ws_client.StorageComponentImpl;
+			import eu.ehealth.ws_client.xsd.ClinicianInfo;
+			import eu.ehealth.ws_client.xsd.SearchCriteria;
+			import org.zkoss.zul.Grid;
+			
+			
+			StorageComponentImpl proxy = new StorageComponentImpl();
+			String userid = (String)Sessions.getCurrent().getAttribute("userid");
+			ClinicianInfo[] clinlist = new ClinicianInfo[0];
+			try 
+			{
+				clinlist = proxy.listOfCliniciansArr(new SearchCriteria[0], userid);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		</zscript>
+
+		<radiogroup id="respo_rgroup">
+			<grid id="gClinicians" mold="paging" pageSize="10">
+				<rows>
+					<row forEach="${clinlist }">
+						<radio label="${each.surname }, ${each.name }" value="${each.ID }"/>
+					</row>
+				</rows>
+			</grid>
+			<button label="Select Clinician" onClick="rclinlistwin.setClinician()"/>
+		</radiogroup>
+	</window>
+</zk>

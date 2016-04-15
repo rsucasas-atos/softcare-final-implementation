@@ -1,0 +1,117 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;;
+		import eu.ehealth.ws_client.xsd.Carer;
+		import eu.ehealth.ws_client.xsd.CarerAssessment;
+		import eu.ehealth.controllers.details.assessment.CarerAssessmentInfo;
+		import eu.ehealth.controllers.CarerControllerWindow;
+		import eu.ehealth.SystemDictionary;
+		import java.util.Collection;
+		import org.zkoss.zk.ui.Executions;
+		import org.zkoss.zul.Include;
+		import eu.ehealth.utilities.ComponentsFinder;
+		
+		
+		String title = Labels.getLabel("carers.update.title");
+		page.setTitle(title);	
+		Session ses = Sessions.getCurrent();
+		String userid = (String)ses.getAttribute("userid");
+		String updid = (String)Executions.getCurrent().getParameter("carerid");
+		String aetio = Labels.getLabel("patients.ass.aetiology");
+		String timesinced = Labels.getLabel("patients.ass.time.sinced");
+		String sever = Labels.getLabel("patients.ass.severity");
+		String assmnts = Labels.getLabel("patients.ass");
+		String back = Labels.getLabel("common.back");
+
+		CarerAssessment[] assessmentlist = null;
+		CarerAssessmentInfo[] assinfo = new CarerAssessmentInfo[0];
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		try 
+		{
+			Session ses = Sessions.getCurrent();
+			Boolean isadmin = new Boolean(false); 
+			if (ses.getAttribute("isadmin") != null) 
+			{
+				isadmin = (Boolean)Sessions.getCurrent().getAttribute("isadmin");
+			}
+			
+			if (!isadmin) 
+			{
+				assessmentlist = proxy.getCarerAssessmentsArr(updid,userid);
+				if(assessmentlist != null){
+					assinfo = new CarerAssessmentInfo[assessmentlist.length];
+					eu.ehealth.SystemDictionary.webguiLog("INFO", "ASSESSMENT LIST: "+assessmentlist);
+					for(int i = 0 ; assessmentlist.length > i ; i++){
+						assinfo[i] = new CarerAssessmentInfo(assessmentlist[i]);
+					}
+				}
+			}
+		}
+		catch(Exception re)
+		{
+			SystemDictionary.logException(re);
+		}
+	</zscript>
+
+	<window id="paintitblack" sclass="centerwin" width="900px">
+		<vbox if="${!isadmin }">
+			<separator height="15px"/>
+			<label value="${assmnts }" style="font-size: 12px; font-weight: bold;"/>
+			<separator height="5px"/>
+			<?component name="AssessmentDetail" macroURI="assessmentcar.zul"?>
+			<grid>
+				<columns>
+					<column label="ID" width="45px" style="font-weight: bold;"/>
+					<column label="Date" width="100px" sort="auto" style="font-weight: bold;" align="center"/>
+					<column label="Severity of Burden" style="font-weight: bold;"/>
+					<column label="Life quality" style="font-weight: bold;"/>
+					<column width="45px"/>
+				</columns>
+				<rows>
+					<row forEach="${assinfo }" >
+						<label value="${each.ID }"/>
+						<label value="${each.dateOfAssessment }" style="color: blue; font-size: 10px;"/>
+						<label value="${each.severityOfBurden }"/>
+						<label value="${each.qualityOfLife }"/>
+						<label value="Details" sclass="link"  style="font-size: 9px;" 
+							onClick="carerform.viewAssessmentDetail(((Label)self.getParent().getChildren().get(0)).getValue(), updid)"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+		
+		<separator height="10px"/>
+		<hbox>
+			<button label="${back }" onClick="goBack();" image="../inc/icons/back.png"/>
+			<separator orient="horizontal" width="10px"/>
+			<button label="Create new assessment" onClick="carerform.createAssessment()" image="../inc/icons/add.gif" if="${!isadmin }"/>
+		</hbox>
+		<separator height="10px"/>
+	</window>
+	
+	<zscript>
+		try 
+		{
+			Carer userobj = proxy.getCarer(updid,userid);
+			CarerControllerWindow window = new CarerControllerWindow(userobj, true);
+			((Window)page.getFellow("paintitblack")).getChildren().add(0,window);
+			window.setId("carerform");
+			window.doEmbedded();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	</zscript>
+	
+	<zscript>
+		public void goBack()
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc("../carers/index_content.zul");
+		}
+	</zscript>
+
+</zk>

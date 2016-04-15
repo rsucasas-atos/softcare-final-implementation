@@ -1,0 +1,23 @@
+<zk>
+	<window id="carers" border="none" width="900px" sclass="centerwin">
+		<div apply="eu.ehealth.controllers.adm.ViewUsersController"> 
+	    	<grid id="inboxGrid" width="100%"  height="450px" rowRenderer="eu.ehealth.controllers.adm.MyRowRenderer"
+	        		emptyMessage="Nothing in Inbox." mold="paging" pageSize="10">        
+	        	<columns>
+	            	<column width="12%" label="username" />
+	            	<column width="10%" label="id" />
+	            	<column width="7%" label="rol" />
+	            	<column width="1%" label="" />
+	            	<column width="14%" label="connected" />
+	            	<column width="14%" label="connected time" />
+	            	<column width="10%" label="db connections" />
+	            	<column width="10%" label="status" />
+	            	<column width="22%" label="comments" />
+	        	</columns>
+	    	</grid>
+	    
+	    	<!-- refresh content every 10 seconds -->
+	    	<timer id="timer" delay="10000" repeats="true" /> 
+	  	</div>
+  	</window>
+</zk>

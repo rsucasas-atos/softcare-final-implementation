@@ -1,0 +1,35 @@
+[
+	{
+		"comments": "DataType: 2...Weight // CallerID: 1...LessThanRuleType // LowerLimit: not used // UpperLimit:Threshold",
+		"description": "Weight",
+		"id": "Weight",
+		"dataType": 2,
+		"callerID": 1,
+		"lowerLimit": 0,
+		"upperLimit": 5,
+		"getPrevious": "true",
+		"highRiskThresh": 0
+	},
+	{
+		"comments": "DataType: 11...Systolic // CallerID: 2...DoubleCompareRuleType",
+		"description": "Blood Pressure: Systolic",
+		"id": "Systolic",
+		"dataType": 11,
+		"callerID": 2,
+		"lowerLimit": 80,
+		"upperLimit": 150,
+		"getPrevious": "false",
+		"highRiskThresh": 0
+	},
+	{
+		"comments": "DataType: 12...Diastolic // CallerID: 2...DoubleCompareRuleType",
+		"description": "Blood Pressure: Diastolic",
+		"id": "Diastolic",
+		"dataType": 12,
+		"callerID": 2,
+		"lowerLimit": 50,
+		"upperLimit": 90,
+		"getPrevious": "false",
+		"highRiskThresh": 0
+	}
+]

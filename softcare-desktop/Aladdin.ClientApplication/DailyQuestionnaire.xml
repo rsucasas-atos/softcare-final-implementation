@@ -1,0 +1,448 @@
+﻿<?xml version="1.0"?>
+<questionnaire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0">
+  <question id="1" type="OneAnswer">
+    <title>What is the year, season, date, day, and month?&#x0a;Did he/she answer correctly?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="1.1" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about the Year?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="1.2" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about the Season?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="1.3" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about the Date?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="1.4" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about the Day?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="1.5" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about the Month?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="2" type="OneAnswer">
+    <title>Where are we (state, country, town or city, home/hospital, floor)?&#x0a;Did he/she answer correctly?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="2.1" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about State?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="2.2" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about Country?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="2.3" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about Town or city?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="2.4" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about Home/hospital?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="2.5" type="OneAnswer" condition="0">
+        <title>Did he/she answer correctly about Floor?</title>
+        <answers>
+          <answer value="1">YES</answer>
+          <answer value="0">NO</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="3" type="OneAnswer">
+    <title>3. Does he/she mix up past and present (e.g. thinking a deceased relative is alive)?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="3.1" type="OneAnswer" condition="1">
+        <title>How often does he/she mix up past and present (e.g. thinking a deceased relative is alive)?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="4" type="OneAnswer">
+    <title>4. Does he/she loose, misplace or hide things?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="4.1" type="OneAnswer" condition="1">
+        <title>How often does he/she loose, misplace or hide things?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="5" type="OneAnswer">
+    <title>5. Does he/she wander or get lost?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="5.1" type="OneAnswer" condition="1">
+        <title>How often does he/she wander or get lost?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="6" type="OneAnswer">
+    <title>6.  Does he/she not recognize familiar people?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="6.1" type="OneAnswer" condition="1">
+        <title>How often does he/she not recognize familiar people?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="7" type="OneAnswer">
+    <title>7. Does he/she see or hear things that are not there (hallucinations or illusions)?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="7.1" type="OneAnswer" condition="1">
+        <title>How often does he/she see or hear things that are not there (hallucinations or illusions)?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="8" type="OneAnswer">
+    <title>Does he/she become angry?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="9" type="OneAnswer" condition="1">
+        <title>Is he/she suspicious or makes accusations?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="10" type="OneAnswer" condition="1">
+        <title>Does he/she strike out or try to hit?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="11" type="OneAnswer" condition="1">
+        <title>Does he/she engage in behaviour potentially dangerous to others or him/herself?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="12" type="OneAnswer" condition="1">
+        <title>Does he/she talk in an aggressive or threatening manner?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="13" type="OneAnswer" condition="1">
+        <title>Is he/she uncooperative when I want him/her to do something?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+  </question>
+  <question id="14" type="OneAnswer">
+    <title>Does he/she appear sad or depressed?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions>
+      <question id="15" type="OneAnswer" condition="1">
+        <title>Is he/she unable to keep occupied or busy by self?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="16" type="OneAnswer" condition="1">
+        <title>Does he/she spend long periods of time inactive?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="17" type="OneAnswer" condition="1">
+        <title>Does he/she talk little or not at all?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="18" type="OneAnswer" condition="1">
+        <title>Does he/she cry or become tearful or appear emotionally instable?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+      <question id="19" type="OneAnswer" condition="1">
+        <title>Does he/she eat excessively or not at all?</title>
+        <answers>
+          <answer value="0">Never</answer>
+          <answer value="1">Happened but not in the last week</answer>
+          <answer value="2">1 or 2 times in the last week</answer>
+          <answer value="3">From 3 to 6 times in the last week</answer>
+          <answer value="4">Everyday</answer>
+          <answer value="9">I don’t know/Not applicable</answer>
+        </answers>
+        <questions />
+      </question>
+    </questions>
+    </question>
+  <question id="20" type="OneAnswer">
+    <title>Is he/she able to solve daily problems?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="21" type="OneAnswer">
+    <title>Does he/she take care of his/her personal hygiene?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="22" type="OneAnswer">
+    <title>Is he/she involved in social activities?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="23" type="OneAnswer">
+    <title>Did he/she fall in the last week?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="24" type="OneAnswer">
+    <title>Does he/she have difficulties in the speech?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="25" type="OneAnswer">
+    <title>Does he/she appear anxious or agitated?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="26" type="OneAnswer">
+    <title>Does he/she appear apathetic?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="27" type="OneAnswer">
+    <title>Does he/she sleep?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="28" type="OneAnswer">
+    <title>Does he/she have appetite?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="29" type="OneAnswer">
+    <title>Did he/she assume therapy every day in the last week?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="30" type="FreeText">
+    <title>Does he/she report side effects?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="31" type="FreeText">
+    <title>Any other problem (specify)?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+  <question id="32" type="OneAnswer">
+    <title>Has it been necessary to visit Emergency, has the patient needed any non-programmed resource, visits to their doctor or a specialist, has hospital admission or to a Long Term Care Unit or Residential Centre been necessary?</title>
+    <answers>
+      <answer value="1">YES</answer>
+      <answer value="0">NO</answer>
+    </answers>
+    <questions />
+  </question>
+</questionnaire>

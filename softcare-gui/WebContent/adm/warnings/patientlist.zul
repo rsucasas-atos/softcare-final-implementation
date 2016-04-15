@@ -1,0 +1,42 @@
+<zk>
+	<window title="Select Patient" closable="true" border="normal" width="300px" id="patientlistwin" use="eu.ehealth.controllers.warnings.PatientListForWarnings">
+		<zscript>
+			import eu.ehealth.ws_client.StorageComponentImpl;
+			import eu.ehealth.ws_client.xsd.SearchCriteria;
+			import eu.ehealth.ws_client.xsd.PatientInfo;
+			import eu.ehealth.ws_client.xsd.User;
+			import eu.ehealth.ws_client.xsd.SystemParameter;
+			import eu.ehealth.SystemDictionary;
+			
+			
+			StorageComponentImpl proxy = new StorageComponentImpl();
+			String userid = (String)Sessions.getCurrent().getAttribute("userid");
+			PatientInfo[] palist = null;
+			try
+			{
+				User loggeduser = proxy.getUser(userid);
+				SearchCriteria resclinicfilter = new SearchCriteria();
+				resclinicfilter.setFieldName("clinician");
+				resclinicfilter.setFieldValue1(loggeduser.getPersonID());
+				resclinicfilter.setCompareOp(new SystemParameter(SystemDictionary.COMPARE_EQ,""));
+				
+				palist = proxy.listOfPatientsArr(new SearchCriteria[0],userid);
+				SystemDictionary.webguiLog("INFO", "Patient list: "+palist.length);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		</zscript>
+		<radiogroup id="respo_rgroup">
+			<grid id="gPatientsWarnings" mold="paging" pageSize="10">
+				<rows>
+					<row forEach="${palist}">
+						<radio label="${each.name}, ${each.surname}" value="${each.ID }"/>
+					</row>
+				</rows>
+			</grid>
+		<button label="Select Patient" onClick="patientlistwin.setPatient()"/>
+		</radiogroup>
+	</window>
+</zk>

@@ -1,0 +1,81 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import eu.ehealth.ws_client.xsd.AdministratorInfo;
+		import eu.ehealth.ws_client.xsd.SearchCriteria;
+		import eu.ehealth.SystemDictionary;
+		
+		
+		String title = Labels.getLabel("administrators.title");
+		page.setTitle(title);
+		String newprof = Labels.getLabel("administrators.new");
+		String idstr  = Labels.getLabel("common.id");
+		String surnlbl= Labels.getLabel("common.sname");
+		String namelbl= Labels.getLabel("common.name");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String details = Labels.getLabel("common.details");
+		
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		AdministratorInfo[] admlist = null;
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		Boolean showif = new Boolean(false); 
+		try 
+		{
+			if (ses.getAttribute("isadmin") != null) {
+				showif = (Boolean)ses.getAttribute("isadmin");
+			}
+		
+			admlist = proxy.listOfAdministratorsArr(new SearchCriteria[0] ,id);
+		}
+		catch(Exception re)
+		{
+			SystemDictionary.webguiLog("ERROR", re.getMessage());
+		}
+	</zscript>
+	
+	<window border="none" width="900px" sclass="centerwin" id="administrators" use="eu.ehealth.controllers.IndexAdministratorsWindow">
+		<window id="internalformerror" sclass="mainerror" border="none" width="50%" closable="true" visible="false">
+			<label id="errorlbl"/>
+		</window>
+		
+		<vbox>
+			<button label="${newprof}" onClick="showForm();"  image="../inc/icons/add.gif" if="${showif}" />
+			<grid mold="paging" pageSize="10">
+				<columns>
+					<column label="${idstr }" width="65px" sort="auto" style="font-weight: bold;"/>
+					<column label="${surnlbl }" sort="auto" style="font-weight: bold;"/>
+					<column label="${namelbl }" sort="auto" style="font-weight: bold;"/>
+					<column width="50px" align="center" />
+					<column width="50px" align="center" if="${showif}"/>
+					<column width="50px" align="center" if="${showif}"/>
+				</columns>
+				<rows>
+					<row forEach="${admlist }" id="${each.ID } - ${each.personId }">
+						<label value="${each.personId }" />
+						<label value="${each.surname }"/>
+						<label value="${each.name }"/>
+						<label value="${details }" sclass="link" onClick="administrators.detailsAdministrator(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${showif}" value="${updmsg }" sclass="link" onClick="administrators.updateAdministrator(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${showif}" value="${delmsg }" sclass="link" onClick="administrators.deleteAdministratorMsg(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+	
+	<zscript>
+		public void detailsAdm(String id)
+		{
+			app_content.setSrc("../carers/details.zul?carerid=" + id);
+		}
+		
+		
+		public void showForm()
+		{
+			app_content.setSrc("../administration/form.zul");
+		}
+	</zscript>
+</zk>

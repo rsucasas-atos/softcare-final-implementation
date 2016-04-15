@@ -1,0 +1,20 @@
+﻿<Window
+    x:Class="SoftCare.ClientApplication.Windows.FullviewWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    Title="SoftCare" Height="300" Width="300" Loaded="Window_Loaded" WindowState="Maximized" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WebBrowser Grid.Row="0" x:Name="WebBrowser" Margin="16" Navigated="WebBrowser_Navigated" />
+        <Button Grid.Row="1" Click="Back_Click" Style="{StaticResource SmallButton}" Margin="0 0 0 16">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/SoftCare.ClientApplication;component/Resources/Images/back.png" Margin="10 6 4 6" Height="32" />
+                <TextBlock Text="Back" Margin="8 5 10 6" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

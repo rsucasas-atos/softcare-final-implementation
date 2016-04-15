@@ -1,0 +1,42 @@
+<!doctype html>  
+<html  lang="en" ng-app="angularTodo">
+	<head>  
+		<title>Softcare - Discussion Board</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>IW-Project</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+		<script src="js/main.js"></script>
+		
+		<style>
+			body {
+				background-image: url("images/forum_index.jpg");
+			}
+		</style>
+	</head>
+	
+	<body ng-controller="mainController">
+			<h1>Softcare - Discussion Board</h1>
+			<div>
+				  <label>Name:</label>
+				  <input type="text" ng-model="yourName" placeholder="Enter a name here" />
+				 <label>Hello {{yourName}}!</label>
+			</div>
+			<p>
+				<a href="install.jsp">Softcare-Forum configuration page</a>
+			</p>
+			<p>
+				<a href="forums/list.page">Softcare-Forum home page</a>
+			</p>
+			
+			<p>Javascript must be enabled to run Softcare-Forum. Please check your browser settings or use a Javascript-capable browser.</p>
+			<p>Application based on jforum:</p>
+			<p>
+				<a href="http://www.jforum.net/">JForum home page</a>
+			</p>
+	</body>
+</html>

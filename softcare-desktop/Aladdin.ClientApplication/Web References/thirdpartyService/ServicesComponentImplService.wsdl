@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ehealth.eu/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ServicesComponentImplService" targetNamespace="http://ehealth.eu/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ehealth.eu/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getVideo" type="tns:getVideo" />
+      <xs:element name="getVideoResponse" type="tns:getVideoResponse" />
+      <xs:element name="sendEmail" type="tns:sendEmail" />
+      <xs:element name="sendEmailResponse" type="tns:sendEmailResponse" />
+      <xs:element name="sendSMS" type="tns:sendSMS" />
+      <xs:element name="sendSMSResponse" type="tns:sendSMSResponse" />
+      <xs:element name="sendVideo" type="tns:sendVideo" />
+      <xs:element name="sendVideoResponse" type="tns:sendVideoResponse" />
+      <xs:complexType name="sendSMS">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendSMSResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="sendEmail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+          <xs:element minOccurs="0" name="arg2" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sendEmailResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="sendVideo">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="sendVideoResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getVideo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getVideoResponse">
+        <xs:sequence />
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getVideo">
+    <wsdl:part name="parameters" element="tns:getVideo" />
+  </wsdl:message>
+  <wsdl:message name="sendVideoResponse">
+    <wsdl:part name="parameters" element="tns:sendVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendEmail">
+    <wsdl:part name="parameters" element="tns:sendEmail" />
+  </wsdl:message>
+  <wsdl:message name="sendSMS">
+    <wsdl:part name="parameters" element="tns:sendSMS" />
+  </wsdl:message>
+  <wsdl:message name="sendEmailResponse">
+    <wsdl:part name="parameters" element="tns:sendEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="getVideoResponse">
+    <wsdl:part name="parameters" element="tns:getVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendSMSResponse">
+    <wsdl:part name="parameters" element="tns:sendSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendVideo">
+    <wsdl:part name="parameters" element="tns:sendVideo" />
+  </wsdl:message>
+  <wsdl:portType name="ServicesComponent">
+    <wsdl:operation name="sendSMS">
+      <wsdl:input name="sendSMS" message="tns:sendSMS" />
+      <wsdl:output name="sendSMSResponse" message="tns:sendSMSResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendEmail">
+      <wsdl:input name="sendEmail" message="tns:sendEmail" />
+      <wsdl:output name="sendEmailResponse" message="tns:sendEmailResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendVideo">
+      <wsdl:input name="sendVideo" message="tns:sendVideo" />
+      <wsdl:output name="sendVideoResponse" message="tns:sendVideoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getVideo">
+      <wsdl:input name="getVideo" message="tns:getVideo" />
+      <wsdl:output name="getVideoResponse" message="tns:getVideoResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicesComponentImplServiceSoapBinding" type="tns:ServicesComponent">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sendSMS">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendSMS">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendSMSResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEmail">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendEmail">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendEmailResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendVideo">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendVideo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendVideoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVideo">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getVideo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getVideoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicesComponentImplService">
+    <wsdl:port name="ServicesComponentImplPort" binding="tns:ServicesComponentImplServiceSoapBinding">
+      <soap:address location="http://e-health-ws-app-eu.herokuapp.com/ServicesComponent" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

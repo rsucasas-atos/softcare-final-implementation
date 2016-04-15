@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="SoftCare.ClientApplication.Controls.MeasureActivityPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SoftCare.ClientApplication"
+    mc:Ignorable="d" Width="1120">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:AppCommands.ReadActivityDataCommand" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute" />
+        <CommandBinding Command="local:AppCommands.SendMeasurementCommand" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute" />
+    </UserControl.CommandBindings>
+    <Grid HorizontalAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" Height="180" HorizontalAlignment="Left" Margin="10,0,-15,0" VerticalAlignment="Top" Width="1097.836" Style="{StaticResource RoundBorder}" >
+            <TextBox HorizontalAlignment="Left" Height="100.477" Margin="920.09,38.494,0,0" TextWrapping="Wrap" Name="ManualActivity" ToolTip="Insert data (steps / day) manually" Text="" VerticalAlignment="Top" Width="166.746" GotFocus="ManualActivity_GotFocus" FontSize="48"/>
+        </Border>
+        <TextBlock Grid.ColumnSpan="2" Style="{StaticResource Heading2}" MaxWidth="800" TextWrapping="Wrap" Margin="20,20,20,40" Width="726" Text="{DynamicResource PressTheAcquireButton}"></TextBlock>
+        <Button x:Name="AcquireBtn" Grid.Row="1" Margin="40,40,10,20" Command="local:AppCommands.ReadActivityDataCommand" Style="{StaticResource NormalButton}" IsDefault="True" HorizontalAlignment="Center" Content="{DynamicResource Acquire}"/>
+        <TextBox x:Name="AcquireText" Grid.Row="1" Grid.Column="1" Margin="10,40,20,20" MinWidth="400" MaxWidth="400" HorizontalAlignment="Left" Text="" IsReadOnly="True" FontSize="22" TextWrapping="Wrap" CharacterCasing="Normal" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" />
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="4" Margin="20,50,20,10">
+            <Button Style="{StaticResource NormalButton}" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Top" Command="local:AppCommands.SendMeasurementCommand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/SoftCare.ClientApplication;component/Resources/Images/send2.png" Margin="10 10 4 6" Height="72" />
+                    <TextBlock Text="{DynamicResource Send}" Margin="8 8 10 6" />
+                </StackPanel>
+            </Button>
+            <Button Command="local:AppCommands.MoveToPageCommand" CommandParameter="MyTasksPage" Style="{StaticResource NormalButton}"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20 0 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/SoftCare.ClientApplication;component/Resources/Images/back.png" Margin="10 6 4 6" Height="72" />
+                    <TextBlock Text="{DynamicResource Back}" Margin="8 8 10 6" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Button x:Name="NoButton" Width="0" />
+    </Grid>
+</UserControl>

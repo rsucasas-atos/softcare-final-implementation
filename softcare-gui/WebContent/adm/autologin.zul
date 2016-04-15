@@ -1,0 +1,20 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<zk>
+	<zscript>
+		String id = Executions.getCurrent().getParameter("var1");
+		String user = Executions.getCurrent().getParameter("var2");
+		String rol = Executions.getCurrent().getParameter("var3");
+		Boolean isadmin = "1".equals(rol);
+		
+		System.out.println("id: " + id);
+		System.out.println("user: " + user);
+		System.out.println("rol: " + rol);
+
+		session.setAttribute("user", user);
+		session.setAttribute("userid", id);
+		session.setAttribute("usertype", rol);
+		session.setAttribute("isadmin", isadmin);
+
+		Executions.getCurrent().sendRedirect("/adm/common/index.zul");
+	</zscript>
+</zk>

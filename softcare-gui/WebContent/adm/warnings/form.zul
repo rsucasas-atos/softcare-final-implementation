@@ -1,0 +1,62 @@
+<zk>
+	<window id="warning_form" border="normal" visible="false" width="70%" closable="true" position="center,center" use="eu.ehealth.controllers.warnings.WarningsPopupController">
+		<grid>
+			<columns>
+				<column width="200px" align="right"/>
+				<column/>
+			</columns>
+			<rows>
+				<row id="warningid">
+					<label value="Warning ID"/>
+					<textbox id="wid" value="" readonly="true"/>
+				</row>
+				<row>
+					<label value="Type"/>
+					<textbox id="typefield" readonly="true" width="15%"/>
+				</row>
+				<row>
+					<label value="Date/Time"/>
+					<textbox id="datefield" readonly="true"/>
+				</row>
+				<row>
+					<label value="Effect"/>
+					<textbox id="effectfield" readonly="true" width="15%"/>
+				</row>
+				<row>
+					<label value="Indicator"/>
+					<textbox id="indfield" readonly="true" width="15%"/>
+				</row>
+				<row>
+					<label value="Risk Level"/>
+					<textbox id="riskfield" readonly="true" width="15%"/>
+				</row>
+				<row>
+					<label value="Justification"/>
+					<textbox id="justfield" readonly="true" width="80%" rows="4"/>
+				</row>
+				<row>
+					<label value="Emergency Level"/>
+					<textbox id="emergencyfield" readonly="true" width="15%"/>
+				</row>
+				<row>
+					<label value="Patient"/>
+					<textbox id="patientfield" readonly="true" width="15%"/>
+				</row>
+				<row>
+					<label value=""/>
+					<textbox id="patientnamefield" readonly="true" width="80%"/>
+				</row>
+				<row>
+					<label value="Delivered"/>
+					<textbox id="delivfield" readonly="true" width="15%"/>
+				</row>
+				<row id="buttonrow">
+					<label value=""/>
+					<hbox>
+						<button id="readbutton" label="Mark Warning as Read" onClick="warning_form.markWarningAsRead()" image="../inc/icons/check.gif"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

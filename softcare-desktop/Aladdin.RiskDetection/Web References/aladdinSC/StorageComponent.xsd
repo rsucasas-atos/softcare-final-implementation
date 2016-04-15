@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema xmlns:tns="http://aladdin-project.eu/xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://aladdin-project.eu/xsd" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="Questionnaire">
+    <sequence>
+      <element maxOccurs="unbounded" name="question" type="tns:QuestionnaireQuestion" />
+    </sequence>
+    <attribute name="version" type="double" />
+    <attribute name="ID" type="string" />
+    <attribute name="title" type="string" />
+  </complexType>
+  <complexType name="QuestionnaireQuestion">
+    <sequence>
+      <element name="title" type="string" />
+      <element name="GlobalID" type="int" />
+      <element name="answers" type="tns:QuestionnaireQuestionAnswerList" />
+      <element name="questions" type="tns:QuestionnaireQuestionList" />
+      <element name="position" type="int" />
+    </sequence>
+    <attribute name="id" type="string" />
+    <attribute name="type" type="string" />
+    <attribute name="condition" type="unsignedByte" use="optional" />
+  </complexType>
+  <complexType name="QuestionnaireQuestionList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="question" type="tns:QuestionnaireQuestion" />
+    </sequence>
+  </complexType>
+  <complexType name="QuestionnaireQuestionAnswerList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="answer" type="tns:QuestionnaireQuestionAnswer" />
+    </sequence>
+  </complexType>
+  <complexType name="QuestionnaireQuestionAnswer">
+    <sequence>
+      <element name="position" type="int" />
+      <element name="description" type="string" />
+    </sequence>
+    <attribute name="value" type="unsignedByte" />
+  </complexType>
+  <complexType name="QuestionnaireAnswers">
+    <sequence>
+      <element maxOccurs="unbounded" name="answer" type="tns:QuestionnaireAnswer" />
+    </sequence>
+    <attribute name="ID" type="string" />
+    <attribute name="DateTime" type="dateTime" />
+    <attribute name="ObjectID" type="string" />
+    <attribute name="TaskID" type="string" />
+    <attribute name="UserID" type="string" />
+  </complexType>
+  <complexType name="QuestionnaireAnswer">
+    <simpleContent>
+      <extension base="string">
+        <attribute name="value" type="string" />
+        <attribute name="questionID" type="string" />
+        <attribute name="globalID" type="string" />
+      </extension>
+    </simpleContent>
+  </complexType>
+  <simpleType name="QuestionnaireQuestionAnswerType">
+    <restriction base="string">
+      <enumeration value="OneAnswer" />
+      <enumeration value="ManyAnswers" />
+      <enumeration value="FreeText" />
+    </restriction>
+  </simpleType>
+  <complexType name="Warning">
+    <sequence>
+      <element minOccurs="0" name="ID" type="string" />
+      <element minOccurs="0" name="TypeOfWarning" type="tns:SystemParameter" />
+      <element minOccurs="0" name="DateTimeOfWarning" type="dateTime" />
+      <element minOccurs="0" name="Effect" type="tns:SystemParameter" />
+      <element minOccurs="0" name="Indicator" type="tns:SystemParameter" />
+      <element minOccurs="0" name="RiskLevel" type="tns:SystemParameter" />
+      <element minOccurs="0" name="JustificationText" type="string" />
+      <element minOccurs="0" name="EmergencyLevel" type="tns:SystemParameter" />
+      <element minOccurs="0" name="PatientID" type="string" />
+      <element minOccurs="0" name="Delivered" type="boolean" />
+    </sequence>
+  </complexType>
+  <complexType name="SystemParameter">
+    <sequence>
+      <element name="Code" type="string" />
+      <element name="Description" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="ExternalService">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="Description" type="string" />
+      <element name="Address" type="string" />
+      <element name="Type" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="Event">
+    <sequence>
+      <element name="EventType" type="tns:SystemParameter" />
+      <element name="Subject" type="string" />
+      <element name="Text" type="string" />
+      <element name="Target" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="User">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="Type" type="tns:SystemParameter" />
+      <element name="PersonID" type="string" />
+      <element name="Username" type="string" />
+      <element name="Password" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="SearchCriteria">
+    <sequence>
+      <element name="FieldName" type="string" />
+      <element name="CompareOp" type="tns:SystemParameter" />
+      <element name="FieldValue1" type="string" />
+      <element minOccurs="0" name="FieldValue2" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="Task">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="TaskType" type="tns:SystemParameter" />
+      <element name="DateTimeAssigned" type="dateTime" />
+      <element name="DateTimeFulfilled" type="dateTime" />
+      <element name="TaskStatus" type="tns:SystemParameter" />
+      <element minOccurs="0" name="URL" type="string" />
+      <element minOccurs="0" name="Text" type="string" />
+      <element minOccurs="0" name="Questionnaire" type="tns:Questionnaire" />
+      <element name="ExecutorID" type="string" />
+      <element name="AssignerID" type="string" />
+      <element name="ObjectID" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="CarerAssessment">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="CarerID" type="string" />
+      <element name="ClinicianID" type="string" />
+      <element name="DateOfAssessment" type="dateTime" />
+      <element minOccurs="0" name="RelevantHealthProblem" type="string" />
+      <element name="SeverityOfBurden" type="unsignedByte" />
+      <element minOccurs="0" name="EmotionalOrMentalDisorders" type="string" />
+      <element minOccurs="0" name="PsychoactiveDrugs" type="string" />
+      <element minOccurs="0" name="QualityOfLife" type="unsignedByte" />
+    </sequence>
+  </complexType>
+  <complexType name="PatientAssessment">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="PatientID" type="string" />
+      <element name="DateOfAssessment" type="dateTime" />
+      <element name="Aetology" type="tns:SystemParameter" />
+      <element name="TimeEllapsedSinceDiagnosed" type="unsignedByte" />
+      <element name="Severity" type="unsignedByte" />
+      <element minOccurs="0" name="RelevantPathologyAntecedents" type="string" />
+      <element minOccurs="0" name="Comorbidity" type="string" />
+      <element minOccurs="0" name="CharlsonComorbidityIndex" type="unsignedByte" />
+      <element minOccurs="0" name="BarthelIndex" type="unsignedByte" />
+      <element minOccurs="0" name="LawtonIndex" type="unsignedByte" />
+      <element name="MMSE" type="unsignedByte" />
+      <element minOccurs="0" name="MDRS" type="unsignedByte" />
+      <element minOccurs="0" name="BlessedScalePart1" type="double" />
+      <element minOccurs="0" name="BlessedScalePart2" type="unsignedByte" />
+      <element minOccurs="0" name="BlessedScalePart3" type="unsignedByte" />
+      <element minOccurs="0" name="ChecklistMBP" type="unsignedByte" />
+      <element minOccurs="0" name="NPQI_Severity" type="unsignedByte" />
+      <element minOccurs="0" name="NPQI_Stress" type="unsignedByte" />
+      <element minOccurs="0" name="GDS" type="unsignedByte" />
+      <element minOccurs="0" name="Falls" type="boolean" />
+      <element minOccurs="0" name="Incontinence" type="boolean" />
+      <element minOccurs="0" name="Delirium" type="boolean" />
+      <element minOccurs="0" name="Immobility" type="boolean" />
+      <element minOccurs="0" name="SensorialDeficits" type="boolean" />
+      <element minOccurs="0" name="PharmacologicalTreatment" type="string" />
+      <element maxOccurs="unbounded" name="ClinicalData" type="tns:Measurement" />
+    </sequence>
+  </complexType>
+  <complexType name="Measurement">
+    <sequence>
+      <element name="Type" type="tns:SystemParameter" />
+      <element name="Value" type="double" />
+      <element name="DateTime" type="dateTime" />
+      <element name="Units" type="string" />
+      <element minOccurs="0" name="LowerLimit" type="double" />
+      <element minOccurs="0" name="UpperLimit" type="double" />
+      <element name="TaskID" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="Identifier">
+    <sequence>
+      <element name="Type" type="string" />
+      <element name="Number" type="string" />
+      <element minOccurs="0" name="IssueDate" type="date" />
+      <element minOccurs="0" name="IssueAuthority" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="Address">
+    <sequence>
+      <element name="Street" type="string" />
+      <element minOccurs="0" name="StreetNo" type="string" />
+      <element name="City" type="string" />
+      <element minOccurs="0" name="County" type="string" />
+      <element name="Country" type="string" />
+      <element minOccurs="0" name="ZipCode" type="string" />
+      <element minOccurs="0" name="Notes" type="string" />
+      <element name="IsPrimary" type="boolean" />
+    </sequence>
+  </complexType>
+  <complexType name="Communication">
+    <sequence>
+      <element name="Type" type="string" />
+      <element name="Value" type="string" />
+      <element minOccurs="0" name="Notes" type="string" />
+      <element name="IsPrimary" type="boolean" />
+    </sequence>
+  </complexType>
+  <complexType name="SocioDemographicData">
+    <sequence>
+      <element name="Age" type="unsignedByte" />
+      <element name="Gender" type="tns:SystemParameter" />
+      <element name="MaritalStatus" type="tns:SystemParameter" />
+      <element name="Children" type="unsignedByte" />
+      <element name="LivingWith" type="tns:SystemParameter" />
+    </sequence>
+  </complexType>
+  <complexType name="PersonData">
+    <sequence>
+      <element name="Surname" type="string" />
+      <element name="Name" type="string" />
+      <element name="IdentifierList" type="tns:IdentifierList" />
+      <element name="AddressList" type="tns:AddressList" />
+      <element name="CommunicationList" type="tns:CommunicationList" />
+    </sequence>
+  </complexType>
+  <complexType name="CommunicationList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="Communication" type="tns:Communication" />
+    </sequence>
+  </complexType>
+  <complexType name="AddressList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="Address" type="tns:Address" />
+    </sequence>
+  </complexType>
+  <complexType name="IdentifierList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="Identifier" type="tns:Identifier" />
+    </sequence>
+  </complexType>
+  <complexType name="Carer">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="PersonData" type="tns:PersonData" />
+      <element name="SD_Data" type="tns:SocioDemographicData" />
+    </sequence>
+  </complexType>
+  <complexType name="PatientCarer">
+    <sequence>
+      <element name="Carer" type="tns:Carer" />
+      <element name="IsPrimary" type="boolean" />
+    </sequence>
+  </complexType>
+  <complexType name="Clinician">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="PersonData" type="tns:PersonData" />
+    </sequence>
+  </complexType>
+  <complexType name="Patient">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="PersonData" type="tns:PersonData" />
+      <element name="SD_Data" type="tns:SocioDemographicData" />
+      <element name="ResponsibleClinicianID" type="string" />
+      <element name="PatientCarerList" type="tns:PatientCarerList" />
+      <element name="SocialWorker" type="tns:SocialWorker" />
+      <element name="ConsulterInCharge" type="tns:Consulter" />
+      <element name="GeneralPractitioner" type="tns:GeneralPractitioner" />
+    </sequence>
+  </complexType>
+  <complexType name="SocialWorker">
+    <sequence>
+      <element name="name" type="string" />
+      <element name="phone" type="string" />
+      <element name="email" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="Consulter">
+    <sequence>
+      <element name="name" type="string" />
+      <element name="phone" type="string" />
+      <element name="email" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="GeneralPractitioner">
+    <sequence>
+      <element name="name" type="string" />
+      <element name="phone" type="string" />
+      <element name="email" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="PatientCarerList">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="PatientCarer" type="tns:PatientCarer" />
+    </sequence>
+  </complexType>
+  <complexType name="Administrator">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="PersonData" type="tns:PersonData" />
+    </sequence>
+  </complexType>
+  <complexType name="PatientInfo">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="Surname" type="string" />
+      <element name="Name" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="CarerInfo">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="Surname" type="string" />
+      <element name="Name" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="ClinicianInfo">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="Surname" type="string" />
+      <element name="Name" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="AdministratorInfo">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="Surname" type="string" />
+      <element name="Name" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="QuestionnaireInfo">
+    <attribute name="version" type="double" />
+    <attribute name="ID" type="string" />
+    <attribute name="title" type="string" />
+  </complexType>
+  <complexType name="OperationResult">
+    <sequence>
+      <element name="Code" type="string" />
+      <element name="Status" type="unsignedByte" />
+      <element minOccurs="0" name="Description" type="string" />
+    </sequence>
+  </complexType>
+  <complexType name="MediaContent">
+    <sequence>
+      <element name="ID" type="string" />
+      <element name="title" type="string" />
+      <element name="url" type="string" />
+      <element name="type" type="string" />
+      <element name="category" type="string" />
+      <element name="text" type="string" />
+      <element name="enabled" type="boolean" />
+    </sequence>
+  </complexType>
+</schema>

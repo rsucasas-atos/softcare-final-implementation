@@ -1,0 +1,78 @@
+<zk>
+	<zscript>
+		import eu.ehealth.controllers.task.MessivelyTasksRemove;
+		import eu.ehealth.SystemDictionary;
+		import org.zkoss.util.resource.Labels;
+		
+		
+		int tttexti = SystemDictionary.TASK_TYPE_TXT_INT;
+		String tttexts = SystemDictionary.TASK_TYPE_TXT; 
+		
+		String ttcarerqs = Labels.getLabel("dic.task.type.patientqs");
+		String ttblood = Labels.getLabel("dic.task.type.bloodpressure.mes");
+		String ttweight = Labels.getLabel("dic.task.type.weight.mes");
+		String ttcoggame = Labels.getLabel("dic.task.type.coggame");
+		String ttact = Labels.getLabel("dic.task.type.activity.mon");
+		String ttex = Labels.getLabel("dic.task.type.exercise");
+		String tttext = SystemDictionary.getTaskTypeLabel(tttexts);
+		String tid = Labels.getLabel("common.id");
+		String ttype = Labels.getLabel("common.type");
+		String tstatus = Labels.getLabel("common.status");
+		String tquestion = Labels.getLabel("tasks.questionnaire");
+		String tobject = Labels.getLabel("tasks.object");
+		String turl = Labels.getLabel("common.URI");
+		String tassignd = Labels.getLabel("common.date.assigned");
+		String texecut = Labels.getLabel("tasks.executor");
+		String tassigner = Labels.getLabel("tasks.assigner");
+		String tassigntt = Labels.getLabel("tasks.asign");
+		String tcancelt = Labels.getLabel("tasks.cancel");
+		
+		int ttcarerqsi = SystemDictionary.TASK_TYPE_PATIENTQS_INT;
+		int ttbloodi = SystemDictionary.TASK_TYPE_BLOODPRESSURE_MEASUREMENT_INT;
+		int ttweighti = SystemDictionary.TASK_TYPE_WEIGHT_MEASUREMENT_INT;
+		int ttcoggamei = SystemDictionary.TASK_TYPE_COGGAME_INT;
+		int ttacti = SystemDictionary.TASK_TYPE_ACTMONITOR_INT;
+		int ttexi = SystemDictionary.TASK_TYPE_EXERCISE_INT;
+		
+		Date date = new Date();
+	</zscript>
+	
+	<window title="Remove tasks" width="70%" border="normal" id="removemassive_win" use="eu.ehealth.controllers.task.MessivelyTasksRemove" closable="true" visible="false">
+		<grid>
+			<columns>
+				<column width="200px" align="right"/>
+				<column/>
+			</columns>
+			<rows>
+				<row visible="false">
+					<label value=""/>
+					<textbox id="removepatientid"/>
+				</row>
+				<row>
+					<label value="What kind of task do you want to remove massively?"/>
+					<listbox mold="select" id="removetasktype">
+						<listitem label="${ttcarerqs }" value="${ttcarerqsi }" selected="true"/>
+						<listitem label="${ttblood }" value="${ttbloodi }"/>
+						<listitem label="${ttweight }" value="${ttweighti }"/>
+						<listitem label="${ttcoggame }" value="${ttcoggamei }"/>
+						<listitem label="${ttact }" value="${ttacti }"/>
+						<listitem label="${ttex }" value="${ttexi }"/>
+						<listitem label="${tttext }" value="${tttexti }"/>
+					</listbox>
+				</row>
+				<row>
+					<label value="Which day we must start removing tasks?"/>
+					<datebox format="dd/MM/yyyy" value="${date }" id="removestart"/>
+				</row>
+				<row>
+					<label value="Which day we must stop (!) removing tasks?"/>
+					<datebox format="dd/MM/yyyy" value="${date }" id="removeend"/>
+				</row>
+				<row>
+					<label id=""/>
+					<button id="deletemassive" label="Delete tasks" onClick="removemassive_win.removeMassively(removepatientid.getValue(), removetasktype.getSelectedItem().getValue(), removestart.getValue(), removeend.getValue())"/>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

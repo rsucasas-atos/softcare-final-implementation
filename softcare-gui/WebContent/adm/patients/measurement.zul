@@ -1,0 +1,29 @@
+<zk>
+	<zscript>
+		import eu.ehealth.SystemDictionary;
+		
+		
+		
+		String bloodt = SystemDictionary.TASK_TYPE_BLOODPRESSURE_MEASUREMENT;
+		String weightt = SystemDictionary.TASK_TYPE_WEIGHT_MEASUREMENT;
+		String actmonitor = SystemDictionary.TASK_TYPE_ACTMONITOR;
+	</zscript>
+	
+	<window id="measurementswin" title="Measurement Chart" border="normal" closable="true" position="left,top" use="eu.ehealth.controllers.details.measurements.MeasurementPopupController">
+		<vbox>
+			<hbox>
+				<listbox id="measurementtype" mold="select">
+					<listitem label="Weight measurement" value="${weightt }" selected="true"/>
+					<listitem label="Blood pressure measurement" value="${bloodt }"/>
+					<listitem label="Activity monitor" value="${actmonitor }"/>
+				</listbox>
+				<label value="from"/><datebox id="dfrom" constraint="no future"/><timebox id="tfrom"/>
+				<label value="to"/><datebox id="dto" constraint="no future"/><timebox id="tto"/>
+				<separator orient="horizontal" width="50px"/>
+				<button label="Show" onClick="measurementswin.generateImage()" image="../inc/icons/search.png"/>
+			</hbox>
+			<image id="imagemeas"/>
+			<button label="Download" id="measurementdownloadbutton" image="../inc/icons/download.gif"/>
+		</vbox>
+	</window>
+</zk>

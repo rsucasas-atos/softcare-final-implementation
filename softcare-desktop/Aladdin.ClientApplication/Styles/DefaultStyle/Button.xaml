@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="{x:Type Button}" BasedOn="{x:Null}" x:Key="NormalButton">
+        <Setter Property="Template" Value="{DynamicResource ButtonTemplate}" />
+        <Setter Property="MinWidth" Value="350"/>
+        <Setter Property="MaxWidth" Value="350"/>
+        <Setter Property="MinHeight" Value="100"/>
+        <Setter Property="MaxHeight" Value="100"/>
+        <Setter Property="FontSize" Value="48"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#FF042271"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="PreviewMouseDown">
+                <SoundPlayerAction Source="/SoftCare.ClientApplication;component/click.wav" />
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="LargeButton">
+        <Setter Property="MinWidth" Value="350"/>
+        <Setter Property="MaxWidth" Value="450"/>
+        <Setter Property="MinHeight" Value="270"/>
+        <Setter Property="MaxHeight" Value="300"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="LargeButtonStartPage">
+        <Setter Property="MinWidth" Value="450"/>
+        <Setter Property="MaxWidth" Value="450"/>
+        <Setter Property="MinHeight" Value="270"/>
+        <Setter Property="MaxHeight" Value="350"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="LoginButton">
+        <Setter Property="MinWidth" Value="350"/>
+        <Setter Property="MaxWidth" Value="500"/>
+        <Setter Property="MinHeight" Value="130"/>
+        <Setter Property="MaxHeight" Value="130"/>
+        <Setter Property="Height" Value="130"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="TaskButton">
+        <Setter Property="MinWidth" Value="600"/>
+        <Setter Property="MaxWidth" Value="600"/>
+        <Setter Property="MinHeight" Value="60"/>
+        <Setter Property="MaxHeight" Value="60"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="WizardButton">
+        <Setter Property="MinWidth" Value="200"/>
+        <Setter Property="MaxWidth" Value="200"/>
+        <Setter Property="MinHeight" Value="60"/>
+        <Setter Property="MaxHeight" Value="60"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="LargeYesButton">
+        <Setter Property="Foreground" Value="Green"/>
+        <Setter Property="MinHeight" Value="120"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="LargeNoButton">
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="MinHeight" Value="120"/>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource NormalButton}" x:Key="SmallButton">
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="MaxWidth" Value="200"/>
+        <Setter Property="MinHeight" Value="46"/>
+        <Setter Property="MaxHeight" Value="46"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,203 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		import eu.ehealth.SystemDictionary;
+		import eu.ehealth.ws_client.xsd.SystemParameter;
+		import eu.ehealth.ws_client.xsd.Task;
+		import eu.ehealth.ws_client.xsd.QuestionnaireInfo;
+		import eu.ehealth.ws_client.xsd.SearchCriteria;;
+		import eu.ehealth.ws_client.StorageComponentImpl;
+		import org.zkoss.zul.SimpleListModel;
+		import eu.ehealth.ws_client.xsd.MediaContent;
+		import eu.ehealth.ws_client.xsd.QuestionnaireInfo;
+		
+		
+		int tttexti = SystemDictionary.TASK_TYPE_TXT_INT;
+		String tttexts = SystemDictionary.TASK_TYPE_TXT; 
+		int ttpatqsi = SystemDictionary.TASK_TYPE_PATIENTQS_INT;
+		int ttcarerqsi = SystemDictionary.TASK_TYPE_CARERQS_INT;
+		int ttbloodi = SystemDictionary.TASK_TYPE_BLOODPRESSURE_MEASUREMENT_INT;
+		int ttweighti = SystemDictionary.TASK_TYPE_WEIGHT_MEASUREMENT_INT;
+		int ttcoggamei = SystemDictionary.TASK_TYPE_COGGAME_INT;
+		int ttacti = SystemDictionary.TASK_TYPE_ACTMONITOR_INT;
+		int ttexi = SystemDictionary.TASK_TYPE_EXERCISE_INT;
+		int usertype = SystemDictionary.USERTYPE_PATIENT_INT;
+		
+		String ttpatqs = Labels.getLabel("dic.task.type.patientqs");
+		String ttcarerqs = Labels.getLabel("dic.task.type.carers");
+		String ttblood = Labels.getLabel("dic.task.type.bloodpressure.mes");
+		String ttweight = Labels.getLabel("dic.task.type.weight.mes");
+		String ttcoggame = Labels.getLabel("dic.task.type.coggame");
+		String ttact = Labels.getLabel("dic.task.type.activity.mon");
+		String ttex = Labels.getLabel("dic.task.type.exercise");
+		String tttext = SystemDictionary.getTaskTypeLabel(tttexts);
+		String tid = Labels.getLabel("common.id");
+		String ttype = Labels.getLabel("common.type");
+		String tstatus = Labels.getLabel("common.status");
+		String tquestion = Labels.getLabel("tasks.questionnaire");
+		String tobject = Labels.getLabel("tasks.object");
+		String turl = Labels.getLabel("common.URI");
+		String tassignd = Labels.getLabel("common.date.assigned");
+		String texecut = Labels.getLabel("tasks.executor");
+		String tassigner = Labels.getLabel("tasks.assigner");
+		String tassigntt = Labels.getLabel("tasks.asign");
+		String tcancelt = Labels.getLabel("tasks.cancel");
+		
+		Session ses = Sessions.getCurrent();
+		String petusid = (String)ses.getAttribute("userid");
+		Date date = new Date();
+		
+		QuestionnaireInfo[] qsss = null;
+		try
+		{
+			StorageComponentImpl proxy = SystemDictionary.getSCProxy();
+			qsss = proxy.listOfQuestionnairesArr(SystemDictionary.getLocale() ,petusid);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();			
+		}  
+		
+		eu.ehealth.ws_client.xsd.ExternalService[] urilistEXERCISES = 
+			eu.ehealth.controllers.task.CalendarWindowControllerPatients.getListExtServices(SystemDictionary.EXT_SERV_EXERCISES);
+		eu.ehealth.ws_client.xsd.ExternalService[] urilistCOGNGAMES = 
+			eu.ehealth.controllers.task.CalendarWindowControllerPatients.getListExtServices(SystemDictionary.EXT_SERV_COGNGAMES);
+	</zscript>
+	
+	<window id="create_my_entry" border="normal" visible="false" width="70%" closable="true" position="center,center" use="eu.ehealth.controllers.task.CalendarWindowControllerPatients">
+		<label value="${objstr}"/>
+		<grid>
+			<columns>
+				<column width="200px" align="right"/>
+				<column/>
+			</columns>
+			<rows>
+				<row id="rowtaskid" visible="false">
+					<label value="${tid }"/>
+					<textbox id="taskidfield" value="" readonly="true"/>
+				</row>
+				<row>
+					<label value="${ttype }"/>
+					<hbox>
+						<listbox id="tasktypesel" mold="select" onSelect="create_my_entry.changeTaskType(self.getSelectedItem().getValue())">
+							<listitem label="${ttpatqs }" value="${ttpatqsi }" disabled="true"/>
+							<listitem label="${ttcarerqs }" value="${ttcarerqsi }" disabled="true"/>
+							<listitem label="${ttblood }" value="${ttbloodi }" selected="true"/>
+							<listitem label="${ttweight }" value="${ttweighti }"/>
+							<listitem label="${ttcoggame }" value="${ttcoggamei }"/>
+							<listitem label="${ttact }" value="${ttacti }"/>
+							<listitem label="${ttex }" value="${ttexi }"/>
+							<listitem label="${tttext }" value="${tttexti }"/>
+						</listbox>
+						<textbox id="tasktypetext" visible="false" readonly="true"/>
+					</hbox>
+				</row>
+				<row id="rowtaskstatus" visible="false">
+					<label value="${tstatus }"/>
+					<textbox id="taskstatusfield" value="" readonly="true"/>
+				</row>
+				<row id="qsanswersrow" visible="false">
+					<label value="Answers"/>
+					<label id="qsanswersfield" width="95%" multiline="true"/>
+				</row>
+				<row id="mresultrow" visible="false">
+					<label value="Result"/>
+					<label id="mresultrowfield"/>
+				</row>
+				<row id="qsrow" visible="false">
+					<label value="${tquestion }"/>
+					<hbox>
+						<listbox mold="select" id="questnamefield">
+							<listitem forEach="${qsss }" value="${each.ID }" label="${each.title }  (${each.version })"/>
+						</listbox>
+					</hbox>
+				</row>
+				<row id="urlrowEXERCISES" visible="false">
+					<label value="${turl }"/>
+					<listbox mold="select" id="urlfieldEXERCISES">
+						<listitem forEach="${urilistEXERCISES }" value="${each.address }" label="${each.description }"/>
+					</listbox>
+				</row>
+				<row id="urlrowCOGNGAMES" visible="false">
+					<label value="${turl }"/>
+					<listbox mold="select" id="urlfieldCOGNGAMES">
+						<listitem forEach="${urilistCOGNGAMES }" value="${each.address }" label="${each.description }"/>
+					</listbox>
+				</row>
+				<row id="textrow" visible="false">
+					<label value="Text"/>
+					<textbox id="textfield" multiline="true" rows="4" width="350px"/>
+				</row>
+				<row>
+					<label value="${tassignd }"/>
+					<hbox>
+						<datebox id="datetask" cols="16" format="dd/MM/yyyy" compact="false"/>
+						<timebox id="timetask" cols="16" visible="false"/>
+					</hbox>
+					
+				</row>
+				<row>
+					<label value="${texecut }"/>
+					<hbox>
+						<textbox id="objid" readonly="true" visible="false"/>
+						<textbox id="objstr" readonly="true"/>
+					</hbox>
+				</row>
+				<row id="assignerrow">
+					<label value="${tassigner }"/>
+					<hbox>
+						<textbox id="userid" readonly="true" visible="false"/>
+						<textbox id="userstr" readonly="true"/>
+					</hbox>
+				</row>
+				<row id="objectrow">
+					<label value="${tobject }"/>
+					<hbox>
+						<textbox id="addressedid" readonly="true" visible="false"/>
+						<textbox id="patid_value" readonly="true" visible="false"/>
+						<textbox id="addressedstr" readonly="true"/>	
+					</hbox>
+				</row>
+				<row id="massivequestionrow" visible="false">
+					<label value=""/>
+					<label value="Do you want this task to be assigned for a period of time?"/>
+				</row>
+				<row id="massivecheckrow" visible="false">
+					<label value=""/>
+					<checkbox id="massivecheck" checked="false" label="Yes" onCheck="create_my_entry.showHidePeriodicFields(self.isChecked())"/>
+				</row>
+				<row id="freq1row" visible="false">
+					<label value=""/>
+					<hbox>
+						<label value="Once each"/>
+						<listbox id="massivelist" mold="select">
+							<listitem value="1" label="day" selected="true"/>
+							<listitem value="2" label="two days"/>
+							<listitem value="3" label="three days"/>
+							<listitem value="5" label="five days"/>
+							<listitem value="7" label="week"/>
+							<listitem value="14" label="two weeks"/>
+						</listbox>
+					</hbox>
+				</row>
+				<row id="till1row" visible="false">
+					<label value=""/>
+					<hbox>
+						<label value="Till day"/>
+						<datebox id="massivecal" format="dd/MM/yyyy" value="${date }"/>
+					</hbox>
+					
+				</row>
+				<row>
+					<label id="usertype" value="${usertype }" visible="false"/>
+					<hbox>
+						<button id="savebutton" label="${tassigntt }" onClick="create_my_entry.saveTask()" visible="false"/>
+						<button id="cancelbutton" label="Cancel task" onClick="create_my_entry.cancelTask()" visible="false"/>
+						<separator orient="horizontal" width="40px;"/>
+						<button id="closebutton" label="Close the window" onClick="create_my_entry.closeTheWindow()" visible="true"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

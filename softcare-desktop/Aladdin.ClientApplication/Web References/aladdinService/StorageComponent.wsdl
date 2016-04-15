@@ -1,0 +1,2488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://ehealth.eu/StorageComponent/" name="StorageComponent" targetNamespace="http://ehealth.eu/StorageComponent/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://jaxb.dev.java.net/array" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="stringArray" final="#all">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="item" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns1="http://aladdin-project.eu/xsd" xmlns:tns="http://ehealth.eu/StorageComponent/" xmlns:ns2="http://jaxb.dev.java.net/array" elementFormDefault="unqualified" targetNamespace="http://ehealth.eu/StorageComponent/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://aladdin-project.eu/xsd" />
+      <xs:import namespace="http://jaxb.dev.java.net/array" />
+      <xs:element name="AddMediaContent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="in" type="ns1:MediaContent" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AddMediaContentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AssignTask">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="task" type="ns1:Task" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AssignTaskResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AssignTasksMassively">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="task" type="ns1:Task" />
+            <xs:element name="startDate" type="xs:date" />
+            <xs:element name="endDate" type="xs:date" />
+            <xs:element name="frequency" type="xs:integer" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AssignTasksMassivelyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Auth">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="login" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="token" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AuthResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangePassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userId" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="reqId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangePasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeTaskStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="TaskId" type="xs:int" />
+            <xs:element name="TaskStatus" type="xs:int" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ChangeTaskStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateAdministrator">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Administrator" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateAdministratorResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateCarer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Carer" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateCarerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateClinician">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Clinician" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateClinicianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateExternalService">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:ExternalService" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateExternalServiceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreatePatient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Patient" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreatePatientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateQuestionnaire">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Questionnaire" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateQuestionnaireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="user" type="ns1:User" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CreateUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteAdministrator">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteAdministratorResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteCarer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteCarerAssessment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="assessmentId" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteCarerAssessmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteCarerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteClinician">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteClinicianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteExternalService">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteExternalServiceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteMediaContent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteMediaContentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeletePatient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeletePatientAssessment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="assessmentId" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeletePatientAssessmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeletePatientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteQuestionnaire">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteQuestionnaireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DeleteUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAdministrator">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAdministratorResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:Administrator" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllExternalServices">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllExternalServicesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:ExternalService" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCarer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCarerAssessments">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="carerId" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCarerAssessmentsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:CarerAssessment" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCarerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:Carer" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetClinician">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetClinicianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:Clinician" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMeasurement">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="filter" nillable="true" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMeasurementResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:Measurement" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMediaContent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="filter" nillable="true" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetMediaContentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:MediaContent" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientAssessments">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="patientId" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientAssessmentsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:PatientAssessment" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientMeasurement">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PatientId" type="xs:string" />
+            <xs:element name="MeasurementType" type="xs:int" />
+            <xs:element name="fromData" type="xs:dateTime" />
+            <xs:element name="toData" type="xs:dateTime" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientMeasurementResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:Measurement" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:Patient" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientsForCaregiver">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPatientsForCaregiverResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:PatientInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionDescription">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="questionID" type="xs:string" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionDescriptionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionnaire">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionnaireAnswers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ObjectId" type="xs:string" />
+            <xs:element name="fromDate" type="xs:dateTime" />
+            <xs:element name="toDate" type="xs:dateTime" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionnaireAnswersByTask">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="taskId" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionnaireAnswersByTaskResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:QuestionnaireAnswers" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionnaireAnswersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:QuestionnaireAnswers" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetQuestionnaireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:Questionnaire" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSystemParameterList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="type" type="xs:int" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSystemParameterListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTask">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTaskResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:Task" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserIdByPersonId">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="type" type="xs:int" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserIdByPersonIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserPlannedTasks">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userId" type="xs:string" />
+            <xs:element name="fromDate" type="xs:dateTime" />
+            <xs:element name="toDate" type="xs:dateTime" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="requesterId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserPlannedTasksResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:Task" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:User" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserType">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserTypeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWarnings">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="warn" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWarningsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:Warning" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfAdministrators">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="filter" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfAdministratorsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:AdministratorInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfCarers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="filter" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfCarersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:CarerInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfClinicians">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="filter" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfCliniciansResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:ClinicianInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfPatients">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="filter" type="ns1:SearchCriteria" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfPatientsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:PatientInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfPossibleTasks">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userType" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfPossibleTasksResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfQuestionnaires">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfQuestionnairesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="out" type="ns1:QuestionnaireInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfSupportedLocales">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ListOfSupportedLocalesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MarkWarningAsRead">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:string" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MarkWarningAsReadResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveTaskMassively">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="patientId" type="xs:string" />
+            <xs:element name="typeOfTask" type="xs:integer" />
+            <xs:element name="startDate" type="xs:date" />
+            <xs:element name="endDate" type="xs:date" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveTaskMassivelyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveCarerAssessment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="assessment" type="ns1:CarerAssessment" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveCarerAssessmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SavePatientAssessment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="assessment" type="ns1:PatientAssessment" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SavePatientAssessmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveWarning">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="warn" type="ns1:Warning" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveWarningResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StoreMeasurements">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="data" type="ns1:Measurement" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StoreMeasurementsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StoreQuestionnaireAnswers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:QuestionnaireAnswers" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StoreQuestionnaireAnswersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateAdministrator">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Administrator" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateAdministratorResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateCarer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Carer" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateCarerResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateClinician">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Clinician" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateClinicianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateExternalService">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:ExternalService" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateExternalServiceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateMediaContent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ec" type="ns1:MediaContent" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateMediaContentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdatePatient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Patient" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdatePatientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateQuestionnaire">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="data" type="ns1:Questionnaire" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateQuestionnaireResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateSystemParameter">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="type" type="xs:int" />
+            <xs:element name="value" type="ns1:SystemParameter" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateSystemParameterResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="user" type="ns1:User" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="ns1:OperationResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAppConfig" type="tns:getAppConfig" />
+      <xs:element name="getAppConfigResponse" type="tns:getAppConfigResponse" />
+      <xs:element name="getAvailableCarers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAvailableCarersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="out" nillable="true" type="ns1:Carer" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getConnectedUsers" type="tns:getConnectedUsers" />
+      <xs:element name="getConnectedUsersResponse" type="tns:getConnectedUsersResponse" />
+      <xs:element name="getEhealthParameters" type="tns:getEhealthParameters" />
+      <xs:element name="getEhealthParametersResponse" type="tns:getEhealthParametersResponse" />
+      <xs:element name="getEhealthRoles" type="tns:getEhealthRoles" />
+      <xs:element name="getEhealthRolesResponse" type="tns:getEhealthRolesResponse" />
+      <xs:element name="getQuestionnaireAnswerValue">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="questionId" type="xs:string" />
+            <xs:element name="value" type="xs:string" />
+            <xs:element name="locale" type="ns1:SystemParameter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getQuestionnaireAnswerValueResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="out" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUserIdByAdminId" type="tns:getUserIdByAdminId" />
+      <xs:element name="getUserIdByAdminIdResponse" type="tns:getUserIdByAdminIdResponse" />
+      <xs:element name="getUserIdByCarerId" type="tns:getUserIdByCarerId" />
+      <xs:element name="getUserIdByCarerIdResponse" type="tns:getUserIdByCarerIdResponse" />
+      <xs:element name="getUserIdByClinicianId" type="tns:getUserIdByClinicianId" />
+      <xs:element name="getUserIdByClinicianIdResponse" type="tns:getUserIdByClinicianIdResponse" />
+      <xs:element name="getUserIdByPatientId" type="tns:getUserIdByPatientId" />
+      <xs:element name="getUserIdByPatientIdResponse" type="tns:getUserIdByPatientIdResponse" />
+      <xs:element name="getUserPersonIdByPatientId" type="tns:getUserPersonIdByPatientId" />
+      <xs:element name="getUserPersonIdByPatientIdResponse" type="tns:getUserPersonIdByPatientIdResponse" />
+      <xs:element name="listOfUsers" type="tns:listOfUsers" />
+      <xs:element name="listOfUsersResponse" type="tns:listOfUsersResponse" />
+      <xs:element name="lockUser" type="tns:lockUser" />
+      <xs:element name="lockUserResponse" type="tns:lockUserResponse" />
+      <xs:element name="lockout" type="tns:lockout" />
+      <xs:element name="lockoutResponse" type="tns:lockoutResponse" />
+      <xs:element name="login" type="tns:login" />
+      <xs:element name="loginResponse" type="tns:loginResponse" />
+      <xs:element name="logout" type="tns:logout" />
+      <xs:element name="logoutResponse" type="tns:logoutResponse" />
+      <xs:element name="registerUser" type="tns:registerUser" />
+      <xs:element name="registerUserResponse" type="tns:registerUserResponse" />
+      <xs:element name="updateAppConfigRow" type="tns:updateAppConfigRow" />
+      <xs:element name="updateAppConfigRowResponse" type="tns:updateAppConfigRowResponse" />
+      <xs:complexType name="getUserIdByPatientId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserIdByPatientIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="logout">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="logoutResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getUserIdByClinicianId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserIdByClinicianIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+          <xs:element minOccurs="0" name="arg2" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="registerUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserPersonIdByPatientId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserPersonIdByPatientIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="login">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loginResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element name="arg1" type="xs:int" />
+          <xs:element name="arg2" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserIdByCarerId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserIdByCarerIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getEhealthParameters">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getEhealthParametersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns2:stringArray" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getEhealthRoles">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getEhealthRolesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns2:stringArray" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserIdByAdminId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element minOccurs="0" name="arg1" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserIdByAdminIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAppConfig">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAppConfigResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns2:stringArray" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateAppConfigRow">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+          <xs:element name="arg1" type="xs:int" />
+          <xs:element minOccurs="0" name="arg2" type="xs:string" />
+          <xs:element name="arg3" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateAppConfigRowResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:OperationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getConnectedUsers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getConnectedUsersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listOfUsers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listOfUsersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns2:stringArray" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockout">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockoutResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://aladdin-project.eu/xsd" elementFormDefault="qualified" targetNamespace="http://aladdin-project.eu/xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="OperationResult">
+        <xs:sequence>
+          <xs:element name="Code" type="xs:string" />
+          <xs:element name="Status" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="Description" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Carer">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="PersonData" type="tns:PersonData" />
+          <xs:element name="SD_Data" type="tns:SocioDemographicData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PersonData">
+        <xs:sequence>
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="Name" type="xs:string" />
+          <xs:element name="IdentifierList" type="tns:IdentifierList" />
+          <xs:element name="AddressList" type="tns:AddressList" />
+          <xs:element name="CommunicationList" type="tns:CommunicationList" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IdentifierList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Identifier" type="tns:Identifier" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Identifier">
+        <xs:sequence>
+          <xs:element name="Type" type="xs:string" />
+          <xs:element name="Number" type="xs:string" />
+          <xs:element minOccurs="0" name="IssueDate" type="xs:date" />
+          <xs:element minOccurs="0" name="IssueAuthority" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AddressList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Address" type="tns:Address" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Address">
+        <xs:sequence>
+          <xs:element name="Street" type="xs:string" />
+          <xs:element minOccurs="0" name="StreetNo" type="xs:string" />
+          <xs:element name="City" type="xs:string" />
+          <xs:element minOccurs="0" name="County" type="xs:string" />
+          <xs:element name="Country" type="xs:string" />
+          <xs:element minOccurs="0" name="ZipCode" type="xs:string" />
+          <xs:element minOccurs="0" name="Notes" type="xs:string" />
+          <xs:element name="IsPrimary" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommunicationList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Communication" type="tns:Communication" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Communication">
+        <xs:sequence>
+          <xs:element name="Type" type="xs:string" />
+          <xs:element name="Value" type="xs:string" />
+          <xs:element minOccurs="0" name="Notes" type="xs:string" />
+          <xs:element name="IsPrimary" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SocioDemographicData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Gender" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="MaritalStatus" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="Children" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="LivingWith" type="tns:SystemParameter" />
+          <xs:element name="birthday" type="xs:date" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SystemParameter">
+        <xs:sequence>
+          <xs:element name="Code" type="xs:string" />
+          <xs:element name="Description" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="User">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Type" type="tns:SystemParameter" />
+          <xs:element name="PersonID" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Questionnaire">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="question" type="tns:QuestionnaireQuestion" />
+        </xs:sequence>
+        <xs:attribute name="version" type="xs:double" />
+        <xs:attribute name="ID" type="xs:string" />
+        <xs:attribute name="title" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireQuestion">
+        <xs:sequence>
+          <xs:element name="title" type="xs:string" />
+          <xs:element name="GlobalID" type="xs:int" />
+          <xs:element name="answers" type="tns:QuestionnaireQuestionAnswerList" />
+          <xs:element name="questions" type="tns:QuestionnaireQuestionList" />
+          <xs:element name="position" type="xs:int" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" />
+        <xs:attribute name="type" type="xs:string" />
+        <xs:attribute name="condition" type="xs:unsignedByte" />
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireQuestionAnswerList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="answer" nillable="true" type="tns:QuestionnaireQuestionAnswer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireQuestionAnswer">
+        <xs:sequence>
+          <xs:element name="position" type="xs:int" />
+          <xs:element name="description" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:unsignedByte" />
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireQuestionList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="question" nillable="true" type="tns:QuestionnaireQuestion" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireAnswers">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="answer" type="tns:QuestionnaireAnswer" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" />
+        <xs:attribute name="DateTime" type="xs:dateTime" />
+        <xs:attribute name="ObjectID" type="xs:string" />
+        <xs:attribute name="TaskID" type="xs:string" />
+        <xs:attribute name="UserID" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireAnswer">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="value1" type="xs:string" />
+            <xs:attribute name="questionID" type="xs:string" />
+            <xs:attribute name="globalID" type="xs:string" />
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+      <xs:complexType name="Task">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="TaskType" type="tns:SystemParameter" />
+          <xs:element name="DateTimeAssigned" type="xs:dateTime" />
+          <xs:element name="DateTimeFulfilled" type="xs:dateTime" />
+          <xs:element name="TaskStatus" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="URL" type="xs:string" />
+          <xs:element minOccurs="0" name="Text" type="xs:string" />
+          <xs:element minOccurs="0" name="Questionnaire" type="tns:Questionnaire" />
+          <xs:element name="ExecutorID" type="xs:string" />
+          <xs:element name="AssignerID" type="xs:string" />
+          <xs:element name="ObjectID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SearchCriteria">
+        <xs:sequence>
+          <xs:element name="FieldName" type="xs:string" />
+          <xs:element name="CompareOp" type="tns:SystemParameter" />
+          <xs:element name="FieldValue1" type="xs:string" />
+          <xs:element minOccurs="0" name="FieldValue2" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ClinicianInfo">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="Name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Warning">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" type="xs:string" />
+          <xs:element minOccurs="0" name="TypeOfWarning" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="DateTimeOfWarning" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Effect" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="Indicator" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="RiskLevel" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="JustificationText" type="xs:string" />
+          <xs:element minOccurs="0" name="EmergencyLevel" type="tns:SystemParameter" />
+          <xs:element minOccurs="0" name="Patient" type="tns:Patient" />
+          <xs:element minOccurs="0" name="Delivered" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Patient">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="PersonData" type="tns:PersonData" />
+          <xs:element name="SD_Data" type="tns:SocioDemographicData" />
+          <xs:element name="ResponsibleClinicianID" type="xs:string" />
+          <xs:element name="SocialWorker" type="tns:SocialWorker" />
+          <xs:element name="ConsulterInCharge" type="tns:Consulter" />
+          <xs:element name="GeneralPractitioner" type="tns:GeneralPractitioner" />
+          <xs:element name="PatientCarer" type="tns:Carer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SocialWorker">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="phone" type="xs:string" />
+          <xs:element name="email" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Consulter">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="phone" type="xs:string" />
+          <xs:element name="email" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GeneralPractitioner">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" />
+          <xs:element name="phone" type="xs:string" />
+          <xs:element name="email" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PatientInfo">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="Name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MediaContent">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="title" type="xs:string" />
+          <xs:element name="url" type="xs:string" />
+          <xs:element name="type" type="xs:string" />
+          <xs:element name="category" type="xs:string" />
+          <xs:element name="text" type="xs:string" />
+          <xs:element name="enabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PatientAssessment">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="PatientID" type="xs:string" />
+          <xs:element name="DateOfAssessment" type="xs:dateTime" />
+          <xs:element name="Aetology" type="tns:SystemParameter" />
+          <xs:element name="TimeEllapsedSinceDiagnosed" type="xs:unsignedByte" />
+          <xs:element name="Severity" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="RelevantPathologyAntecedents" type="xs:string" />
+          <xs:element minOccurs="0" name="Comorbidity" type="xs:string" />
+          <xs:element minOccurs="0" name="CharlsonComorbidityIndex" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="BarthelIndex" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="LawtonIndex" type="xs:unsignedByte" />
+          <xs:element name="MMSE" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="MDRS" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="BlessedScalePart1" type="xs:double" />
+          <xs:element minOccurs="0" name="BlessedScalePart2" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="BlessedScalePart3" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ChecklistMBP" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="NPQI_Severity" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="NPQI_Stress" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="GDS" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="Falls" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Incontinence" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Delirium" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Immobility" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SensorialDeficits" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PharmacologicalTreatment" type="xs:string" />
+          <xs:element maxOccurs="unbounded" name="ClinicalData" type="tns:Measurement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Measurement">
+        <xs:sequence>
+          <xs:element name="Type" type="tns:SystemParameter" />
+          <xs:element name="Value" type="xs:double" />
+          <xs:element name="DateTime" type="xs:dateTime" />
+          <xs:element name="Units" type="xs:string" />
+          <xs:element minOccurs="0" name="LowerLimit" type="xs:double" />
+          <xs:element minOccurs="0" name="UpperLimit" type="xs:double" />
+          <xs:element name="TaskID" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ExternalService">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Description" type="xs:string" />
+          <xs:element name="Address" type="xs:string" />
+          <xs:element name="Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CarerAssessment">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="CarerID" type="xs:string" />
+          <xs:element name="ClinicianID" type="xs:string" />
+          <xs:element name="DateOfAssessment" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="RelevantHealthProblem" type="xs:string" />
+          <xs:element name="SeverityOfBurden" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="EmotionalOrMentalDisorders" type="xs:string" />
+          <xs:element minOccurs="0" name="PsychoactiveDrugs" type="xs:string" />
+          <xs:element minOccurs="0" name="QualityOfLife" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Clinician">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="PersonData" type="tns:PersonData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Administrator">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="PersonData" type="tns:PersonData" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CarerInfo">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="Name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="QuestionnaireInfo">
+        <xs:sequence />
+        <xs:attribute name="version" type="xs:double" />
+        <xs:attribute name="ID" type="xs:string" />
+        <xs:attribute name="title" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="AdministratorInfo">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="Name" type="xs:string" />
+          <xs:element name="PersonId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Event">
+        <xs:sequence>
+          <xs:element name="EventType" type="tns:SystemParameter" />
+          <xs:element name="Subject" type="xs:string" />
+          <xs:element name="Text" type="xs:string" />
+          <xs:element name="Target" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetQuestionnaireResponse">
+    <wsdl:part name="parameters" element="ns1:GetQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarer">
+    <wsdl:part name="parameters" element="ns1:UpdateCarer" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAdministratorResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkWarningAsReadResponse">
+    <wsdl:part name="parameters" element="ns1:MarkWarningAsReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteQuestionnaire">
+    <wsdl:part name="parameters" element="ns1:DeleteQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionDescriptionResponse">
+    <wsdl:part name="parameters" element="ns1:GetQuestionDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfAdministrators">
+    <wsdl:part name="parameters" element="ns1:ListOfAdministrators" />
+  </wsdl:message>
+  <wsdl:message name="GetMeasurement">
+    <wsdl:part name="parameters" element="ns1:GetMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="ListOfPossibleTasksResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfPossibleTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfAdministratorsResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfAdministratorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClinician">
+    <wsdl:part name="parameters" element="ns1:GetClinician" />
+  </wsdl:message>
+  <wsdl:message name="ListOfCarers">
+    <wsdl:part name="parameters" element="ns1:ListOfCarers" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarer">
+    <wsdl:part name="parameters" element="ns1:DeleteCarer" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionDescription">
+    <wsdl:part name="parameters" element="ns1:GetQuestionDescription" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteQuestionnaireResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClinicianResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateClinicianResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionnaireAnswers">
+    <wsdl:part name="parameters" element="ns1:GetQuestionnaireAnswers" />
+  </wsdl:message>
+  <wsdl:message name="GetUserIdByPersonId">
+    <wsdl:part name="parameters" element="ns1:GetUserIdByPersonId" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatient">
+    <wsdl:part name="parameters" element="ns1:DeletePatient" />
+  </wsdl:message>
+  <wsdl:message name="listOfUsersResponse">
+    <wsdl:part name="parameters" element="ns1:listOfUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMediaContent">
+    <wsdl:part name="parameters" element="ns1:AddMediaContent" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionnaireAnswersByTaskResponse">
+    <wsdl:part name="parameters" element="ns1:GetQuestionnaireAnswersByTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAdministratorResponse">
+    <wsdl:part name="parameters" element="ns1:CreateAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMeasurementResponse">
+    <wsdl:part name="parameters" element="ns1:GetMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarerResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteCarerResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveCarerAssessment">
+    <wsdl:part name="parameters" element="ns1:SaveCarerAssessment" />
+  </wsdl:message>
+  <wsdl:message name="getQuestionnaireAnswerValueResponse">
+    <wsdl:part name="parameters" element="ns1:getQuestionnaireAnswerValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="getConnectedUsersResponse">
+    <wsdl:part name="parameters" element="ns1:getConnectedUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePatient">
+    <wsdl:part name="parameters" element="ns1:CreatePatient" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskStatusResponse">
+    <wsdl:part name="parameters" element="ns1:ChangeTaskStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="listOfUsers">
+    <wsdl:part name="parameters" element="ns1:listOfUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientAssessments">
+    <wsdl:part name="parameters" element="ns1:GetPatientAssessments" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientMeasurementResponse">
+    <wsdl:part name="parameters" element="ns1:GetPatientMeasurementResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfSupportedLocalesResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfSupportedLocalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePatient">
+    <wsdl:part name="parameters" element="ns1:UpdatePatient" />
+  </wsdl:message>
+  <wsdl:message name="GetUser">
+    <wsdl:part name="parameters" element="ns1:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="CreatePatientResponse">
+    <wsdl:part name="parameters" element="ns1:CreatePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuestionnaireResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExternalServicesResponse">
+    <wsdl:part name="parameters" element="ns1:GetAllExternalServicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveWarning">
+    <wsdl:part name="parameters" element="ns1:SaveWarning" />
+  </wsdl:message>
+  <wsdl:message name="GetCarer">
+    <wsdl:part name="parameters" element="ns1:GetCarer" />
+  </wsdl:message>
+  <wsdl:message name="lockUserResponse">
+    <wsdl:part name="parameters" element="ns1:lockUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserIdByPersonIdResponse">
+    <wsdl:part name="parameters" element="ns1:GetUserIdByPersonIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarerAssessmentsResponse">
+    <wsdl:part name="parameters" element="ns1:GetCarerAssessmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="logout">
+    <wsdl:part name="parameters" element="ns1:logout" />
+  </wsdl:message>
+  <wsdl:message name="lockout">
+    <wsdl:part name="parameters" element="ns1:lockout" />
+  </wsdl:message>
+  <wsdl:message name="AssignTasksMassivelyResponse">
+    <wsdl:part name="parameters" element="ns1:AssignTasksMassivelyResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemParameter">
+    <wsdl:part name="parameters" element="ns1:UpdateSystemParameter" />
+  </wsdl:message>
+  <wsdl:message name="DeleteExternalService">
+    <wsdl:part name="parameters" element="ns1:DeleteExternalService" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemParameterResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateSystemParameterResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTaskMassivelyResponse">
+    <wsdl:part name="parameters" element="ns1:RemoveTaskMassivelyResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="parameters" element="ns1:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="registerUser">
+    <wsdl:part name="parameters" element="ns1:registerUser" />
+  </wsdl:message>
+  <wsdl:message name="GetUserResponse">
+    <wsdl:part name="parameters" element="ns1:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPlannedTasks">
+    <wsdl:part name="parameters" element="ns1:GetUserPlannedTasks" />
+  </wsdl:message>
+  <wsdl:message name="GetWarnings">
+    <wsdl:part name="parameters" element="ns1:GetWarnings" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemParameterList">
+    <wsdl:part name="parameters" element="ns1:GetSystemParameterList" />
+  </wsdl:message>
+  <wsdl:message name="registerUserResponse">
+    <wsdl:part name="parameters" element="ns1:registerUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfSupportedLocales">
+    <wsdl:part name="parameters" element="ns1:ListOfSupportedLocales" />
+  </wsdl:message>
+  <wsdl:message name="CreateQuestionnaire">
+    <wsdl:part name="parameters" element="ns1:CreateQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser">
+    <wsdl:part name="parameters" element="ns1:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeasurements">
+    <wsdl:part name="parameters" element="ns1:StoreMeasurements" />
+  </wsdl:message>
+  <wsdl:message name="GetAdministrator">
+    <wsdl:part name="parameters" element="ns1:GetAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUser">
+    <wsdl:part name="parameters" element="ns1:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatientAssessmentResponse">
+    <wsdl:part name="parameters" element="ns1:DeletePatientAssessmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionnaire">
+    <wsdl:part name="parameters" element="ns1:GetQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="ListOfQuestionnaires">
+    <wsdl:part name="parameters" element="ns1:ListOfQuestionnaires" />
+  </wsdl:message>
+  <wsdl:message name="CreateExternalServiceResponse">
+    <wsdl:part name="parameters" element="ns1:CreateExternalServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCarer">
+    <wsdl:part name="parameters" element="ns1:CreateCarer" />
+  </wsdl:message>
+  <wsdl:message name="getEhealthRoles">
+    <wsdl:part name="parameters" element="ns1:getEhealthRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetClinicianResponse">
+    <wsdl:part name="parameters" element="ns1:GetClinicianResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateAppConfigRow">
+    <wsdl:part name="parameters" element="ns1:updateAppConfigRow" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByPatientIdResponse">
+    <wsdl:part name="parameters" element="ns1:getUserIdByPatientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByAdminIdResponse">
+    <wsdl:part name="parameters" element="ns1:getUserIdByAdminIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AssignTasksMassively">
+    <wsdl:part name="parameters" element="ns1:AssignTasksMassively" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAdministrator">
+    <wsdl:part name="parameters" element="ns1:DeleteAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskResponse">
+    <wsdl:part name="parameters" element="ns1:GetTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAdministrator">
+    <wsdl:part name="parameters" element="ns1:UpdateAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientsForCaregiverResponse">
+    <wsdl:part name="parameters" element="ns1:GetPatientsForCaregiverResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveCarerAssessmentResponse">
+    <wsdl:part name="parameters" element="ns1:SaveCarerAssessmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="lockUser">
+    <wsdl:part name="parameters" element="ns1:lockUser" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTaskStatus">
+    <wsdl:part name="parameters" element="ns1:ChangeTaskStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTypeResponse">
+    <wsdl:part name="parameters" element="ns1:GetUserTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserPersonIdByPatientId">
+    <wsdl:part name="parameters" element="ns1:getUserPersonIdByPatientId" />
+  </wsdl:message>
+  <wsdl:message name="getConnectedUsers">
+    <wsdl:part name="parameters" element="ns1:getConnectedUsers" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByClinicianId">
+    <wsdl:part name="parameters" element="ns1:getUserIdByClinicianId" />
+  </wsdl:message>
+  <wsdl:message name="ListOfCliniciansResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfCliniciansResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAppConfig">
+    <wsdl:part name="parameters" element="ns1:getAppConfig" />
+  </wsdl:message>
+  <wsdl:message name="AssignTaskResponse">
+    <wsdl:part name="parameters" element="ns1:AssignTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="lockoutResponse">
+    <wsdl:part name="parameters" element="ns1:lockoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfPatients">
+    <wsdl:part name="parameters" element="ns1:ListOfPatients" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientMeasurement">
+    <wsdl:part name="parameters" element="ns1:GetPatientMeasurement" />
+  </wsdl:message>
+  <wsdl:message name="getEhealthParametersResponse">
+    <wsdl:part name="parameters" element="ns1:getEhealthParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAppConfigResponse">
+    <wsdl:part name="parameters" element="ns1:getAppConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExternalServiceResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateExternalServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarerAssessmentResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteCarerAssessmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCarerResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateCarerResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteClinicianResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteClinicianResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePassword">
+    <wsdl:part name="parameters" element="ns1:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="AssignTask">
+    <wsdl:part name="parameters" element="ns1:AssignTask" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatientAssessment">
+    <wsdl:part name="parameters" element="ns1:DeletePatientAssessment" />
+  </wsdl:message>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part name="parameters" element="ns1:logoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="Auth">
+    <wsdl:part name="parameters" element="ns1:Auth" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePatientResponse">
+    <wsdl:part name="parameters" element="ns1:UpdatePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateClinicianResponse">
+    <wsdl:part name="parameters" element="ns1:CreateClinicianResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCarerAssessment">
+    <wsdl:part name="parameters" element="ns1:DeleteCarerAssessment" />
+  </wsdl:message>
+  <wsdl:message name="GetAdministratorResponse">
+    <wsdl:part name="parameters" element="ns1:GetAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthResponse">
+    <wsdl:part name="parameters" element="ns1:AuthResponse" />
+  </wsdl:message>
+  <wsdl:message name="login">
+    <wsdl:part name="parameters" element="ns1:login" />
+  </wsdl:message>
+  <wsdl:message name="StoreQuestionnaireAnswersResponse">
+    <wsdl:part name="parameters" element="ns1:StoreQuestionnaireAnswersResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateAppConfigRowResponse">
+    <wsdl:part name="parameters" element="ns1:updateAppConfigRowResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeasurementsResponse">
+    <wsdl:part name="parameters" element="ns1:StoreMeasurementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateQuestionnaire">
+    <wsdl:part name="parameters" element="ns1:UpdateQuestionnaire" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExternalService">
+    <wsdl:part name="parameters" element="ns1:UpdateExternalService" />
+  </wsdl:message>
+  <wsdl:message name="GetMediaContent">
+    <wsdl:part name="parameters" element="ns1:GetMediaContent" />
+  </wsdl:message>
+  <wsdl:message name="ListOfQuestionnairesResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfQuestionnairesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionnaireAnswersByTask">
+    <wsdl:part name="parameters" element="ns1:GetQuestionnaireAnswersByTask" />
+  </wsdl:message>
+  <wsdl:message name="getQuestionnaireAnswerValue">
+    <wsdl:part name="parameters" element="ns1:getQuestionnaireAnswerValue" />
+  </wsdl:message>
+  <wsdl:message name="GetUserPlannedTasksResponse">
+    <wsdl:part name="parameters" element="ns1:GetUserPlannedTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCarerResponse">
+    <wsdl:part name="parameters" element="ns1:CreateCarerResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByCarerId">
+    <wsdl:part name="parameters" element="ns1:getUserIdByCarerId" />
+  </wsdl:message>
+  <wsdl:message name="CreateQuestionnaireResponse">
+    <wsdl:part name="parameters" element="ns1:CreateQuestionnaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCarerResponse">
+    <wsdl:part name="parameters" element="ns1:GetCarerResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByAdminId">
+    <wsdl:part name="parameters" element="ns1:getUserIdByAdminId" />
+  </wsdl:message>
+  <wsdl:message name="MarkWarningAsRead">
+    <wsdl:part name="parameters" element="ns1:MarkWarningAsRead" />
+  </wsdl:message>
+  <wsdl:message name="ListOfPatientsResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfPatientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePatientResponse">
+    <wsdl:part name="parameters" element="ns1:DeletePatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordResponse">
+    <wsdl:part name="parameters" element="ns1:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserPersonIdByPatientIdResponse">
+    <wsdl:part name="parameters" element="ns1:getUserPersonIdByPatientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAdministratorResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteClinician">
+    <wsdl:part name="parameters" element="ns1:DeleteClinician" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientResponse">
+    <wsdl:part name="parameters" element="ns1:GetPatientResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAdministrator">
+    <wsdl:part name="parameters" element="ns1:CreateAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByPatientId">
+    <wsdl:part name="parameters" element="ns1:getUserIdByPatientId" />
+  </wsdl:message>
+  <wsdl:message name="getAvailableCarersResponse">
+    <wsdl:part name="parameters" element="ns1:getAvailableCarersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMediaContentResponse">
+    <wsdl:part name="parameters" element="ns1:GetMediaContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMediaContentResponse">
+    <wsdl:part name="parameters" element="ns1:AddMediaContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreQuestionnaireAnswers">
+    <wsdl:part name="parameters" element="ns1:StoreQuestionnaireAnswers" />
+  </wsdl:message>
+  <wsdl:message name="GetPatient">
+    <wsdl:part name="parameters" element="ns1:GetPatient" />
+  </wsdl:message>
+  <wsdl:message name="SavePatientAssessmentResponse">
+    <wsdl:part name="parameters" element="ns1:SavePatientAssessmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListOfPossibleTasks">
+    <wsdl:part name="parameters" element="ns1:ListOfPossibleTasks" />
+  </wsdl:message>
+  <wsdl:message name="GetAllExternalServices">
+    <wsdl:part name="parameters" element="ns1:GetAllExternalServices" />
+  </wsdl:message>
+  <wsdl:message name="SaveWarningResponse">
+    <wsdl:part name="parameters" element="ns1:SaveWarningResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemParameterListResponse">
+    <wsdl:part name="parameters" element="ns1:GetSystemParameterListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClinician">
+    <wsdl:part name="parameters" element="ns1:UpdateClinician" />
+  </wsdl:message>
+  <wsdl:message name="SavePatientAssessment">
+    <wsdl:part name="parameters" element="ns1:SavePatientAssessment" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionnaireAnswersResponse">
+    <wsdl:part name="parameters" element="ns1:GetQuestionnaireAnswersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateClinician">
+    <wsdl:part name="parameters" element="ns1:CreateClinician" />
+  </wsdl:message>
+  <wsdl:message name="DeleteExternalServiceResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteExternalServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTask">
+    <wsdl:part name="parameters" element="ns1:GetTask" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByCarerIdResponse">
+    <wsdl:part name="parameters" element="ns1:getUserIdByCarerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getEhealthParameters">
+    <wsdl:part name="parameters" element="ns1:getEhealthParameters" />
+  </wsdl:message>
+  <wsdl:message name="getUserIdByClinicianIdResponse">
+    <wsdl:part name="parameters" element="ns1:getUserIdByClinicianIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMediaContent">
+    <wsdl:part name="parameters" element="ns1:UpdateMediaContent" />
+  </wsdl:message>
+  <wsdl:message name="ListOfClinicians">
+    <wsdl:part name="parameters" element="ns1:ListOfClinicians" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMediaContentResponse">
+    <wsdl:part name="parameters" element="ns1:DeleteMediaContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMediaContentResponse">
+    <wsdl:part name="parameters" element="ns1:UpdateMediaContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUser">
+    <wsdl:part name="parameters" element="ns1:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientsForCaregiver">
+    <wsdl:part name="parameters" element="ns1:GetPatientsForCaregiver" />
+  </wsdl:message>
+  <wsdl:message name="ListOfCarersResponse">
+    <wsdl:part name="parameters" element="ns1:ListOfCarersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMediaContent">
+    <wsdl:part name="parameters" element="ns1:DeleteMediaContent" />
+  </wsdl:message>
+  <wsdl:message name="CreateExternalService">
+    <wsdl:part name="parameters" element="ns1:CreateExternalService" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserResponse">
+    <wsdl:part name="parameters" element="ns1:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserType">
+    <wsdl:part name="parameters" element="ns1:GetUserType" />
+  </wsdl:message>
+  <wsdl:message name="GetCarerAssessments">
+    <wsdl:part name="parameters" element="ns1:GetCarerAssessments" />
+  </wsdl:message>
+  <wsdl:message name="getEhealthRolesResponse">
+    <wsdl:part name="parameters" element="ns1:getEhealthRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWarningsResponse">
+    <wsdl:part name="parameters" element="ns1:GetWarningsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPatientAssessmentsResponse">
+    <wsdl:part name="parameters" element="ns1:GetPatientAssessmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAvailableCarers">
+    <wsdl:part name="parameters" element="ns1:getAvailableCarers" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTaskMassively">
+    <wsdl:part name="parameters" element="ns1:RemoveTaskMassively" />
+  </wsdl:message>
+  <wsdl:portType name="StorageComponent">
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input name="ChangePassword" message="ns1:ChangePassword" />
+      <wsdl:output name="ChangePasswordResponse" message="ns1:ChangePasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCarer">
+      <wsdl:input name="CreateCarer" message="ns1:CreateCarer" />
+      <wsdl:output name="CreateCarerResponse" message="ns1:CreateCarerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input name="GetUser" message="ns1:GetUser" />
+      <wsdl:output name="GetUserResponse" message="ns1:GetUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuestionnaire">
+      <wsdl:input name="CreateQuestionnaire" message="ns1:CreateQuestionnaire" />
+      <wsdl:output name="CreateQuestionnaireResponse" message="ns1:CreateQuestionnaireResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystemParameter">
+      <wsdl:input name="UpdateSystemParameter" message="ns1:UpdateSystemParameter" />
+      <wsdl:output name="UpdateSystemParameterResponse" message="ns1:UpdateSystemParameterResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQuestionnaireAnswers">
+      <wsdl:input name="StoreQuestionnaireAnswers" message="ns1:StoreQuestionnaireAnswers" />
+      <wsdl:output name="StoreQuestionnaireAnswersResponse" message="ns1:StoreQuestionnaireAnswersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatientAssessment">
+      <wsdl:input name="DeletePatientAssessment" message="ns1:DeletePatientAssessment" />
+      <wsdl:output name="DeletePatientAssessmentResponse" message="ns1:DeletePatientAssessmentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByPatientId">
+      <wsdl:input name="getUserIdByPatientId" message="ns1:getUserIdByPatientId" />
+      <wsdl:output name="getUserIdByPatientIdResponse" message="ns1:getUserIdByPatientIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignTasksMassively">
+      <wsdl:input name="AssignTasksMassively" message="ns1:AssignTasksMassively" />
+      <wsdl:output name="AssignTasksMassivelyResponse" message="ns1:AssignTasksMassivelyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <wsdl:input name="GetTask" message="ns1:GetTask" />
+      <wsdl:output name="GetTaskResponse" message="ns1:GetTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <wsdl:input name="GetUserType" message="ns1:GetUserType" />
+      <wsdl:output name="GetUserTypeResponse" message="ns1:GetUserTypeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAvailableCarers">
+      <wsdl:input name="getAvailableCarers" message="ns1:getAvailableCarers" />
+      <wsdl:output name="getAvailableCarersResponse" message="ns1:getAvailableCarersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfClinicians">
+      <wsdl:input name="ListOfClinicians" message="ns1:ListOfClinicians" />
+      <wsdl:output name="ListOfCliniciansResponse" message="ns1:ListOfCliniciansResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWarnings">
+      <wsdl:input name="GetWarnings" message="ns1:GetWarnings" />
+      <wsdl:output name="GetWarningsResponse" message="ns1:GetWarningsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientsForCaregiver">
+      <wsdl:input name="GetPatientsForCaregiver" message="ns1:GetPatientsForCaregiver" />
+      <wsdl:output name="GetPatientsForCaregiverResponse" message="ns1:GetPatientsForCaregiverResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMediaContent">
+      <wsdl:input name="UpdateMediaContent" message="ns1:UpdateMediaContent" />
+      <wsdl:output name="UpdateMediaContentResponse" message="ns1:UpdateMediaContentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input name="logout" message="ns1:logout" />
+      <wsdl:output name="logoutResponse" message="ns1:logoutResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAdministrator">
+      <wsdl:input name="DeleteAdministrator" message="ns1:DeleteAdministrator" />
+      <wsdl:output name="DeleteAdministratorResponse" message="ns1:DeleteAdministratorResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPlannedTasks">
+      <wsdl:input name="GetUserPlannedTasks" message="ns1:GetUserPlannedTasks" />
+      <wsdl:output name="GetUserPlannedTasksResponse" message="ns1:GetUserPlannedTasksResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByClinicianId">
+      <wsdl:input name="getUserIdByClinicianId" message="ns1:getUserIdByClinicianId" />
+      <wsdl:output name="getUserIdByClinicianIdResponse" message="ns1:getUserIdByClinicianIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientAssessments">
+      <wsdl:input name="GetPatientAssessments" message="ns1:GetPatientAssessments" />
+      <wsdl:output name="GetPatientAssessmentsResponse" message="ns1:GetPatientAssessmentsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <wsdl:input name="registerUser" message="ns1:registerUser" />
+      <wsdl:output name="registerUserResponse" message="ns1:registerUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserPersonIdByPatientId">
+      <wsdl:input name="getUserPersonIdByPatientId" message="ns1:getUserPersonIdByPatientId" />
+      <wsdl:output name="getUserPersonIdByPatientIdResponse" message="ns1:getUserPersonIdByPatientIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input name="login" message="ns1:login" />
+      <wsdl:output name="loginResponse" message="ns1:loginResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaireAnswers">
+      <wsdl:input name="GetQuestionnaireAnswers" message="ns1:GetQuestionnaireAnswers" />
+      <wsdl:output name="GetQuestionnaireAnswersResponse" message="ns1:GetQuestionnaireAnswersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatientMeasurement">
+      <wsdl:input name="GetPatientMeasurement" message="ns1:GetPatientMeasurement" />
+      <wsdl:output name="GetPatientMeasurementResponse" message="ns1:GetPatientMeasurementResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfPatients">
+      <wsdl:input name="ListOfPatients" message="ns1:ListOfPatients" />
+      <wsdl:output name="ListOfPatientsResponse" message="ns1:ListOfPatientsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExternalServices">
+      <wsdl:input name="GetAllExternalServices" message="ns1:GetAllExternalServices" />
+      <wsdl:output name="GetAllExternalServicesResponse" message="ns1:GetAllExternalServicesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePatient">
+      <wsdl:input name="UpdatePatient" message="ns1:UpdatePatient" />
+      <wsdl:output name="UpdatePatientResponse" message="ns1:UpdatePatientResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="lockUser">
+      <wsdl:input name="lockUser" message="ns1:lockUser" />
+      <wsdl:output name="lockUserResponse" message="ns1:lockUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTaskMassively">
+      <wsdl:input name="RemoveTaskMassively" message="ns1:RemoveTaskMassively" />
+      <wsdl:output name="RemoveTaskMassivelyResponse" message="ns1:RemoveTaskMassivelyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveWarning">
+      <wsdl:input name="SaveWarning" message="ns1:SaveWarning" />
+      <wsdl:output name="SaveWarningResponse" message="ns1:SaveWarningResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarer">
+      <wsdl:input name="GetCarer" message="ns1:GetCarer" />
+      <wsdl:output name="GetCarerResponse" message="ns1:GetCarerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByCarerId">
+      <wsdl:input name="getUserIdByCarerId" message="ns1:getUserIdByCarerId" />
+      <wsdl:output name="getUserIdByCarerIdResponse" message="ns1:getUserIdByCarerIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMediaContent">
+      <wsdl:input name="DeleteMediaContent" message="ns1:DeleteMediaContent" />
+      <wsdl:output name="DeleteMediaContentResponse" message="ns1:DeleteMediaContentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaire">
+      <wsdl:input name="GetQuestionnaire" message="ns1:GetQuestionnaire" />
+      <wsdl:output name="GetQuestionnaireResponse" message="ns1:GetQuestionnaireResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getEhealthParameters">
+      <wsdl:input name="getEhealthParameters" message="ns1:getEhealthParameters" />
+      <wsdl:output name="getEhealthParametersResponse" message="ns1:getEhealthParametersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePatient">
+      <wsdl:input name="DeletePatient" message="ns1:DeletePatient" />
+      <wsdl:output name="DeletePatientResponse" message="ns1:DeletePatientResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <wsdl:input name="Auth" message="ns1:Auth" />
+      <wsdl:output name="AuthResponse" message="ns1:AuthResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionDescription">
+      <wsdl:input name="GetQuestionDescription" message="ns1:GetQuestionDescription" />
+      <wsdl:output name="GetQuestionDescriptionResponse" message="ns1:GetQuestionDescriptionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaContent">
+      <wsdl:input name="GetMediaContent" message="ns1:GetMediaContent" />
+      <wsdl:output name="GetMediaContentResponse" message="ns1:GetMediaContentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCarerAssessment">
+      <wsdl:input name="SaveCarerAssessment" message="ns1:SaveCarerAssessment" />
+      <wsdl:output name="SaveCarerAssessmentResponse" message="ns1:SaveCarerAssessmentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateClinician">
+      <wsdl:input name="CreateClinician" message="ns1:CreateClinician" />
+      <wsdl:output name="CreateClinicianResponse" message="ns1:CreateClinicianResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClinician">
+      <wsdl:input name="UpdateClinician" message="ns1:UpdateClinician" />
+      <wsdl:output name="UpdateClinicianResponse" message="ns1:UpdateClinicianResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getEhealthRoles">
+      <wsdl:input name="getEhealthRoles" message="ns1:getEhealthRoles" />
+      <wsdl:output name="getEhealthRolesResponse" message="ns1:getEhealthRolesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCarer">
+      <wsdl:input name="UpdateCarer" message="ns1:UpdateCarer" />
+      <wsdl:output name="UpdateCarerResponse" message="ns1:UpdateCarerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAdministrator">
+      <wsdl:input name="UpdateAdministrator" message="ns1:UpdateAdministrator" />
+      <wsdl:output name="UpdateAdministratorResponse" message="ns1:UpdateAdministratorResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeasurements">
+      <wsdl:input name="StoreMeasurements" message="ns1:StoreMeasurements" />
+      <wsdl:output name="StoreMeasurementsResponse" message="ns1:StoreMeasurementsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarer">
+      <wsdl:input name="DeleteCarer" message="ns1:DeleteCarer" />
+      <wsdl:output name="DeleteCarerResponse" message="ns1:DeleteCarerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuestionnaire">
+      <wsdl:input name="UpdateQuestionnaire" message="ns1:UpdateQuestionnaire" />
+      <wsdl:output name="UpdateQuestionnaireResponse" message="ns1:UpdateQuestionnaireResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteQuestionnaire">
+      <wsdl:input name="DeleteQuestionnaire" message="ns1:DeleteQuestionnaire" />
+      <wsdl:output name="DeleteQuestionnaireResponse" message="ns1:DeleteQuestionnaireResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAdministrator">
+      <wsdl:input name="CreateAdministrator" message="ns1:CreateAdministrator" />
+      <wsdl:output name="CreateAdministratorResponse" message="ns1:CreateAdministratorResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserIdByAdminId">
+      <wsdl:input name="getUserIdByAdminId" message="ns1:getUserIdByAdminId" />
+      <wsdl:output name="getUserIdByAdminIdResponse" message="ns1:getUserIdByAdminIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getQuestionnaireAnswerValue">
+      <wsdl:input name="getQuestionnaireAnswerValue" message="ns1:getQuestionnaireAnswerValue" />
+      <wsdl:output name="getQuestionnaireAnswerValueResponse" message="ns1:getQuestionnaireAnswerValueResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAppConfig">
+      <wsdl:input name="getAppConfig" message="ns1:getAppConfig" />
+      <wsdl:output name="getAppConfigResponse" message="ns1:getAppConfigResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPatient">
+      <wsdl:input name="GetPatient" message="ns1:GetPatient" />
+      <wsdl:output name="GetPatientResponse" message="ns1:GetPatientResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAppConfigRow">
+      <wsdl:input name="updateAppConfigRow" message="ns1:updateAppConfigRow" />
+      <wsdl:output name="updateAppConfigRowResponse" message="ns1:updateAppConfigRowResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemParameterList">
+      <wsdl:input name="GetSystemParameterList" message="ns1:GetSystemParameterList" />
+      <wsdl:output name="GetSystemParameterListResponse" message="ns1:GetSystemParameterListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkWarningAsRead">
+      <wsdl:input name="MarkWarningAsRead" message="ns1:MarkWarningAsRead" />
+      <wsdl:output name="MarkWarningAsReadResponse" message="ns1:MarkWarningAsReadResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestionnaireAnswersByTask">
+      <wsdl:input name="GetQuestionnaireAnswersByTask" message="ns1:GetQuestionnaireAnswersByTask" />
+      <wsdl:output name="GetQuestionnaireAnswersByTaskResponse" message="ns1:GetQuestionnaireAnswersByTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExternalService">
+      <wsdl:input name="DeleteExternalService" message="ns1:DeleteExternalService" />
+      <wsdl:output name="DeleteExternalServiceResponse" message="ns1:DeleteExternalServiceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarerAssessments">
+      <wsdl:input name="GetCarerAssessments" message="ns1:GetCarerAssessments" />
+      <wsdl:output name="GetCarerAssessmentsResponse" message="ns1:GetCarerAssessmentsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getConnectedUsers">
+      <wsdl:input name="getConnectedUsers" message="ns1:getConnectedUsers" />
+      <wsdl:output name="getConnectedUsersResponse" message="ns1:getConnectedUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input name="UpdateUser" message="ns1:UpdateUser" />
+      <wsdl:output name="UpdateUserResponse" message="ns1:UpdateUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfCarers">
+      <wsdl:input name="ListOfCarers" message="ns1:ListOfCarers" />
+      <wsdl:output name="ListOfCarersResponse" message="ns1:ListOfCarersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserIdByPersonId">
+      <wsdl:input name="GetUserIdByPersonId" message="ns1:GetUserIdByPersonId" />
+      <wsdl:output name="GetUserIdByPersonIdResponse" message="ns1:GetUserIdByPersonIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input name="CreateUser" message="ns1:CreateUser" />
+      <wsdl:output name="CreateUserResponse" message="ns1:CreateUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfQuestionnaires">
+      <wsdl:input name="ListOfQuestionnaires" message="ns1:ListOfQuestionnaires" />
+      <wsdl:output name="ListOfQuestionnairesResponse" message="ns1:ListOfQuestionnairesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExternalService">
+      <wsdl:input name="UpdateExternalService" message="ns1:UpdateExternalService" />
+      <wsdl:output name="UpdateExternalServiceResponse" message="ns1:UpdateExternalServiceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClinician">
+      <wsdl:input name="GetClinician" message="ns1:GetClinician" />
+      <wsdl:output name="GetClinicianResponse" message="ns1:GetClinicianResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePatient">
+      <wsdl:input name="CreatePatient" message="ns1:CreatePatient" />
+      <wsdl:output name="CreatePatientResponse" message="ns1:CreatePatientResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateExternalService">
+      <wsdl:input name="CreateExternalService" message="ns1:CreateExternalService" />
+      <wsdl:output name="CreateExternalServiceResponse" message="ns1:CreateExternalServiceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input name="DeleteUser" message="ns1:DeleteUser" />
+      <wsdl:output name="DeleteUserResponse" message="ns1:DeleteUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfSupportedLocales">
+      <wsdl:input name="ListOfSupportedLocales" message="ns1:ListOfSupportedLocales" />
+      <wsdl:output name="ListOfSupportedLocalesResponse" message="ns1:ListOfSupportedLocalesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignTask">
+      <wsdl:input name="AssignTask" message="ns1:AssignTask" />
+      <wsdl:output name="AssignTaskResponse" message="ns1:AssignTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listOfUsers">
+      <wsdl:input name="listOfUsers" message="ns1:listOfUsers" />
+      <wsdl:output name="listOfUsersResponse" message="ns1:listOfUsersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="lockout">
+      <wsdl:input name="lockout" message="ns1:lockout" />
+      <wsdl:output name="lockoutResponse" message="ns1:lockoutResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTaskStatus">
+      <wsdl:input name="ChangeTaskStatus" message="ns1:ChangeTaskStatus" />
+      <wsdl:output name="ChangeTaskStatusResponse" message="ns1:ChangeTaskStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdministrator">
+      <wsdl:input name="GetAdministrator" message="ns1:GetAdministrator" />
+      <wsdl:output name="GetAdministratorResponse" message="ns1:GetAdministratorResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfPossibleTasks">
+      <wsdl:input name="ListOfPossibleTasks" message="ns1:ListOfPossibleTasks" />
+      <wsdl:output name="ListOfPossibleTasksResponse" message="ns1:ListOfPossibleTasksResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMeasurement">
+      <wsdl:input name="GetMeasurement" message="ns1:GetMeasurement" />
+      <wsdl:output name="GetMeasurementResponse" message="ns1:GetMeasurementResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMediaContent">
+      <wsdl:input name="AddMediaContent" message="ns1:AddMediaContent" />
+      <wsdl:output name="AddMediaContentResponse" message="ns1:AddMediaContentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ListOfAdministrators">
+      <wsdl:input name="ListOfAdministrators" message="ns1:ListOfAdministrators" />
+      <wsdl:output name="ListOfAdministratorsResponse" message="ns1:ListOfAdministratorsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteClinician">
+      <wsdl:input name="DeleteClinician" message="ns1:DeleteClinician" />
+      <wsdl:output name="DeleteClinicianResponse" message="ns1:DeleteClinicianResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCarerAssessment">
+      <wsdl:input name="DeleteCarerAssessment" message="ns1:DeleteCarerAssessment" />
+      <wsdl:output name="DeleteCarerAssessmentResponse" message="ns1:DeleteCarerAssessmentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePatientAssessment">
+      <wsdl:input name="SavePatientAssessment" message="ns1:SavePatientAssessment" />
+      <wsdl:output name="SavePatientAssessmentResponse" message="ns1:SavePatientAssessmentResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

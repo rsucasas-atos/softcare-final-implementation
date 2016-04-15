@@ -1,0 +1,134 @@
+<div class="container" ng-controller="usersController">
+    <!-- USERS LIST -->
+    <div class="col-md-6">
+        <button class="btn btn-info btn-sm" disabled>
+            Show administrators
+        </button>
+        <button class="btn btn-info btn-sm" disabled>
+            Show all users
+        </button>
+        <!-- New User -->
+        <button class="btn btn-success btn-sm" ng-click="enableForm()" ng-hide="formEnabled">
+            Create New User
+        </button>
+        <hr />
+
+        <h4>
+            <span class="label label-primary">Users List</span>
+            <span class="label label-info">{{ users.length }} users</span>
+        </h4>
+
+        <!--Users list-->
+        <table class="table table-striped table-condensed table-hover" ng-show="show_users_list">
+            <tr>
+                <th width="5%">&nbsp;</th>
+                <th width="5%">&nbsp;</th>
+                <th width="5%">&nbsp;</th>
+                <th width="55%">username</th>
+                <th width="30%">rol</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>[{{$index + 1}}]</td>
+
+                <td ng-if="user.username != 'superadmin'">
+                    <button class="btn btn-primary btn-xs" ng-click="showUserData(user._id)" title="Edit / view user's data">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                </td>
+                <td ng-if="user.username == 'superadmin'">
+                    &nbsp;
+                </td>
+
+                <td ng-if="user.username != 'superadmin'">
+                    <button class="btn btn-danger btn-xs" confirmed-click="deleteUser(user._id)" title="Delete user"
+                            ng-confirm-box-click="Are you sure want to delete {{ user.username }}?">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </td>
+                <td ng-if="user.username == 'superadmin'">
+                    &nbsp;
+                </td>
+
+                <td>{{ user.username }}</td>
+                <td>
+                    {{ user.rol }}
+                </td>
+            </tr>
+        </table>
+        <hr />
+    </div>
+    <!-- /USERS LIST -->
+
+
+    <!-- USERS FORM -->
+    <div class="col-md-6" ng-show="formEnabled" ng-cloak>
+        <button class="btn btn-success btn-sm" ng-click="createUser()" ng-show="new_user">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;Save
+        </button>
+        <button class="btn btn-primary btn-sm" ng-click="updateUser(user._id)" ng-hide="new_user">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;&nbsp;Update
+        </button>
+
+        <button class="btn btn-danger btn-sm" ng-click="cancel()">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;Cancel
+        </button>
+
+        <button class="btn btn-default btn-sm" ng-click="clearForm()" ng-show="new_user">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>&nbsp;&nbsp;Clear
+        </button>
+        <hr />
+
+        <h4>
+            <span class="label label-primary">User's Form</span>
+        </h4>
+
+        <!--Form: add new users to app -->
+        <div id="users-form" class="row">
+            <div class="text-left">
+                <form name="usersForm" novalidate>
+
+                    <div class="form-group form-input-data">
+                        <div ng-class="{ 'has-error' : usersForm.name.$invalid && !usersForm.name.$pristine }">
+                            <input type="text" class="form-control input-lg text-left"
+                                   placeholder="name" name="name" ng-model="formData.name" required/>
+                            <p ng-show="usersForm.name.$invalid && !usersForm.name.$pristine" class="help-block">'name' is required.</p>
+                        </div>
+
+                        <div ng-class="{ 'has-error' : usersForm.username.$invalid && !usersForm.username.$pristine }">
+                            <input type="text" class="form-control input-lg text-left"
+                                   placeholder="username" name="username" ng-model="formData.username" ng-if="!new_user" disabled/>
+                            <input type="text" class="form-control input-lg text-left"
+                                   placeholder="username" name="username" ng-model="formData.username" ng-if="new_user"/>
+                            <p ng-show="usersForm.username.$invalid && !usersForm.username.$pristine" class="help-block">'username' is required.</p>
+                        </div>
+
+                        <div ng-class="{ 'has-error' : usersForm.password.$invalid && !usersForm.password.$pristine }">
+                            <input type="password" class="form-control input-lg text-left"
+                                   placeholder="password" name="password" ng-model="formData.password" ng-if="!new_user" disabled/>
+                            <input type="password" class="form-control input-lg text-left"
+                                   placeholder="password" name="password" ng-model="formData.password" ng-if="new_user"/>
+                            <p ng-show="usersForm.password.$invalid && !usersForm.password.$pristine" class="help-block">'password' is required.</p>
+                        </div>
+
+                        <select class="form-control input-lg text-left" ng-model="formData.rol">
+                            <option value="">---Please select rol---</option>
+                            <option value="admin">Administrator</option>
+                            <option value="user">Final user</option>
+                        </select>
+                        <select class="form-control input-lg text-left" ng-model="formData.location">
+                            <option value="">---Please select location---</option>
+                            <option value="Spain">Spain</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Italy">Italy</option>
+                            <option value="...">Other country</option>
+                        </select>
+                    </div>
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- /USERS FORM -->
+
+</div>
+<br />

@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SoftCare.ClientApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UpdatesUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://dev2.biomed.ntua.gr/aladdin/updates.xml</Value>
+    </Setting>
+    <Setting Name="OptionsLocked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ForumPage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://dafnis.atosorigin.es/DAFNI/Aladdin/home.php</Value>
+    </Setting>
+    <Setting Name="JustUpgraded" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FirstInstallation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DefaultLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en_UK</Value>
+    </Setting>
+    <Setting Name="Aladdin_ClientApplication_thirdpartyService_ServicesComponentImplService" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">http://e-health-ws-app-eu.herokuapp.com/ServicesComponent</Value>
+    </Setting>
+    <Setting Name="AppName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">E-Health Application</Value>
+    </Setting>
+    <Setting Name="Aladdin_ClientApplication_aladdinService_StorageComponentImplService" Type="(Web Service URL)" Scope="User">
+      <Value Profile="(Default)">http://ehealthws.95.211.172.243.xip.io/StorageComponent</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

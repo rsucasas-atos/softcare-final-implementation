@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+	<!-- Weight -->
+	<Rule>
+		<dataType>2</dataType>				<!-- DataType: 2...Weight, 11...Systolic, 12...Diastolic -->
+		<callerID>1</callerID>				<!-- CallerID: 1...LessThanRuleType, 2...DoubleCompareRuleType -->
+		<lowerLimit>0</lowerLimit>			<!-- LowerLimit: Weight...0 - not used -->
+		<upperLimit>5</upperLimit>			<!-- UpperLimit: Weight...Threshold -->
+		<getPrevious>true</getPrevious>		<!-- GetPrevious: true/false - not used -->
+		<highRiskThresh>0</highRiskThresh>	<!-- HighRiskThresh: 0 - not used  -->
+	</Rule>
+	<!-- Blood Pressure -->
+	<!-- Systolic -->
+	<Rule>
+		<dataType>11</dataType>
+		<callerID>2</callerID>
+		<lowerLimit>80</lowerLimit>
+		<upperLimit>150</upperLimit>
+		<getPrevious>false</getPrevious>
+		<highRiskThresh>0</highRiskThresh>
+	</Rule>
+	<!-- Diastolic -->
+	<Rule>
+		<dataType>12</dataType>
+		<callerID>2</callerID>
+		<lowerLimit>50</lowerLimit>
+		<upperLimit>90</upperLimit>
+		<getPrevious>false</getPrevious>
+		<highRiskThresh>0</highRiskThresh>
+	</Rule>
+	<!-- Questionnaire -->
+	<!-- 
+	<Rule>
+		<DataType></DataType>
+		<CallerID></CallerID>
+		<LowerLimit></LowerLimit>
+		<UpperLimit></UpperLimit>
+		<GetPrevious></GetPrevious>
+		<HighRiskThresh></HighRiskThresh>
+	</Rule>
+	-->
+</ruleset>

@@ -1,0 +1,13 @@
+/Aladdin.ClientApplication/bin/*
+/Aladdin.ClientApplication/obj/*
+/SoftCare.ClientApplication/bin/*
+/SoftCare.ClientApplication/obj/*
+/Aladdin.DataModel/obj/*
+/Aladdin.DataModel/bin/*
+/Aladdin.Omron/obj/*
+/Aladdin.Omron/bin/*
+/Aladdin.RiskDetection/bin/*
+/Aladdin.RiskDetection/obj/*
+/EHealthInstaller/*
+/packages/*
+/Aladdin.ClientApplication/obj/x86/Debug/Controls/*

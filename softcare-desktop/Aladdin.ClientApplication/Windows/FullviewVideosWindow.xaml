@@ -1,0 +1,59 @@
+﻿<Window
+    x:Class="SoftCare.ClientApplication.Windows.FullviewVideosWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+    Title="SoftCare" Height="300" Width="300" Loaded="Window_Loaded" WindowState="Maximized" Closed="Window_Closed" Background="#FFEEE9BC">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <MediaElement Grid.Row="0" x:Name="WebBrowserFull" Margin="5" 
+                      LoadedBehavior="Manual" Stretch="Fill" 
+                      MediaOpened="Element_MediaOpened" MediaEnded="Element_MediaEnded"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Click="Back_Click" Style="{StaticResource SmallButton}" Margin="5 0 100 0" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/SoftCare.ClientApplication;component/Resources/Images/back.png" Margin="10 6 4 6" Height="32" />
+                    <TextBlock Text="Back" Margin="8 5 10 6" />
+                </StackPanel>
+            </Button>
+
+            <StackPanel Orientation="Horizontal">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            </StackPanel>
+
+            <!-- Play button. -->
+            <Image MouseDown="OnMouseDownPlayMedia" Source="/SoftCare.ClientApplication;component/Resources/Images/player_play.png"  
+                   Height="52" Margin="100 0 5 0"/>
+
+            <!-- Pause button. -->
+            <Image MouseDown="OnMouseDownPauseMedia" Source="/SoftCare.ClientApplication;component/Resources/Images/player_pause.png"  
+                   Height="52" Margin="0 0 5 0"/>
+
+            <!-- Stop button. -->
+            <Image MouseDown="OnMouseDownStopMedia" Source="/SoftCare.ClientApplication;component/Resources/Images/player_stop.png"  
+                   Height="52" Margin="0 0 5 0"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            </StackPanel>
+
+            <!-- Volume slider. This slider allows a Volume range between 0 and 1. -->
+            <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5"  >Volume</TextBlock>
+            <Slider Name="volumeSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaVolume" 
+                Minimum="0" Maximum="1" Value="0.5" Width="100"/>
+
+            <!-- Volume slider. This slider allows you to change the speed of the media playback. -->
+            <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Speed</TextBlock>
+            <Slider Name="speedRatioSlider" VerticalAlignment="Center" ValueChanged="ChangeMediaSpeedRatio" 
+                Value="1" Width="100" />
+
+            <!-- Seek to slider. Ths slider allows you to jump to different parts of the media playback. -->
+            <TextBlock Foreground="Black" Margin="5"  VerticalAlignment="Center">Seek To</TextBlock>
+            <Slider Name="timelineSlider" Margin="5" VerticalAlignment="Center" ValueChanged="SeekToMediaPosition" Width="200"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

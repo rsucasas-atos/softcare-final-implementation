@@ -1,0 +1,76 @@
+<zk>
+	<zscript>
+		String title = Labels.getLabel("patients.title");
+		String newpat = "Add user"; //Labels.getLabel("patients.new");
+		String idstr  = Labels.getLabel("common.id");
+		String surnlbl= Labels.getLabel("common.sname");
+		String namelbl= Labels.getLabel("common.name");
+		String updmsg = Labels.getLabel("common.update");
+		String delmsg = Labels.getLabel("common.delete");
+		String details = Labels.getLabel("common.details");
+		
+		page.setTitle(title);
+		StorageComponentImpl proxy = new StorageComponentImpl();
+		PatientInfo[] plist = null;
+		Session ses = Sessions.getCurrent();
+		String id = (String)ses.getAttribute("userid");
+		Boolean isntadmin = new Boolean(false); 
+		try
+		{
+			if (ses.getAttribute("isadmin") != null) {
+				isntadmin = !(Boolean)ses.getAttribute("isadmin");
+			}
+		
+			plist = proxy.listOfPatientsArr(new SearchCriteria[0],id);
+		}
+		catch(Exception re){
+			SystemDictionary.webguiLog("ERROR", re.getMessage());
+		}
+	</zscript>
+	
+	<window id="patients" border="none" width="900px" sclass="centerwin" use="eu.ehealth.controllers.IndexPatientsWindow">
+		<vbox>
+			<button label="${newpat}" onClick="showForm();"  image="../inc/icons/add.gif"/>
+			<grid mold="paging" pageSize="10">
+				<columns>
+					<column label="${idstr }" width="35px" sort="auto" style="font-weight: bold;" if="${!isntadmin}"/> 
+					<column label="${surnlbl }" sort="auto" style="font-weight: bold;"/>
+					<column label="${namelbl }" sort="auto" style="font-weight: bold;"/>
+					<column width="100px" align="center" />
+					<column width="50px" align="center" if="${isntadmin }"/>
+					<column width="50px" align="center" if="${isntadmin }"/>
+				</columns>
+				<rows>
+					<row forEach="${plist }" id="${each.ID }">
+						<label value="${each.ID }" if="${!isntadmin}"/>
+						<label value="${each.surname }"/>
+						<label value="${each.name }"/>
+						<label if="${isntadmin }" value="Tasks / Details" sclass="link" onClick="detailsPatient(self.getParent().getId())" style="font-size: 9px;"/>
+						<label if="${isntadmin }" value="${updmsg }" sclass="link"  onClick="updatePatient(self.getParent().getId())" style="font-size: 9px;"/>
+						<label value="${delmsg }" sclass="link" onClick="patients.deletePatientMsg(self.getParent().getId())" style="font-size: 9px;"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</window>
+	
+	<zscript>
+		public void showForm()
+		{
+			app_content.setSrc("../patients/form.zul");
+		}
+		
+		
+		public void detailsPatient(String id)
+		{
+			app_content.setSrc("../patients/details.zul?patid=" + id);
+		}
+		
+		
+		public void updatePatient(String id)
+		{
+			app_content.setSrc("../patients/update.zul?from=index&amp;patid=" + id);
+		}
+	</zscript>
+	
+</zk>

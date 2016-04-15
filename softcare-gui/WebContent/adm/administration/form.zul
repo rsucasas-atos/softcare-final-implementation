@@ -1,0 +1,28 @@
+<zk>
+	<zscript>
+		import org.zkoss.util.resource.Labels;
+		
+		
+		String title = Labels.getLabel("administrators.new.title");
+		String save = Labels.getLabel("administrators.save");
+		String back = Labels.getLabel("common.back");
+		page.setTitle(title);	
+	</zscript>
+	
+	<window title="${title}" id="adminform" sclass="centerwin" width="900px" use="eu.ehealth.controllers.AdministratorControllerWindow">
+		<hbox>
+			<button label="${back }" onClick="goBack();" image="../inc/icons/back.png"/>
+			<separator orient="horizontal" width="10px"/>
+			<button label="${save }" onClick="adminform.createAdministrator()" image="../inc/icons/save_edit.png"/>
+		</hbox>
+	</window>
+	
+	<zscript>
+		public void goBack()
+		{
+			Collection col = Executions.getCurrent().getDesktop().getComponents();
+			Include comp = (Include) ComponentsFinder.getUIComponent(col, "app_content");
+			comp.setSrc("../administration/index_content.zul");
+		}
+	</zscript>
+</zk>
