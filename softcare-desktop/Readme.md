@@ -1,4 +1,4 @@
-# Desktop Client for the SoftCare soultion
+# .NET Desktop Client for the SoftCare solution
 ## Description
 A .NET desktop application that is responsible for collecting the medical data of the elderlies. This application is also responsible for offering them the multimedia and social content of the global Softcare solution. This application connects to the Web services application.
 

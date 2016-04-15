@@ -1,8 +1,5 @@
-# Multimedia-Repository-Web #
-* Version: **0.1.4**
------------------------
-### 1. Application Info ###
+# Multimedia-Repository-Web
+## Description
+This Web application is responsible for the management of the multimedia content that is offered to the elderly people.
 
-Multimedia repository application based on Clojure (REST API) and Angularjs (frontend)
-
-### 2. Install ###
+## How to install?
