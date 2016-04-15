@@ -1,0 +1,151 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>storage-component-sm</groupId>
+	<artifactId>storage-component-sm</artifactId>
+	<version>1.0.4.3</version>
+	<packaging>jar</packaging>
+	<name>storage-component</name>
+	<url>http://maven.apache.org</url>
+	<description>eHealth storage component using Hibernate</description>
+	
+	<repositories>
+	  	<repository>
+	   	 	<id>localRepo</id>
+	   	 	<name>localRepo</name>
+	    	<url>file://${basedir}/ext_libs</url>
+	  	</repository>
+	</repositories>
+
+	<build>
+		<finalName>storage-component-sm</finalName>
+
+		<plugins>
+			<!-- Set a compiler level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			
+			<!-- 1. add dependencies to MANIFEST.MF -->
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<!-- <mainClass>eu.ehealth.StorageComponentMai</mainClass> -->
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- 2. download jars to '/target/lib/' folder -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- HIBERNATE -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<!-- MYSQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-version}</version>
+		</dependency>
+		<!-- database encryption -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>${jasypt-version}</version>
+		</dependency>
+		<dependency>
+		  	<groupId>jasypt-hibernate</groupId>
+		  	<artifactId>jasypt-hibernate</artifactId>
+		  	<version>4.1.9.2</version>
+		</dependency>
+		<!-- OTHERS -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>${commons-configuration-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+	</dependencies>
+
+
+
+	<properties>
+		<!-- JAVA -->
+		<java-version>1.7</java-version>
+
+		<!-- ENCODING -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- ARTIFACTS VERSION -->
+		<!-- HIBERNATE 3.6.10.Final for JASYPT // 4.3.10.Final -->
+		<hibernate-version>4.3.10.Final</hibernate-version>
+		<!-- MYSQL -->
+		<mysql-version>5.1.34</mysql-version>
+		<!-- JASYPT : MySQL encryption // 1.8 // 1.9.2 -->
+		<jasypt-version>1.8</jasypt-version>
+		<!-- OTHERS -->
+		<log4j-version>1.2.17</log4j-version>
+		<commons-configuration-version>1.10</commons-configuration-version>
+	</properties>
+</project>

@@ -1,0 +1,38 @@
+[
+	{
+		"level": "Hypotension",
+		"res": "WARN",
+		"min": 0.0,
+		"max": 59.9
+	},
+	{
+		"level": "Normal",
+		"res": "OK",
+		"min": 60.0,
+		"max": 79.9
+	},
+	{
+		"level": "Prehypertension",
+		"res": "OK",
+		"min": 80.0,
+		"max": 89.9
+	},
+	{
+		"level": "Hypertension-1",
+		"res": "WARN",
+		"min": 90.0,
+		"max": 99.9
+	},
+	{
+		"level": "Hypertension-2",
+		"res": "WARN",
+		"min": 100.0,
+		"max": 109.9
+	},
+	{
+		"level": "Hypertension-3",
+		"res": "WARN",
+		"min": 110.0,
+		"max": 999.9
+	},
+]

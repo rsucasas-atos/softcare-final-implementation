@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+	PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+	<typedef name="encrypted" class="org.jasypt.hibernate4.type.EncryptedStringType">
+      	<param name="encryptorRegisteredName">strongHibernateStringEncryptor</param>
+    </typedef>
+    
+	<class name="PersonData">
+		<id name="id" type="java.lang.Integer" column="id" unsaved-value="null">
+			<generator class="identity" />
+		</id>
+		<property name="Surname" type="encrypted" >
+			<column name="Surname" />
+		</property>
+		<property name="Name" type="encrypted" >
+			<column name="Name" />
+		</property>
+		<set name="Identifiers" inverse="true" cascade="none">
+			<key>
+				<column name="persondata" not-null="true" />
+			</key>
+			<one-to-many class="Identifier" />
+		</set>
+		<set name="Addresss" inverse="true" cascade="none">
+			<key>
+				<column name="persondata" not-null="true" />
+			</key>
+			<one-to-many class="Address" />
+		</set>
+		<set name="Communications" inverse="true" cascade="none">
+			<key>
+				<column name="persondata" not-null="true" />
+			</key>
+			<one-to-many class="Communication" />
+		</set>
+		<set name="Clinicians" inverse="true" cascade="none">
+			<key>
+				<column name="persondata" not-null="true" />
+			</key>
+			<one-to-many class="Clinician" />
+		</set>
+		<set name="Carers" inverse="true" cascade="none">
+			<key>
+				<column name="persondata" not-null="true" />
+			</key>
+			<one-to-many class="Carer" />
+		</set>
+		<set name="Patients" inverse="true" cascade="none">
+			<key>
+				<column name="persondata" not-null="true" />
+			</key>
+			<one-to-many class="Patient" />
+		</set>
+		<set name="Administrators" inverse="true" cascade="none">
+			<key>
+				<column name="personData" not-null="true" />
+			</key>
+			<one-to-many class="Administrator" />
+		</set>
+	</class>
+</hibernate-mapping>
+

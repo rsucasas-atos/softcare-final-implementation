@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+	<class name="Warning">
+		<id column="id" name="id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property generated="never" lazy="false" name="TypeOfWarning"
+			type="java.lang.Integer">
+			<column name="TypeOfWarning" />
+		</property>
+		<property generated="never" lazy="false" name="DateTimeOfWarning"
+			type="java.sql.Timestamp">
+			<column name="DateTimeOfWarning" />
+		</property>
+		<property generated="never" lazy="false" name="Effect"
+			type="java.lang.Integer">
+			<column name="Effect" />
+		</property>
+		<property generated="never" lazy="false" name="Indicator"
+			type="java.lang.Integer">
+			<column name="Indicator" />
+		</property>
+		<property generated="never" lazy="false" name="RiskLevel"
+			type="java.lang.Integer">
+			<column name="RiskLevel" />
+		</property>
+		<property generated="never" lazy="false" name="JustificationText"
+			type="string">
+			<column name="JustificationText" />
+		</property>
+		<property generated="never" lazy="false" name="EmergencyLevel"
+			type="java.lang.Integer">
+			<column name="EmergencyLevel" />
+		</property>
+		<property generated="never" lazy="false" name="Delivered"
+			type="java.lang.Boolean">
+			<column name="Delivered" />
+		</property>
+		<property generated="never" lazy="false" name="Patient"
+			type="java.lang.Integer">
+			<column name="Patient" />
+		</property>
+		<many-to-one class="Patient" insert="false" name="m_Patient"
+			update="false">
+			<column name="Patient" not-null="false" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

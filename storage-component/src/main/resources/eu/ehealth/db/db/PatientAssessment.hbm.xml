@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="PatientAssessment">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="patient" type="java.lang.Integer">
+   <column name="patient"/>
+  </property>
+  <property generated="never" lazy="false" name="DateOfAssessment" type="java.sql.Timestamp">
+   <column name="DateOfAssessment"/>
+  </property>
+  <property generated="never" lazy="false" name="Aetology" type="java.lang.Integer">
+   <column name="Aetology"/>
+  </property>
+  <property generated="never" lazy="false"
+   name="TimeElapsedSinceDiagnose" type="java.lang.Integer">
+   <column name="TimeElapsedSinceDiagnose"/>
+  </property>
+  <property generated="never" lazy="false" name="Severity" type="java.lang.Integer">
+   <column name="Severity"/>
+  </property>
+  <property generated="never" lazy="false"
+   name="RelevantPathologyAntecedents" type="string">
+   <column name="RelevantPathologyAntecedents"/>
+  </property>
+  <property generated="never" lazy="false" name="Comorbidity" type="string">
+   <column name="Comorbidity"/>
+  </property>
+  <property generated="never" lazy="false"
+   name="CharlsonComobodityIndex" type="java.lang.Integer">
+   <column name="CharlsonComobodityIndex"/>
+  </property>
+  <property generated="never" lazy="false" name="BarthelIndex" type="java.lang.Integer">
+   <column name="BarthelIndex"/>
+  </property>
+  <property generated="never" lazy="false" name="LawtonIndex" type="java.lang.Integer">
+   <column name="LawtonIndex"/>
+  </property>
+  <property generated="never" lazy="false" name="MMSE" type="java.lang.Integer">
+   <column name="MMSE"/>
+  </property>
+  <property generated="never" lazy="false" name="MDRS" type="java.lang.Integer">
+   <column name="MDRS"/>
+  </property>
+  <property generated="never" lazy="false" name="BlessedScalePart1" type="java.math.BigDecimal">
+   <column name="BlessedScalePart1"/>
+  </property>
+  <property generated="never" lazy="false" name="BlessedScalePart2" type="java.lang.Integer">
+   <column name="BlessedScalePart2"/>
+  </property>
+  <property generated="never" lazy="false" name="BlessedScalePart3" type="java.lang.Integer">
+   <column name="BlessedScalePart3"/>
+  </property>
+  <property generated="never" lazy="false" name="ChecklistMBPC" type="java.lang.Integer">
+   <column name="ChecklistMBPC"/>
+  </property>
+  <property generated="never" lazy="false" name="NPQISeverity" type="java.lang.Integer">
+   <column name="NPQISeverity"/>
+  </property>
+  <property generated="never" lazy="false" name="NPQIStress" type="java.lang.Integer">
+   <column name="NPQIStress"/>
+  </property>
+  <property generated="never" lazy="false" name="GDS" type="java.lang.Integer">
+   <column name="GDS"/>
+  </property>
+  <property generated="never" lazy="false" name="Falls" type="java.lang.Boolean">
+   <column name="Falls"/>
+  </property>
+  <property generated="never" lazy="false" name="Incontinence" type="java.lang.Boolean">
+   <column name="Incontinence"/>
+  </property>
+  <property generated="never" lazy="false" name="Delirium" type="java.lang.Boolean">
+   <column name="Delirium"/>
+  </property>
+  <property generated="never" lazy="false" name="Immobility" type="java.lang.Boolean">
+   <column name="Immobility"/>
+  </property>
+  <property generated="never" lazy="false" name="SensorialDeficits" type="java.lang.Boolean">
+   <column name="SensorialDeficits"/>
+  </property>
+  <property generated="never" lazy="false" name="PharmacologyTreatment" type="string">
+   <column name="PharmacologyTreatment"/>
+  </property>
+  <many-to-one class="Patient" insert="false" name="m_Patient" update="false">
+   <column name="patient" not-null="false"/>
+  </many-to-one>
+  <set inverse="true" name="Measurements" sort="unsorted">
+   <key>
+    <column name="patientassessment" not-null="true"/>
+   </key>
+   <one-to-many class="Measurement"/>
+  </set>
+ </class>
+</hibernate-mapping>

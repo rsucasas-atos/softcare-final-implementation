@@ -1,0 +1,50 @@
+[
+	{
+		"level": "Very_severely_underweight",
+		"res": "WARN",
+		"min": 0.0,
+		"max": 14.99
+	},
+	{
+		"level": "Severely_underweight",
+		"res": "WARN",
+		"min": 15.0,
+		"max": 15.99
+	},
+	{
+		"level": "Underweight",
+		"res": "OK",
+		"min": 16.0,
+		"max": 18.49
+	},
+	{
+		"level": "Normal",
+		"res": "OK",
+		"min": 18.5,
+		"max": 24.99
+	},
+	{
+		"level": "Overweight",
+		"res": "OK",
+		"min": 25.0,
+		"max": 29.99
+	},
+	{
+		"level": "Moderately_obese",
+		"res": "WARN",
+		"min": 30.0,
+		"max": 34.99
+	},
+	{
+		"level": "Severely_obese",
+		"res": "WARN",
+		"min": 35.0,
+		"max": 39.99
+	},
+	{
+		"level": "Very_severely_obese",
+		"res": "WARN",
+		"min": 40.0,
+		"max": 999.9
+	}
+]

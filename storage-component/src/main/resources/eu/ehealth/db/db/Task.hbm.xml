@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+	<class name="Task">
+		<id column="id" name="id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property generated="never" lazy="false" name="TaskType"
+			type="java.lang.Integer">
+			<column name="TaskType" />
+		</property>
+		<property generated="never" lazy="false" name="DateTimeAssigned"
+			type="java.sql.Timestamp">
+			<column name="DateTimeAssigned" />
+		</property>
+		<property generated="never" lazy="false" name="DateTimeFulfilled"
+			type="java.sql.Timestamp">
+			<column name="DateTimeFulfilled" />
+		</property>
+		<property generated="never" lazy="false" name="TaskStatus"
+			type="java.lang.Integer">
+			<column name="TaskStatus" />
+		</property>
+		<property generated="never" lazy="false" name="url" type="string">
+			<column name="url" />
+		</property>
+		<property generated="never" lazy="false" name="text" type="string">
+			<column name="text" />
+		</property>
+		<property generated="never" lazy="false" name="questionnaire"
+			type="java.lang.Integer">
+			<column name="questionnaire" />
+		</property>
+		<property generated="never" lazy="false" name="Executor"
+			type="java.lang.Integer">
+			<column name="Executor" />
+		</property>
+		<property generated="never" lazy="false" name="Assigner"
+			type="java.lang.Integer">
+			<column name="Assigner" />
+		</property>
+		<property generated="never" lazy="false" name="Object"
+			type="java.lang.Integer">
+			<column name="Object" />
+		</property>
+		<many-to-one class="Questionnaire" insert="false"
+			name="m_Questionnaire" update="false">
+			<column name="questionnaire" not-null="false" />
+		</many-to-one>
+		<many-to-one class="AladdinUser" insert="false" name="m_AladdinUser"
+			update="false">
+			<column name="Executor" not-null="false" />
+		</many-to-one>
+		<many-to-one class="AladdinUser" insert="false" name="m_AladdinUser1"
+			update="false">
+			<column name="Assigner" not-null="false" />
+		</many-to-one>
+		<many-to-one class="AladdinUser" insert="false" name="m_AladdinUser11"
+			update="false">
+			<column name="Object" not-null="false" />
+		</many-to-one>
+		<set inverse="true" name="Measurements" sort="unsorted">
+			<key>
+				<column name="task" not-null="true" />
+			</key>
+			<one-to-many class="Measurement" />
+		</set>
+	</class>
+</hibernate-mapping>

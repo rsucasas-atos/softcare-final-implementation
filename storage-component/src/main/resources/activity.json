@@ -1,0 +1,32 @@
+[
+	{
+		"level": "Sedentary",
+		"res": "WARN",
+		"min": 0.0,
+		"max": 4999.9
+	},
+	{
+		"level": "Low_Active",
+		"res": "OK",
+		"min": 5000.0,
+		"max": 7499.9
+	},
+	{
+		"level": "Somewhat_Active",
+		"res": "OK",
+		"min": 7500.0,
+		"max": 9999.9
+	},
+	{
+		"level": "Active",
+		"res": "OK",
+		"min": 10000.0,
+		"max": 12499.9
+	},
+	{
+		"level": "Highly_Active",
+		"res": "OK",
+		"min": 12500.0,
+		"max": 99999.9
+	}
+]

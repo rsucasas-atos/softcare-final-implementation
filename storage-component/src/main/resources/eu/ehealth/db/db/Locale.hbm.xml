@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="Locale">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="name" type="string">
+   <column name="name"/>
+  </property>
+  <set inverse="true" name="Translates" sort="unsorted">
+   <key>
+    <column name="locale" not-null="true"/>
+   </key>
+   <one-to-many class="Translate"/>
+  </set>
+  <set inverse="true" name="Dicts" sort="unsorted">
+   <key>
+    <column name="locale" not-null="true"/>
+   </key>
+   <one-to-many class="Dict"/>
+  </set>
+ </class>
+</hibernate-mapping>

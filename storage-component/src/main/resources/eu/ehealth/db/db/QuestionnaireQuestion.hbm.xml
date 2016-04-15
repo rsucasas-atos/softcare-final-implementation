@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="QuestionnaireQuestion">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="type" type="string">
+   <column name="type"/>
+  </property>
+  <property generated="never" lazy="false" name="isPrimary" type="java.lang.Boolean">
+   <column name="isPrimary"/>
+  </property>
+  <property generated="never" lazy="false" name="parentid" type="java.lang.Integer">
+   <column name="parentid"/>
+  </property>
+  <property generated="never" lazy="false" name="title" type="string">
+   <column name="title"/>
+  </property>
+  <property generated="never" lazy="false" name="quest" type="java.lang.Integer">
+   <column name="quest"/>
+  </property>
+  <property generated="never" lazy="false" name="condition" type="java.lang.Integer">
+   <column name="condition1"/>
+  </property>
+  <property generated="never" lazy="false" name="deleted" type="java.lang.Boolean">
+   <column name="deleted"/>
+  </property>
+  <property generated="never" lazy="false" name="position" type="java.lang.Integer">
+   <column name="position"/>
+  </property>
+  <property generated="never" lazy="false" name="GlobalId" type="java.lang.Integer">
+   <column name="GlobalId"/>
+  </property>
+  <many-to-one class="QuestionnaireQuestion" insert="false"
+   name="m_QuestionnaireQuestion" update="false">
+   <column name="parentid" not-null="false"/>
+  </many-to-one>
+  <many-to-one class="Questionnaire" insert="false"
+   name="m_Questionnaire" update="false">
+   <column name="quest" not-null="false"/>
+  </many-to-one>
+  <set inverse="true" name="QuestionnaireQuestionAnswers" sort="unsorted">
+   <key>
+    <column name="question" not-null="true"/>
+   </key>
+   <one-to-many class="QuestionnaireQuestionAnswer"/>
+  </set>
+  <set inverse="true" name="QuestionnaireAnswers" sort="unsorted">
+   <key>
+    <column name="question" not-null="true"/>
+   </key>
+   <one-to-many class="QuestionnaireAnswer"/>
+  </set>
+ </class>
+</hibernate-mapping>

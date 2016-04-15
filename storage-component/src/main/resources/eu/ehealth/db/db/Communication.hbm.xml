@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <typedef class="org.jasypt.hibernate4.type.EncryptedStringType" name="encrypted">
+  <param name="encryptorRegisteredName">strongHibernateStringEncryptor</param>
+ </typedef>
+ <class name="Communication">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="Type" type="string">
+   <column name="Type"/>
+  </property>
+  <property generated="never" lazy="false" name="Value" type="encrypted">
+   <column name="Value"/>
+  </property>
+  <property generated="never" lazy="false" name="Notes" type="encrypted">
+   <column name="Notes"/>
+  </property>
+  <property generated="never" lazy="false" name="IsPrimary" type="java.lang.Boolean">
+   <column name="IsPrimary"/>
+  </property>
+  <property generated="never" lazy="false" name="persondata" type="java.lang.Integer">
+   <column name="persondata"/>
+  </property>
+  <many-to-one class="PersonData" insert="false" name="m_PersonData" update="false">
+   <column name="persondata" not-null="false"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>

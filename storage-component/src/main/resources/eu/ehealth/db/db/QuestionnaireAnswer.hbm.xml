@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="QuestionnaireAnswer">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="question" type="java.lang.Integer">
+   <column name="question"/>
+  </property>
+  <property generated="never" lazy="false" name="value" type="string">
+   <column name="value"/>
+  </property>
+  <property generated="never" lazy="false" name="UserId" type="java.lang.Integer">
+   <column name="UserId"/>
+  </property>
+  <property generated="never" lazy="false" name="dateTime" type="java.sql.Timestamp">
+   <column name="timestamp"/>
+  </property>
+  <property generated="never" lazy="false" name="objectId" type="java.lang.Integer">
+   <column name="objectId"/>
+  </property>
+  <many-to-one class="QuestionnaireQuestion" insert="false"
+   name="m_QuestionnaireQuestion" update="false">
+   <column name="question" not-null="false"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>

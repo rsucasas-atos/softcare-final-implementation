@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="Patient">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="persondata" type="java.lang.Integer">
+   <column name="persondata"/>
+  </property>
+  <property generated="never" lazy="false" name="sd" type="java.lang.Integer">
+   <column name="sd"/>
+  </property>
+  <property generated="never" lazy="false" name="clinician" type="java.lang.Integer">
+   <column name="clinician"/>
+  </property>
+  <property generated="never" lazy="false" name="swname" type="string">
+   <column name="swname"/>
+  </property>
+  <property generated="never" lazy="false" name="swphone" type="string">
+   <column name="swphone"/>
+  </property>
+  <property generated="never" lazy="false" name="swemail" type="string">
+   <column name="swemail"/>
+  </property>
+  <property generated="never" lazy="false" name="ccname" type="string">
+   <column name="ccname"/>
+  </property>
+  <property generated="never" lazy="false" name="ccphone" type="string">
+   <column name="ccphone"/>
+  </property>
+  <property generated="never" lazy="false" name="ccemail" type="string">
+   <column name="ccemail"/>
+  </property>
+  <property generated="never" lazy="false" name="gpname" type="string">
+   <column name="gpname"/>
+  </property>
+  <property generated="never" lazy="false" name="gpphone" type="string">
+   <column name="gpphone"/>
+  </property>
+  <property generated="never" lazy="false" name="gpemail" type="string">
+   <column name="gpemail"/>
+  </property>
+  <property generated="never" lazy="false" name="carer" type="java.lang.Integer">
+   <column name="carer"/>
+  </property>
+  <set inverse="true" name="Warnings" sort="unsorted">
+   <key>
+    <column name="Patient" not-null="true"/>
+   </key>
+   <one-to-many class="Warning"/>
+  </set>
+  <set inverse="true" name="PatientAssessments" sort="unsorted">
+   <key>
+    <column name="patient" not-null="true"/>
+   </key>
+   <one-to-many class="PatientAssessment"/>
+  </set>
+  <many-to-one class="PersonData" insert="false" name="m_PersonData" update="false">
+   <column name="persondata" not-null="false"/>
+  </many-to-one>
+  <many-to-one class="SocioDemographicData" insert="false"
+   name="m_SocioDemographicData" update="false">
+   <column name="sd" not-null="false"/>
+  </many-to-one>
+  <many-to-one class="Clinician" insert="false" name="m_Clinician" update="false">
+   <column name="clinician" not-null="false"/>
+  </many-to-one>
+  <many-to-one class="Carer" insert="false" name="m_Carer" update="false">
+   <column name="carer" not-null="false"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>

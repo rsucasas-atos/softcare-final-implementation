@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="AladdinUser">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="username" type="string">
+   <column name="username"/>
+  </property>
+  <property generated="never" lazy="false" name="password" type="string">
+   <column name="password"/>
+  </property>
+  <property generated="never" lazy="false" name="type" type="java.lang.Integer">
+   <column name="type"/>
+  </property>
+  <property generated="never" lazy="false" name="personId" type="java.lang.Integer">
+   <column name="personId"/>
+  </property>
+  <set inverse="true" name="Tasks" sort="unsorted">
+   <key>
+    <column name="Executor" not-null="true"/>
+   </key>
+   <one-to-many class="Task"/>
+  </set>
+  <set inverse="true" name="Tasks1" sort="unsorted">
+   <key>
+    <column name="Assigner" not-null="true"/>
+   </key>
+   <one-to-many class="Task"/>
+  </set>
+  <set inverse="true" name="Tasks11" sort="unsorted">
+   <key>
+    <column name="Object" not-null="true"/>
+   </key>
+   <one-to-many class="Task"/>
+  </set>
+ </class>
+</hibernate-mapping>

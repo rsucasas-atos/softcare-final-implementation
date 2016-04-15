@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="SystemParameter">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="Code" type="string">
+   <column name="Code"/>
+  </property>
+  <property generated="never" lazy="false" name="Description" type="string">
+   <column name="Description"/>
+  </property>
+ </class>
+</hibernate-mapping>

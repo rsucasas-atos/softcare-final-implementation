@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+	PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+	<class name="Rules">
+		<id column="id" name="id" type="string">
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="comments" type="string">
+			<column name="comments" />
+		</property>
+		<property generated="never" lazy="false" name="description" type="string">
+			<column name="description" />
+		</property>
+		<property generated="never" lazy="false" name="dataType" type="java.lang.Integer">
+			<column name="dataType" />
+		</property>
+		<property generated="never" lazy="false" name="dataTypeDesc" type="string">
+			<column name="dataTypeDesc" />
+		</property>
+		<property generated="never" lazy="false" name="callerID" type="java.lang.Integer">
+			<column name="callerID" />
+		</property>
+		<property generated="never" lazy="false" name="callerIDDesc" type="string">
+			<column name="callerIDDesc" />
+		</property>
+		<property generated="never" lazy="false" name="lowerLimit" type="java.lang.Integer">
+			<column name="lowerLimit" />
+		</property>
+		<property generated="never" lazy="false" name="upperLimit" type="java.lang.Integer">
+			<column name="upperLimit" />
+		</property>
+		<property generated="never" lazy="false" name="getPrevious" type="string">
+			<column name="getPrevious" />
+		</property>
+		<property generated="never" lazy="false" name="highRiskThresh" type="java.lang.Integer">
+			<column name="highRiskThresh" />
+		</property>
+		<property generated="never" lazy="false" name="averageTotalData" type="java.lang.Integer">
+			<column name="averageTotalData" />
+		</property>
+		<property generated="never" lazy="false" name="averageWeeksMax" type="java.lang.Integer">
+			<column name="averageWeeksMax" />
+		</property>
+		<property generated="never" lazy="false" name="alg" type="java.lang.Integer">
+			<column name="alg" />
+		</property>
+		<property generated="never" lazy="false" name="activate" type="string">
+			<column name="activate" />
+		</property>
+	</class>
+</hibernate-mapping>
+

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+	<class name="Measurement">
+		<id column="id" name="id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+		<property generated="never" lazy="false" name="type" type="string">
+			<column name="type" />
+		</property>
+		<property generated="never" lazy="false" name="value"
+			type="java.math.BigDecimal">
+			<column name="value" />
+		</property>
+		<property generated="never" lazy="false" name="datetime"
+			type="java.sql.Timestamp">
+			<column name="datetime" />
+		</property>
+		<property generated="never" lazy="false" name="units" type="string">
+			<column name="units" />
+		</property>
+		<property generated="never" lazy="false" name="lowerlimit"
+			type="java.math.BigDecimal">
+			<column name="lowerlimit" />
+		</property>
+		<property generated="never" lazy="false" name="upperlimit"
+			type="java.math.BigDecimal">
+			<column name="upperlimit" />
+		</property>
+		<property generated="never" lazy="false" name="patientassessment"
+			type="java.lang.Integer">
+			<column name="patientassessment" />
+		</property>
+		<property generated="never" lazy="false" name="task"
+			type="java.lang.Integer">
+			<column name="task" />
+		</property>
+		<property generated="never" lazy="false" name="field1" type="string">
+			<column name="field1" />
+		</property>
+		<property generated="never" lazy="false" name="field2" type="string">
+			<column name="field2" />
+		</property>
+		<many-to-one class="PatientAssessment" insert="false"
+			name="m_PatientAssessment" update="false">
+			<column name="patientassessment" not-null="false" />
+		</many-to-one>
+		<many-to-one class="Task" insert="false" name="m_Task"
+			update="false">
+			<column name="task" not-null="false" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

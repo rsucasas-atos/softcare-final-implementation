@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="Carer">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="persondata" type="java.lang.Integer">
+   <column name="persondata"/>
+  </property>
+  <property generated="never" lazy="false" name="sd" type="java.lang.Integer">
+   <column name="sd"/>
+  </property>
+  <many-to-one class="PersonData" insert="false" name="m_PersonData" update="false">
+   <column name="persondata" not-null="false"/>
+  </many-to-one>
+  <many-to-one class="SocioDemographicData" insert="false"
+   name="m_SocioDemographicData" update="false">
+   <column name="sd" not-null="false"/>
+  </many-to-one>
+  <set inverse="true" name="CarerAssessments" sort="unsorted">
+   <key>
+    <column name="carer" not-null="true"/>
+   </key>
+   <one-to-many class="CarerAssessment"/>
+  </set>
+  <set inverse="true" name="Patients" sort="unsorted">
+   <key>
+    <column name="carer" not-null="true"/>
+   </key>
+   <one-to-many class="Patient"/>
+  </set>
+ </class>
+</hibernate-mapping>

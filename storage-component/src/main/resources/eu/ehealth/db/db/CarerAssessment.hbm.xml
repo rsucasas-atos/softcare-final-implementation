@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="eu.ehealth.db.db">
+ <class name="CarerAssessment">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="carer" type="java.lang.Integer">
+   <column name="carer"/>
+  </property>
+  <property generated="never" lazy="false" name="DateOfAssessment" type="java.sql.Timestamp">
+   <column name="DateOfAssessment"/>
+  </property>
+  <property generated="never" lazy="false" name="RelevantHealthProblem" type="string">
+   <column name="RelevantHealthProblem"/>
+  </property>
+  <property generated="never" lazy="false" name="SeverityOfBurden" type="java.lang.Integer">
+   <column name="SeverityOfBurden"/>
+  </property>
+  <property generated="never" lazy="false"
+   name="EmotionalOrMentalDisorder" type="string">
+   <column name="EmotionalOrMentalDisorder"/>
+  </property>
+  <property generated="never" lazy="false" name="PsychoactiveDrugs" type="string">
+   <column name="PsychoactiveDrugs"/>
+  </property>
+  <property generated="never" lazy="false" name="QualityOfLife" type="java.lang.Integer">
+   <column name="QualityOfLife"/>
+  </property>
+  <property generated="never" lazy="false" name="clinician" type="java.lang.Integer">
+   <column name="clinician"/>
+  </property>
+  <many-to-one class="Carer" insert="false" name="m_Carer" update="false">
+   <column name="carer" not-null="false"/>
+  </many-to-one>
+  <many-to-one class="Clinician" insert="false" name="m_Clinician" update="false">
+   <column name="clinician" not-null="false"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>
